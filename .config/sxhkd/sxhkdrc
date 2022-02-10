@@ -29,7 +29,3 @@ super + f
 # keybindings for screenshot. maim is needed.
 {_,super + }Print
     maim {-u,-s} -o ~/Pictures/Screenshots/$(date +%s).png
-
-# test
-# super + F1
-#     neofetch --stdout > test.txt

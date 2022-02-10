@@ -9,6 +9,8 @@ Compositor: picom. It works pretty well without heavily config.
 
 Window manager: qtile. It has a panel with tons of built-in widget. Great for a newbie like me.
 
+Display manager: lightdm with lightdm-gtk-greeter.
+
 Notification server: dunst.
 
 Clipboard manager: xclip.
