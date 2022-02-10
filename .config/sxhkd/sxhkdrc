@@ -1,0 +1,35 @@
+# If sxhkd receives a SIGUSR1 signal, 
+# it will reload its configuration file.
+super + alt + r
+    killall -SIGUSR1 sxhkd
+
+# my volume and backlight control.
+# alsa-utils and light is needed.
+XF86Audio{LowerVolume,RaiseVolume,Mute}
+    amixer set Master {5%-,5%+,toggle}
+XF86MonBrightness{Down,Up}
+    light {-U 5,-A 5}
+
+# run dmenu as application launcher.
+super + space
+    dmenu_run -i -l 10 -p "Run:" -fn sans-16
+
+# keybindings for programs
+super + Return
+    alacritty
+super + b
+    qutebrowser
+
+# keybindings for my scripts.
+Insert
+    sh ~/.config/scripts/dmenu_icon.sh
+super + f
+    alacritty -e sh ~/.config/vifm/scripts/vifmrun
+
+# keybindings for screenshot. maim is needed.
+{_,super + }Print
+    maim {-u,-s} -o ~/Pictures/Screenshots/$(date +%s).png
+
+# test
+# super + F1
+#     neofetch --stdout > test.txt
