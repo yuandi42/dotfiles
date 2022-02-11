@@ -8,7 +8,7 @@ from libqtile import bar, hook, layout, qtile, widget, extension
 from libqtile.lazy import lazy
 from typing import List
 
-mod = "mod4"
+mod = "mod4" # spuer key.
 myTerm ="alacritty"
 
 # the set of colours used in panel.
@@ -106,12 +106,12 @@ groups = [
 
 for i in range(1, 7):
     keys.extend([
-        # mod1 + number of group = switch to group
+        # mod + number of group = switch to group
         Key([mod], str(i), 
             lazy.group[groups[i-1].name].toscreen(),
             desc="Switch to group {}".format(groups[i-1].name)),
 
-        # mod1 + shift + number of group = switch to & move focused window to group
+        # mod + shift + number of group = switch to & move focused window to group
         Key([mod, "shift"], str(i),
             lazy.window.togroup(groups[i-1].name, switch_group=True),
             desc="Switch to & move focused window to group {}".format(groups[i-1].name)),
@@ -181,12 +181,9 @@ screens = [
                     text = ' ',
                 ),
                 widget.Systray(),
-                widget.TextBox(
-                    text = ' ',
-                ),
                 # python-psutil is needed.
                 widget.CPU(
-                    format = '  {load_percent}%, ',
+                    format = '   {load_percent}%, ',
                     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e htop')},
                 ),
                 widget.ThermalSensor(
@@ -223,12 +220,9 @@ screens = [
                     low_percentage = 0.2,
                     notify_below = 20,
                 ),
-                widget.TextBox(
-                    text = ' ',
-                ),
                 widget.Clock(
                     font = "Monospace",
-                    format = "  %a, %b %d - %H:%M ",
+                    format = "   %a, %b %d - %H:%M ",
                     # you would never gonna know when you need it.
                     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm)},
                 )
@@ -272,16 +266,21 @@ auto_fullscreen = True
 focus_on_window_activation = "smart"
 reconfigure_screens = True
 
-@hook.subscribe.client_new
 # To prevent mpv from floating, 
 # see more in https://github.com/qtile/qtile/issues/2651.
+@hook.subscribe.client_new
 def disable_floating(window):
-    disable_rules = [
-                Match(wm_class="mpv")
-            ]
+    disable_rules = [ Match(wm_class="mpv")]
     if any(window.match(rule) for rule in disable_rules):
         window.togroup(qtile.current_group.name)
         window.cmd_disable_floating()
+
+# When a window is created in a group which isn't current group,
+# auto switch to that group. WIP.
+@hook.subscribe.client_new
+def auto_switch(window):
+    if window.group.name != qtile.current_group.name:
+        window.group.name.cmd_toscreen()
 
 # Run autostart.sh when startup qtile.
 @hook.subscribe.startup_once

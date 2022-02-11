@@ -24,7 +24,7 @@ Shell: bash which every noobs use.
 Web browser: qutebrowser. Its vim-keybinding and config files are pretty god, but lack of extension still makes its browsing experience a pain in the ass.
 Pity to admit that there is no browser decent enough to use. May switch to other mainstream browser like Firefox or Brave some day.
 
-Text editing: vim for certain. And I also use helix (a post-modern editor) as well. It's pretty cool, and looks amazing out of the box.
+Text editing: vim for certain. And I use helix (a post-modern editor) as well. It's pretty cool, and looks amazing out of the box.
 
 ### Utilities
 File manager: vifm for terminal, pcmanfm for GUI. I use a pretty clumsy way to have image preview in vifm. Considering to switch to lf.
