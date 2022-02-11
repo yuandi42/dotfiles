@@ -49,8 +49,8 @@ keys = [
         desc="Window get maximized/minimized"),
     Key([mod], "r", lazy.layout.reset(), 
         desc="Reset all client windows to their default sizes"),
-    Key([mod, "shift"], "f", lazy.window.toggle_floating(),
-        desc="Put the focused window to/from floating mode"),
+    Key([mod, "mod1"], "f", lazy.window.toggle_floating(),
+        desc="Put the focused window to/from floating mode"), # btw, mod1 is alt.
     
     # Switch between groups.
     Key([mod], "period", lazy.screen.next_group(skip_empty=True),
@@ -97,7 +97,7 @@ keys = [
 groups = [
     # ttf-all-the-icons fonts is needed.
     Group(""),
-    Group("", matches = [Match(wm_class = ["p3x-onenote"]) ]),
+    Group("", matches = [Match(wm_class = ["Zathura","p3x-onenote"]) ]),
     Group("", matches = [Match(wm_class = ["qutebrowser"]) ]),
     Group(""),
     Group("", layout = 'max', matches = [Match(wm_class = ["Steam"]) ]),
@@ -272,17 +272,16 @@ auto_fullscreen = True
 focus_on_window_activation = "smart"
 reconfigure_screens = True
 
+@hook.subscribe.client_new
 # To prevent mpv from floating, 
 # see more in https://github.com/qtile/qtile/issues/2651.
-@hook.subscribe.client_new
 def disable_floating(window):
     disable_rules = [
                 Match(wm_class="mpv")
             ]
-    
     if any(window.match(rule) for rule in disable_rules):
-            window.togroup(qtile.current_group.name)
-            window.cmd_disable_floating()
+        window.togroup(qtile.current_group.name)
+        window.cmd_disable_floating()
 
 # Run autostart.sh when startup qtile.
 @hook.subscribe.startup_once

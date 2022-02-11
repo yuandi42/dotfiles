@@ -19,12 +19,12 @@ super + Return
     alacritty
 super + b
     qutebrowser
+super + {_,shift}  + f
+    {alacritty -e sh ~/.config/vifm/scripts/vifmrun,pcmanfm}
 
 # keybindings for my scripts.
 Insert
     sh ~/.config/scripts/dmenu_icon.sh
-super + f
-    alacritty -e sh ~/.config/vifm/scripts/vifmrun
 
 # keybindings for screenshot. maim is needed.
 {_,super + }Print
