@@ -15,7 +15,7 @@ Notification server: dunst.
 
 Clipboard manager: xclip.
 
-Hotkey daemon: sxhkd. It takes over most my hotkeys of scripts and other WM-unrelated keybindings. May help a lot if one day I decide to do a WM hopping.
+Hotkey daemon: sxhkd. It takes over most my hotkeys of scripts and other non-WM-related keybindings. May help a lot if one day I decide to do a WM hopping.
 
 Terminal: alacritty. An easily customizable terminal.
 

@@ -8,7 +8,7 @@ from libqtile import bar, hook, layout, qtile, widget, extension
 from libqtile.lazy import lazy
 from typing import List
 
-mod = "mod4" # spuer key.
+mod = "mod4" # super key.
 myTerm ="alacritty"
 
 # the set of colours used in panel.
