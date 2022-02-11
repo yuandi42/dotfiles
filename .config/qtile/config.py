@@ -276,11 +276,12 @@ def disable_floating(window):
         window.cmd_disable_floating()
 
 # When a window is created in a group which isn't current group,
-# auto switch to that group. WIP.
-@hook.subscribe.client_new
+# auto switch to that group.
+# see more in https://github.com/qtile/qtile/issues/3325.
+@hook.subscribe.client_managed
 def auto_switch(window):
     if window.group.name != qtile.current_group.name:
-        window.group.name.cmd_toscreen()
+        window.group.cmd_toscreen()
 
 # Run autostart.sh when startup qtile.
 @hook.subscribe.startup_once

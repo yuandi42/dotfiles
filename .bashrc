@@ -21,3 +21,6 @@ alias xkeyname='xev | awk -F'\''[ )]+'\'' '\''/^KeyPress/ { a[NR+2] } NR in a { 
 
 # for my .dotfiles management. dfcfg stands for dotfiles config.
 alias dfcfg='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME' 
+
+# for my onedrive synchronization.
+alias odupd='onedrive --synchronize --single-directory "Documents"'
