@@ -8,5 +8,5 @@ add_newline = false
 # Use custom format
 format = """
 [ ┌─>](bold green)$directory$rust$package
-[─│](bold green)
+[─┤](bold green)
 [ └─>](bold green) """
