@@ -78,18 +78,6 @@ keys = [
         background= colours[0][0],
         foreground= colours[1][0],
     )), desc="list all open windows"),
-    
-    # shutdown & reboot.
-    Key([mod, "shift"], "x", lazy.run_extension(extension.CommandSet(
-            commands = {
-            'Shutdown': 'shutdown -h now',
-            'Reboot' : 'reboot',
-        },
-            dmenu_command = 'dmenu -i',
-            dmenu_prompt = 'Run:',
-            background= colours[0][0],
-            foreground= colours[1][0],
-        ))),
 ]
 
 groups = [
