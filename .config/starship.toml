@@ -1,0 +1,12 @@
+# don't print a new line at the start of the prompt
+add_newline = false
+
+# Make prompt a single line instead of two lines
+# [line_break]
+# disabled = true
+
+# Use custom format
+format = """
+[ ┌─>](bold green)$directory$rust$package
+[─│](bold green)
+[ └─>](bold green) """

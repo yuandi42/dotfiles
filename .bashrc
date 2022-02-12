@@ -5,7 +5,8 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-PS1='[\u@\h \W]\$ '
+## This is commented out if using starship prompt.
+# PS1='[\u@\h \W]\$ '
 
 export EDITOR='vim'
 
@@ -24,3 +25,9 @@ alias dfcfg='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 # for my onedrive synchronization.
 alias odupd='onedrive --synchronize --single-directory "Documents"'
+##############
+## my alias ##
+##############
+
+## enable starship prompt ##
+eval "$(starship init bash)"
