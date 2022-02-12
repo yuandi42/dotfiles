@@ -25,6 +25,8 @@ super + {_,shift}  + f
 # keybindings for my scripts.
 Insert
     sh ~/.config/scripts/dmenu_icon.sh
+super + shift + x
+    sh ~/.config/scripts/dmenu_SNR.sh
 
 # keybindings for screenshot. maim is needed.
 {_,super + }Print
