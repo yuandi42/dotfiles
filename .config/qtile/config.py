@@ -73,9 +73,8 @@ keys = [
     # vertical list of all open windows in dmenu. Switch to selected.
     Key([mod], "Tab", lazy.run_extension(extension.WindowList(
         dmenu_prompt = 'Goto:',
-        dmenu_command = 'dmenu',
+        dmenu_command = "dmenu -i",
         dmenu_lines = '10',
-        dmenu_font = '18',
         background= colours[0][0],
         foreground= colours[1][0],
     )), desc="list all open windows"),
@@ -88,7 +87,6 @@ keys = [
         },
             dmenu_command = 'dmenu -i',
             dmenu_prompt = 'Run:',
-            dmenu_font = '18',
             background= colours[0][0],
             foreground= colours[1][0],
         ))),
