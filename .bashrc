@@ -30,4 +30,5 @@ alias odupd='onedrive --synchronize --single-directory "Documents"'
 ##############
 
 ## enable starship prompt ##
+export STARSHIP_CONFIG=~/.config/starship/starship.toml
 eval "$(starship init bash)"
