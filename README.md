@@ -19,7 +19,7 @@ Hotkey daemon: sxhkd. It takes over most my hotkeys of scripts and other non-WM-
 
 Terminal: alacritty. An easily customizable terminal.
 
-Shell: bash which every noobs use.
+Shell: bash which every noobs use, with starship prompt as my shell prompt.
 
 Web browser: qutebrowser. Its vim-keybinding and config files are pretty god, but lack of extension still makes its browsing experience a pain in the ass.
 Pity to admit that there is no browser decent enough to use. May switch to other mainstream browser like Firefox or Brave some day.
