@@ -1,0 +1,23 @@
+# don't print a new line at the start of the prompt
+add_newline = false
+
+# Make prompt a single line instead of two lines
+# [line_break]
+# disabled = true
+
+format = """
+[ ┌─](bold green) [ ](blue)$directory\
+                            $python\
+                            $git_branch\
+                            $git_commit\
+                            $git_state\
+                            $git_metrics\
+                            $git_status\
+                            $hg_branch
+[─┤](bold green)  $cmd_duration
+[ └──](bold green)$character"""
+
+[character]
+success_symbol = "[>](bold green)"
+error_symbol = "[✗](bold red)"
+vicmd_symbol = "[!](bold green)"
