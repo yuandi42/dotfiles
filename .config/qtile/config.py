@@ -84,7 +84,7 @@ groups = [
     # ttf-all-the-icons fonts is needed.
     Group(""),
     Group("", matches = [Match(wm_class = ["Zathura","p3x-onenote"]) ]),
-    Group("", matches = [Match(wm_class = ["qutebrowser"]) ]),
+    Group("", matches = [Match(wm_class = ["qutebrowser","firefox"]) ]),
     Group(""),
     Group("", layout = 'max', matches = [Match(wm_class = ["Steam"]) ]),
     Group(""),

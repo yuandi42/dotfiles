@@ -17,8 +17,8 @@ super + space
 # keybindings for programs
 super + Return
     alacritty
-super + b
-    qutebrowser
+super + {_,shift} + b
+    {firefox,qutebrowser}
 super + {_,shift}  + f
     {alacritty -e sh ~/.config/vifm/scripts/vifmrun,pcmanfm}
 
