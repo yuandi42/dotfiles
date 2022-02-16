@@ -18,7 +18,7 @@ super + space
 super + Return
     alacritty
 super + {_,shift} + b
-    {firefox,qutebrowser}
+    {qutebrowser,firefox}
 super + {_,shift}  + f
     {alacritty -e sh ~/.config/vifm/scripts/vifmrun,pcmanfm}
 
