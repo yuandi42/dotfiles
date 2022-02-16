@@ -1,5 +1,5 @@
 #!/bin/sh
-# select shutdown or reboot in dmenu. WIP.
+# select shutdown or reboot in dmenu.
 
 var1=$(echo -e 'Reboot\nShutdown'| dmenu -i -p 'Run:' -fn sans-16)
 case $var1 in 
