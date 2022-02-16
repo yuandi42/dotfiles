@@ -57,6 +57,7 @@ c.fonts.web.family.cursive = 'Inconsolata'
 c.fonts.web.family.sans_serif = 'Inconsolata'
 c.fonts.completion.category = 'bold default_size default_family'
 c.fonts.contextmenu = '16px default_family'
+c.fonts.hints = '14px sans'
 
 # Colors
 bg = "#1d2021"
