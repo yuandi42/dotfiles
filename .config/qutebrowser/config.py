@@ -6,6 +6,8 @@ c.content.default_encoding = "utf-8"
 c.content.autoplay = False
 c.content.tls.certificate_errors = "ask-block-thirdparty"
 c.editor.command = [myTerm, "-e", "vim", "-f", "{}"]
+c.completion.cmd_history_max_items = 100
+c.completion.open_categories = ["searchengines", "quickmarks", "bookmarks", "filesystem"]
 
 # Ad-block
 c.content.blocking.enabled = True
@@ -49,6 +51,7 @@ config.bind('>', 'tab-move +', mode='normal')
 config.bind('<', 'tab-move -', mode='normal')
 config.bind('xb', 'config-cycle statusbar.show never always', mode = 'normal')
 config.bind('xt','config-cycle tabs.show never always', mode = 'normal')
+config.bind('yf','hint links yank', mode = 'normal')
 
 # Font and define colors values
 c.fonts.default_family = ['Inconsolata']
