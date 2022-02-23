@@ -14,7 +14,7 @@ export EDITOR='vim'
 ## my alias ##
 ##############
 alias ls='ls --color=auto'
-alias vifmrun='sh ~/.config/vifm/scripts/vifmrun'
+alias vfr='sh ~/.config/vifm/scripts/vifmrun'
 alias hx=helix
 
 # easily get the name of key events
