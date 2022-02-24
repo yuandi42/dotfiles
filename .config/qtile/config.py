@@ -1,5 +1,4 @@
-# qtile config for my msi laptop, whose superkey locates on the right
-# side of the keyboard, hence I use wasd to navi instead of hjkl.
+# remap Alt_L to Super_L by xmodmap, so I can use hjkl to navi now.
 
 from libqtile import bar, layout, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
@@ -24,21 +23,21 @@ colours = [["#282828", "#282828"], # Background black
 
 keys = [
     # Switch between windows
-    Key([mod], "a", lazy.layout.left(), desc="Move focus to left"),
-    Key([mod], "d", lazy.layout.right(), desc="Move focus to right"),
-    Key([mod], "s", lazy.layout.down(), desc="Move focus down"),
-    Key([mod], "w", lazy.layout.up(), desc="Move focus up"),
+    Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
+    Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
+    Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
+    Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
     Key([mod], "e", lazy.layout.next(),
         desc="Move window focus to other window"),
 
     # Move windows between left/right columns or move up/down in current stack.
-    Key([mod, "shift"], "a", lazy.layout.shuffle_left(),
+    Key([mod, "shift"], "h", lazy.layout.shuffle_left(),
         desc="Move window to the left"),
-    Key([mod, "shift"], "d", lazy.layout.shuffle_right(),
+    Key([mod, "shift"], "l", lazy.layout.shuffle_right(),
         desc="Move window to the right"),
-    Key([mod, "shift"], "s", lazy.layout.shuffle_down(),
+    Key([mod, "shift"], "j", lazy.layout.shuffle_down(),
         desc="Move window down"),
-    Key([mod, "shift"], "w", lazy.layout.shuffle_up(), desc="Move window up"),
+    Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
     Key([mod, "shift"], "e", lazy.layout.flip(),
         desc = "Switch which horizontal side the main pane will occupy"),
 
