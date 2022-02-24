@@ -35,6 +35,8 @@ Video player: mpv. Every cool guys already use it.
 
 Torrent client: Transmission-gtk.
 
+Git client: lazygit
+
 Screenshot utility: maim.
 
 Project V client: v2raya.
