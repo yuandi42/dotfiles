@@ -1,6 +1,9 @@
 # dotfiles
 Personal configuration for my Arch linux.
 
+## Screenshot
+![Screenshot](unixporn.png 'WIP though')
+
 ## Programs for my daily use.
 ### Basic
 Display sever: X-org. Is there really another decent choice?
