@@ -1,10 +1,11 @@
 "" Gernal setting
-set number
+set nocompatible
+set number relativenumber
 set clipboard=unnamedplus
 set encoding=utf-8
 set mouse=a
 set scrolloff=5
-set showmode!
+set noshowmode
 syntax on
 
 "" Start plug-ins setting
