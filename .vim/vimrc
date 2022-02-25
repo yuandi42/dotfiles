@@ -15,6 +15,10 @@ syntax on
 nnoremap <space> <Nop>
 let mapleader=" "
 
+noremap <leader>u <c-u>
+noremap <leader>d <c-d>
+noremap <leader>o <c-o>
+noremap <leader>i <c-i>
 noremap <leader>w <c-w>
 
 "" Start plug-ins setting
