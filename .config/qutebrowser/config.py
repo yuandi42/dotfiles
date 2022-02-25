@@ -9,6 +9,10 @@ c.editor.command = [myTerm, "-e", "vim", "-f", "{}"]
 c.completion.cmd_history_max_items = 100
 c.completion.open_categories = ["searchengines", "quickmarks", "bookmarks", "filesystem"]
 
+# Startpage
+c.url.start_pages = ['~/.config/qutebrowser/startpage/index.html']
+c.url.default_page = '~/.config/qutebrowser/startpage/index.html'
+
 # Ad-block
 c.content.blocking.enabled = True
 c.content.blocking.method = "both"
