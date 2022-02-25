@@ -1,4 +1,4 @@
-"" TODO add start plugin: vim-devicons, vim-startify;
+"" TODO add start plugin: vim-devicons;
 ""	add keybindings for NERDTree. 
 
 "" Gernal setting
@@ -9,7 +9,14 @@ set encoding=utf-8
 set mouse=a
 set scrolloff=5
 set noshowmode
+set showcmd
 syntax on
+
+nnoremap <space> <Nop>
+let mapleader=" "
+
+noremap <leader>w <c-w>
 
 "" Start plug-ins setting
 let g:airline_powerline_fonts = 1
+nnoremap <leader>fc :NERDTree<CR>
