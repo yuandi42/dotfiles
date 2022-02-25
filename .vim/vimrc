@@ -1,3 +1,6 @@
+"" TODO add start plugin: vim-devicons, vim-startify;
+""	add keybindings for NERDTree. 
+
 "" Gernal setting
 set nocompatible
 set number relativenumber
