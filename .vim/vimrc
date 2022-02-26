@@ -1,5 +1,6 @@
-"" TODO add start plugin: vim-devicons;
-""	add keybindings for NERDTree. 
+"" TODO: add start plugin: vim-devicons;
+""  add keybindings for NERDTree;
+""	set auto complete, filetype. 
 
 "" Gernal setting
 set nocompatible
@@ -8,19 +9,74 @@ set clipboard=unnamedplus
 set encoding=utf-8
 set mouse=a
 set scrolloff=5
+
+" eyecandies maybe
+set showmatch
 set noshowmode
 set showcmd
 syntax on
 
+" search setting
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+" buffer and split
+set hidden
+set splitbelow
+set splitright
+
+" indent setting
+set smartindent
+set expandtab
+set tabstop=4
+set shiftwidth=4
+
+" folding setting
+set fdm=indent
+set foldlevel=99
+
+" remap space as leader key
 nnoremap <space> <Nop>
 let mapleader=" "
 
+" clear hlsearch
+nnoremap <esc><esc> :noh<CR>
+
+" save my wrists!
 noremap <leader>u <c-u>
 noremap <leader>d <c-d>
 noremap <leader>o <c-o>
 noremap <leader>i <c-i>
 noremap <leader>w <c-w>
 
+" keybindings for buffers
+noremap <leader>bj :bp<CR>
+noremap <leader>bk :bn<CR>
+noremap <leader>bh :bf<CR>
+noremap <leader>bl :bl<CR>
+noremap <leader>bd :bd<CR>
+
+" keybings for terminal
+noremap <leader>tt :term<CR>
+
 "" Start plug-ins setting
+" airline
 let g:airline_powerline_fonts = 1
-nnoremap <leader>fc :NERDTree<CR>
+let g:airline#extensions#tabline#enabled = 1
+
+" NERDTree
+let NERDTreeBookmarksFile = expand("$HOME/.vim/NERDTreeBookmarks")
+nnoremap <leader>fc :NERDTreeFind<CR>
+nnoremap <leader>fm :NERDTreeFromBookmark 
+
+" startify
+noremap <leader>bs :Startify<CR>
+let g:startify_bookmarks = systemlist("cut -sd' ' -f 2- $HOME/.vim/NERDTreeBookmarks")
+let g:startify_lists = [
+        \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+        \ { 'type': 'sessions',  'header': ['   Sessions']       },
+        \ { 'type': 'files',     'header': ['   MRU']            },
+        \ { 'type': 'commands',  'header': ['   Commands']       },
+        \ ]
