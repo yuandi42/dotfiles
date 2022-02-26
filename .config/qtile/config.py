@@ -80,7 +80,7 @@ keys = [
 ]
 
 groups = [
-    # ttf-all-the-icons fonts is needed.
+    # nerd fonts is needed.
     Group(""),
     Group("", matches = [Match(wm_class = ["Zathura","p3x-onenote"]) ]),
     Group("", matches = [Match(wm_class = ["qutebrowser","firefox"]) ]),
@@ -118,7 +118,7 @@ widget_defaults = dict(
         background = colours[0],
         foreground = colours[1],
         font = "sans",
-        fontsize = 18,
+        fontsize = 20,
         padding = 1,
 )
 extension_defaults = widget_defaults.copy()
@@ -139,7 +139,7 @@ screens = [
                     inactive = colours[2],
                     this_current_screen_border = colours[4],
                     this_screen_border = colours[4],
-                    fontsize = 22,
+                    fontsize = 36,
                     highlight_method = 'line',
                     highlight_color = colours[0],
                     urgent_alert_method = 'line',
@@ -162,13 +162,9 @@ screens = [
                     foreground = colours[0],
                     linewidth = 4,
                 ),
-                widget.TextBox(
-                    text = ' ',
-                ),
-                widget.Systray(),
                 # python-psutil is needed.
                 widget.CPU(
-                    format = '   {load_percent}%, ',
+                    format = '   {load_percent}%, ',
                     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e htop')},
                 ),
                 widget.ThermalSensor(
@@ -186,7 +182,7 @@ screens = [
                     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e iwctl')},
                 ),
                 widget.Backlight(
-                    fmt = '  {}',
+                    fmt = '  {}',
                     change_command = 'light -S {0}',
                     backlight_name = 'intel_backlight',
                     step = 5
@@ -207,12 +203,13 @@ screens = [
                 ),
                 widget.Clock(
                     font = "Monospace",
-                    format = "   %a, %b %d - %H:%M ",
+                    format = "    %a, %b %d - %H:%M  ",
                     # you would never gonna know when you need it.
                     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm)},
-                )
+                ),
+                widget.Systray(),
             ],
-            24, 
+            26, 
             opacity = 0.95,
         ),
     ),
