@@ -17,8 +17,11 @@ alias ls='ls --color=auto'
 alias vfr='sh ~/.config/vifm/scripts/vifmrun'
 alias hx=helix
 
-# easily get the name of key events
+# easily get the name of key events.
 alias xkeyname='xev | awk -F'\''[ )]+'\'' '\''/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'\'''
+
+# print figlet in doom font.
+alias fldoom='figlet -f $HOME/.config/figlet/doom.flf'
 
 # for my .dotfiles management. dfc stands for dotfiles config.
 alias dfc='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME' 
