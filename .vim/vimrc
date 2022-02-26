@@ -71,6 +71,9 @@ let NERDTreeBookmarksFile = expand("$HOME/.vim/NERDTreeBookmarks")
 nnoremap <leader>fc :NERDTreeFind<CR>
 nnoremap <leader>fm :NERDTreeFromBookmark 
 
+" devicons
+let g:webdevicons_enable_startify = 1
+
 " startify
 noremap <leader>bs :Startify<CR>
 let g:startify_bookmarks = systemlist("cut -sd' ' -f 2- $HOME/.vim/NERDTreeBookmarks")
