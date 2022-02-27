@@ -15,7 +15,6 @@ export EDITOR='vim'
 ##############
 alias ls='ls --color=auto'
 alias vfr='sh ~/.config/vifm/scripts/vifmrun'
-alias hx=helix
 
 # easily get the name of key events.
 alias xkeyname='xev | awk -F'\''[ )]+'\'' '\''/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'\'''
