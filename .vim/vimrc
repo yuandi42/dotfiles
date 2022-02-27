@@ -1,7 +1,7 @@
-"" TODO: add start plugin: nerdcomment, and ALE maybe?
+"" TODO: add start plugin: ALE maybe?
 ""  add opt plugins for markdown, python and sxhkd;
 ""  add keybindings for NERDTree;
-""	set auto complete, filetype. 
+""	set auto complete, hint. 
 
 "" Gernal setting
 set nocompatible
@@ -38,6 +38,9 @@ set shiftwidth=4
 set fdm=indent
 set foldlevel=99
 
+" filetype setting
+filetype plugin on
+
 " enable mouse in alacritty
 set ttymouse=sgr
 
@@ -63,6 +66,8 @@ noremap <leader>u <c-u>
 noremap <leader>d <c-d>
 noremap <leader>o <c-o>
 noremap <leader>i <c-i>
+
+" keybindings for tabs
 noremap <leader>w <c-w>
 
 " keybindings for buffers
@@ -92,7 +97,10 @@ let g:airline_theme='base16_gruvbox_dark_hard'
 " NERDTree
 let NERDTreeBookmarksFile = expand("$HOME/.vim/NERDTreeBookmarks")
 nnoremap <leader>fc :NERDTreeFind<CR>
-nnoremap <leader>fm :NERDTreeFromBookmark 
+nnoremap <leader>fm :NERDTreeFromBookmark<space>
+
+" nerdcommenter
+let g:NERDSpaceDelims = 1
 
 " startify
 noremap <leader>bs :Startify<CR>
