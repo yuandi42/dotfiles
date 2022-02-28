@@ -4,6 +4,9 @@
 # | ___ \/ _` / __| '_ \ 
 # | |_/ / (_| \__ \ | | |
 # \____/ \__,_|___/_| |_|
+#!/usr/bin/bash
+# TODO: I actually plan to move all my bash stuff to .config/*/, just to
+# leave myself a cleaner ls -la $HOME.
                        
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return

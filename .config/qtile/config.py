@@ -4,6 +4,8 @@
 #  | | | | __| | |/ _ \
 #  \ \/' / |_| | |  __/
  #  \_/\_\\__|_|_|\___|
+ #  TODO: I think necessary funcs have been setted up already. May
+ #  little polish the screen bar and write a readme later.
 
 from libqtile import bar, layout, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
@@ -135,16 +137,14 @@ screens = [
                 widget.CurrentLayoutIcon(
                     custom_icon_paths = [os.path.expanduser("~/.config/qtile/icons")],
                 ),
-                widget.Sep(
-                    foreground = colours[0],
-                    linewidth = 4,
-                ),
+                widget.Sep(foreground = colours[0], linewidth = 4),
                 widget.GroupBox(
                     borderwidth = 3,
                     inactive = colours[2],
                     this_current_screen_border = colours[4],
                     this_screen_border = colours[4],
-                    fontsize = 36,
+                    fontsize = 20,
+                    font = "NotoSansMono Nerd Font Mono",
                     highlight_method = 'line',
                     highlight_color = colours[0],
                     urgent_alert_method = 'line',
@@ -153,23 +153,19 @@ screens = [
                     margin = 2,
                     padding = 0,
                 ),
-                widget.Sep(
-                    foreground = colours[0],
-                    linewidth = 4,
-                ),
+                widget.Sep(foreground = colours[0], linewidth = 4),
                 widget.Prompt(),
                 widget.WindowName(
                     foreground = colours[4],
                     max_chars = 75,
                     font = 'sans bold',
                 ),
-                widget.Sep(
-                    foreground = colours[0],
-                    linewidth = 4,
-                ),
+                widget.Sep(foreground = colours[0], linewidth = 4),
                 # python-psutil is needed.
+                widget.TextBox(fmt = ""),
+                widget.TextBox(fmt = "", font = "NotoSansMono Nerd Font Mono"),
                 widget.CPU(
-                    format = '   {load_percent}%, ',
+                    format = '{load_percent}%, ',
                     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e htop')},
                 ),
                 widget.ThermalSensor(
@@ -181,37 +177,38 @@ screens = [
                     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e htop')},
                 ),
                 # python-iwlib is needed.
+                widget.TextBox(fmt = ""),
+                widget.TextBox(fmt = "", font = "NotoSansMono Nerd Font Mono"),
                 widget.Wlan(
-                    format = '  {percent:2.0%}',
-                    disconnected_message = '  None',
+                    format = '{percent:2.0%}',
+                    disconnected_message = 'None',
                     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e iwctl')},
                 ),
+                widget.TextBox(fmt = ""),
+                widget.TextBox(fmt = "", font = "NotoSansMono Nerd Font Mono"),
                 widget.Backlight(
-                    fmt = '  {}',
+                    fmt = '{}',
                     change_command = 'light -S {0}',
                     backlight_name = 'intel_backlight',
                     step = 5
                 ),
-                widget.Volume(
-                    fmt = '  {}',
-                    step = 5,
-                ),
+                widget.TextBox(fmt = ""),
+                widget.TextBox(fmt = "", font = "NotoSansMono Nerd Font Mono"),
+                widget.Volume(fmt = '{}',step = 5,),
+                widget.TextBox(fmt = ""),
                 widget.Battery(
-                    charge_char = '',
-                    discharge_char = '',
-                    empty_char = '',
-                    format = ' {char} {percent:2.0%}',
-                    full_char = '',
-                    unknown_char = '',
+                    charge_char = '',
+                    discharge_char = '',
+                    empty_char = '',
+                    format = '{char} {percent:2.0%}',
+                    full_char = '',
+                    unknown_char = '',
                     low_percentage = 0.2,
                     notify_below = 20,
                 ),
-                widget.Clock(
-                    font = "Monospace",
-                    format = "    %a, %b %d - %H:%M  ",
-                    # you would never gonna know when you need it.
-                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm)},
-                ),
+                widget.TextBox(fmt = ""),
+                widget.TextBox(fmt = "", font = "NotoSansMono Nerd Font Mono"),
+                widget.Clock(font = "Monospace",format = "%a, %b %d - %H:%M  ",),
                 widget.Systray(),
             ],
             26, 
