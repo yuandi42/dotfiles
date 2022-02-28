@@ -58,7 +58,7 @@ let mapleader=" "
 nnoremap <esc><esc> :noh<CR>
 
 " use Enter in normal mode
-nnoremap <silent> <CR> a<CR><Esc>
+nnoremap <silent> <CR> i<CR><Esc>
 
 " save my wrists!
 noremap <leader>u <c-u>
