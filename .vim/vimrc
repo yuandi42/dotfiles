@@ -1,3 +1,10 @@
+ " _   _ ________  ___
+" | | | |_   _|  \/  |
+" | | | | | | | .  . |
+" | | | | | | | |\/| |
+" \ \_/ /_| |_| |  | |
+ " \___/ \___/\_|  |_/
+
 "" TODO: add start plugin: ALE maybe?
 ""  add opt plugins for markdown, python and sxhkd;
 ""  add keybindings for NERDTree;

@@ -1,4 +1,9 @@
-# remap Alt_L to Super_L by xmodmap, so I can use hjkl to navi now.
+ #  _____ _   _ _      
+#  |  _  | | (_) |     
+#  | | | | |_ _| | ___ 
+#  | | | | __| | |/ _ \
+#  \ \/' / |_| | |  __/
+ #  \_/\_\\__|_|_|\___|
 
 from libqtile import bar, layout, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
@@ -31,9 +36,9 @@ keys = [
         desc="Move window focus to other window"),
 
     # Move windows between left/right columns or move up/down in current stack.
-    Key([mod, "shift"], "h", lazy.layout.shuffle_left(),
+    Key([mod, "shift"], "h", lazy.layout.swap_left(),
         desc="Move window to the left"),
-    Key([mod, "shift"], "l", lazy.layout.shuffle_right(),
+    Key([mod, "shift"], "l", lazy.layout.swap_right(),
         desc="Move window to the right"),
     Key([mod, "shift"], "j", lazy.layout.shuffle_down(),
         desc="Move window down"),
