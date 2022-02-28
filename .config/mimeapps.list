@@ -4,6 +4,7 @@ text/html=org.qutebrowser.qutebrowser.desktop;
 application/postscript=pdf.desktop;
 application/pdf=pdf.desktop;
 application/x-shellscript=text.desktop
+application/x-mimearchive=org.qutebrowser.qutebrowser.desktop;
 image/png=img.desktop;
 image/jpeg=img.desktop;
 image/gif=img.desktop;

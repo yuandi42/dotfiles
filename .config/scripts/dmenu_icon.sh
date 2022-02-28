@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/sh
 # Give dmenu list of characters in unicode PUA to copy.
 # Well, now i have to face a serious fonts confilct since I've
 # installed fxxking too many '''icon fonts'''. Since I am wasting my
