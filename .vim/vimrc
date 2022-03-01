@@ -28,6 +28,7 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
+set shortmess-=S
 
 " buffer and split
 set hidden
