@@ -111,10 +111,12 @@ for i in range(1, 7):
 
 layouts = [
     layout.MonadTall(
-        margin = 8,
-        border_width = 3,
+        margin = 5,
+        border_width = 2,
         border_focus = colours[4],
         border_normal = colours[0],
+        single_margin = 10,
+        single_border_width = 4,
     ),
     layout.Max(),
 ]
