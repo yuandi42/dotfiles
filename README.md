@@ -10,7 +10,8 @@ Display sever: X-org. Is there really another decent choice?
 
 Compositor: picom. It works pretty well without heavily config.
 
-Window manager: qtile. It has a panel with tons of built-in widget. Great for a newbie like me.
+Window manager: qtile. It has a panel with tons of built-in widget. Great for a newbie like me. 
+My config work of this cute WM is nearing an end. Try somthing else? Emmm, maybe we can give awesomewm and polybar a try later. 
 
 Display manager: lightdm with lightdm-gtk-greeter.
 
