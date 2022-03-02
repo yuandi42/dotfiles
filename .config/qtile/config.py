@@ -19,8 +19,8 @@ myTerm ="alacritty"
 
 # the set of colours used in panel.
 colours = [["#282828", "#282828"], # Background black
-           ["#FFFFFF", "#FFFFFF"], # Foreground white
-           ["#ABB2BF", "#ABB2BF"], # Grey Colour
+           ["#EBDBB2", "#EBDBB2"], # Foreground white
+           ["#C0B492", "#C0B492"], # Grey Colour
            ["#E35374", "#E35374"], # Peach Pink
            ["#89CA78", "#89CA78"], # Green
            ["#61AFEF", "#61AFEF"], # Sky blue
@@ -133,7 +133,7 @@ extension_defaults = widget_defaults.copy()
 textbox_defaults = dict(
     background = colours[6],
     foreground = widget_defaults["background"],
-    fontsize = widget_defaults["fontsize"] + 2,
+    fontsize = widget_defaults["fontsize"] + 5,
     padding = 0,
 )
 
@@ -142,14 +142,11 @@ screens = [
         top =  
             bar.Bar(
                 [
-                    widget.TextBox(fmt = "", **textbox_defaults),
-                    widget.CurrentLayoutIcon(
-                        custom_icon_paths = [os.path.expanduser("~/.config/qtile/icons")],
-                        background = colours[0],
-                    ),
+                    widget.TextBox(fmt = "", **textbox_defaults),
                     widget.GroupBox(
                         borderwidth = 3,
                         inactive = colours[2],
+                        active = colours[1],
                         this_current_screen_border = colours[4],
                         this_screen_border = colours[4],
                         fontsize = 20,
@@ -160,9 +157,18 @@ screens = [
                         urgent_border = colours[3],
                         disable_drag = True,
                         margin = 2,
-                        padding = 0,
                     ),
+                    widget.TextBox(fmt = "", ),
+                    widget.CurrentLayoutIcon(custom_icon_paths = [os.path.expanduser("~/.config/qtile/icons")], scale = 0.8),
                     widget.Prompt(),
+                    widget.TextBox(fmt = "", **textbox_defaults),
+                    widget.Spacer(background = colours[6]),
+                    widget.TextBox(fmt = "", **textbox_defaults),
+                    widget.TextBox(fmt = "", font = "NotoSansMono Nerd Font Mono"),
+                    widget.Clock(font = "Monospace",format = "%a, %b %d - %H:%M",),
+                    widget.TextBox(fmt = "", **textbox_defaults),
+                    widget.Spacer(background = colours[6]),
+                    widget.TextBox(fmt = "", **textbox_defaults),
                     # python-psutil is needed.
                     widget.TextBox(fmt = "", font = "NotoSansMono Nerd Font Mono"),
                     widget.CPU(
@@ -178,12 +184,14 @@ screens = [
                         mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e htop')},
                     ),
                     # python-iwlib is needed.
+                    widget.TextBox(fmt = "", ),
                     widget.TextBox(fmt = "", font = "NotoSansMono Nerd Font Mono"),
                     widget.Wlan(
                         format = '{percent:2.0%}',
                         disconnected_message = 'None',
                         mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e iwctl')},
                     ),
+                    widget.TextBox(fmt = "", ),
                     widget.TextBox(fmt = "", font = "NotoSansMono Nerd Font Mono"),
                     widget.Backlight(
                         fmt = '{}',
@@ -191,8 +199,10 @@ screens = [
                         backlight_name = 'intel_backlight',
                         step = 5
                     ),
+                    widget.TextBox(fmt = "", ),
                     widget.TextBox(fmt = "", font = "NotoSansMono Nerd Font Mono"),
                     widget.Volume(fmt = '{}',step = 5,),
+                    widget.TextBox(fmt = "", ),
                     widget.Battery(
                         charge_char = '',
                         discharge_char = '',
@@ -203,12 +213,11 @@ screens = [
                         low_percentage = 0.2,
                         notify_below = 20,
                     ),
-                    widget.TextBox(fmt = "", font = "NotoSansMono Nerd Font Mono"),
-                    widget.Clock(font = "Monospace",format = "%a, %b %d - %H:%M",),
+                    widget.TextBox(fmt = "", ),
                     widget.Systray(),
-                    widget.TextBox(fmt = "", **textbox_defaults),
+                    widget.TextBox(fmt = "", **textbox_defaults),
                 ],
-                30, 
+                27, 
                 # get opacity of background and widgets remain visible.
                 opacity = 1,
                 margin = [10, 5, 10, 5],
