@@ -63,7 +63,7 @@ nnoremap <space> <Nop>
 let mapleader=" "
 
 " clear hlsearch
-nnoremap <slient> <esc><esc> :noh<CR>
+nnoremap <silent> <esc><esc> :noh<CR>
 
 " use Enter in normal mode
 nnoremap <silent> <CR> i<CR><Esc>
