@@ -37,4 +37,4 @@ super + shift + x
 
 # keybindings for screenshot. maim is needed.
 {_,super + }Print
-    maim {-u,-s} -o ~/Pictures/Screenshots/$(date +%s).png
+    maim {-u,-s -d 0.1} -o ~/Pictures/Screenshots/$(date +%s).png
