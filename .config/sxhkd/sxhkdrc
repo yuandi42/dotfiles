@@ -19,7 +19,7 @@ XF86MonBrightness{Down,Up}
 
 # run dmenu as application launcher.
 super + space
-    dmenu_run -i -l 10 -p "Run:" -fn sans-16
+    dmenu_run -i -c -bw 2 -l 10 -p " "
 
 # keybindings for programs
 super + Return
