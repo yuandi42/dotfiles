@@ -20,7 +20,7 @@ myTerm ="alacritty"
 # the set of colours used in panel.
 colours = [["#282828", "#282828"], # Background black
            ["#EBDBB2", "#EBDBB2"], # Foreground white
-           ["#C0B492", "#C0B492"], # Grey Colour
+           ["#807863", "#807863"], # Grey Colour
            ["#E35374", "#E35374"], # Peach Pink
            ["#89CA78", "#89CA78"], # Green
            ["#61AFEF", "#61AFEF"], # Sky blue
@@ -79,11 +79,8 @@ keys = [
 
     # vertical list of all open windows in dmenu. Switch to selected.
     Key([mod], "Tab", lazy.run_extension(extension.WindowList(
-        dmenu_prompt = 'Goto:',
-        dmenu_command = "dmenu -i",
-        dmenu_lines = '10',
-        background= colours[0][0],
-        foreground= colours[1][0],
+        dmenu_prompt = ' ',
+        dmenu_command = "dmenu -i -l 5",
     )), desc="list all open windows"),
 ]
 
