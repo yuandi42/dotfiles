@@ -88,6 +88,7 @@ noremap <silent> <leader>bk :bn<CR>
 noremap <silent> <leader>bh :bf<CR>
 noremap <silent> <leader>bl :bl<CR>
 noremap <leader>bd :bd<CR>
+noremap <leader>bD :bd!<CR>
 noremap <leader>bb :ls<CR>:b<space>
 
 " keybings for terminal
@@ -99,7 +100,9 @@ set background=dark
 let g:gruvbox_italic=1
 let g:gruvbox_transparent_bg=1
 colorscheme gruvbox
-highlight! Normal ctermbg=NONE guibg=NONE
+if !has("gui_running")
+    highlight! Normal ctermbg=NONE guibg=NONE
+endif
 
 " airline
 set noshowmode
