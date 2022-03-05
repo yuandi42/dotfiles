@@ -8,6 +8,7 @@ c.content.tls.certificate_errors = "ask-block-thirdparty"
 c.editor.command = [myTerm, "-e", "vim", "-f", "{}"]
 c.completion.cmd_history_max_items = 100
 c.completion.open_categories = ["searchengines", "quickmarks", "bookmarks", "filesystem"]
+c.statusbar.show = "never"
 
 # Startpage
 c.url.start_pages = ['~/.config/qutebrowser/startpage/index.html']
