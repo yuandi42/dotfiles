@@ -6,7 +6,7 @@ add_newline = false
 # disabled = true
 
 format = """
-[ ┌── ](green)[](blue)$directory\
+[┌── ](green)[](blue)$directory\
                             $python\
                             $git_branch\
                             $git_commit\
@@ -15,7 +15,7 @@ format = """
                             $git_status\
                             $hg_branch\
                             $cmd_duration
-[ └─](green)$character"""
+[└─](green)$character"""
 
 [character]
 success_symbol = "[>](bold green)"
