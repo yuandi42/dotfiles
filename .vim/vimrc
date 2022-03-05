@@ -113,7 +113,7 @@ let NERDTreeBookmarksFile = expand("$HOME/.vim/NERDTreeBookmarks")
 let NERDTreeShowHidden = 1
 nnoremap <silent> <leader>ft :NERDTreeToggle<CR>
 nnoremap <silent> <leader>fc :NERDTreeCWD<CR>
-nnoremap <silent> <leader>ft :NERDTreeToggleVCS<CR>
+nnoremap <silent> <leader>fv :NERDTreeToggleVCS<CR>
 nnoremap <leader>ff :NERDTreeFind<space>
 nnoremap <leader>fm :NERDTreeFromBookmark<space>
 " nerdtree-visual-selection
