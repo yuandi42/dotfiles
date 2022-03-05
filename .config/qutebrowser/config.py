@@ -1,3 +1,13 @@
+             #  _       
+            #  | |      
+  #  __ _ _   _| |_ ___ 
+ #  / _` | | | | __/ _ \
+#  | (_| | |_| | ||  __/
+ #  \__, |\__,_|\__\___|
+    #  | |              
+    #  |_|              
+# TODO: personal stylesheets.
+
 # General settings
 myTerm = "alacritty"
 
@@ -9,6 +19,9 @@ c.editor.command = [myTerm, "-e", "vim", "-f", "{}"]
 c.completion.cmd_history_max_items = 100
 c.completion.open_categories = ["searchengines", "quickmarks", "bookmarks", "filesystem"]
 c.statusbar.show = "never"
+
+# Stylesheet
+#  c.content.user_stylesheets = 
 
 # Startpage
 c.url.start_pages = ['~/.config/qutebrowser/startpage/index.html']
@@ -172,3 +185,26 @@ c.colors.statusbar.url.hover.fg = base09            # Foreground color of the UR
 c.colors.statusbar.url.success.http.fg = base11     # Foreground color of the URL in the statusbar on successful load
 c.colors.statusbar.url.success.https.fg = base11    # Foreground color of the URL in the statusbar on successful load
 c.colors.statusbar.url.warn.fg = base04             # Foreground color of the URL in the statusbar when there's a warning
+
+# Tabs colors
+c.colors.tabs.bar.bg = bg                   # Background color of the tab bar
+c.colors.tabs.even.bg = base09              # Background color of unselected even tabs
+c.colors.tabs.even.fg = base16              # Foreground color of unselected even tabs
+c.colors.tabs.indicator.error = base02      # Color for the tab indicator on errors
+c.colors.tabs.indicator.start = base05      # Color gradient start for the tab indicator
+c.colors.tabs.indicator.stop = base11       # Color gradient end for the tab indicator
+c.colors.tabs.indicator.system = 'none'     # Color gradient interpolation system for the tab indicator
+c.colors.tabs.odd.bg = base09               # Background color of unselected odd tabs
+c.colors.tabs.odd.fg = base16               # Foreground color of unselected odd tabs
+c.colors.tabs.selected.even.bg = bg         # Background color of selected even tabs
+c.colors.tabs.selected.even.fg = base11     # Foreground color of selected even tabs
+c.colors.tabs.selected.odd.bg = bg          # Background color of selected odd tabs
+c.colors.tabs.selected.odd.fg = base11      # Foreground color of selected odd tabs
+
+# Tab padding
+c.tabs.padding = {
+    'top': 5,
+    'right': 5,
+    'bottom': 5,
+    'left': 5,
+}
