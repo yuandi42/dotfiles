@@ -15,6 +15,6 @@
 
 DarkReader.enable({
 	brightness: 80,
-	contrast: 60,
+	contrast: 100,
 	sepia: 0
 });

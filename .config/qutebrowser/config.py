@@ -79,9 +79,9 @@ c.fonts.web.family.cursive = 'Inconsolata'
 c.fonts.web.family.sans_serif = 'Inconsolata'
 c.fonts.completion.category = 'bold default_size default_family'
 c.fonts.contextmenu = '16px default_family'
-c.fonts.hints = '14px sans'
+c.fonts.hints = '16px default_family'
 
-# Colors
+# Colorscheme
 bg = "#1d2021"
 fg = "#d4be98"
 base01 = "#1d2021" # black
@@ -134,7 +134,7 @@ c.colors.downloads.stop.fg = base11     # Color gradient stop for download foreg
 c.colors.downloads.system.bg = 'none'   # Color gradient interpolation system for download backgrounds
 
 # Hints colors
-c.colors.hints.bg = bg                  # Background color for hints. use rgba value for transparency
+c.colors.hints.bg = base09                  # Background color for hints. use rgba value for transparency
 c.colors.hints.fg = fg                  # Font color for hints
 c.hints.border = '1px solid' + base01   # Hints
 c.colors.hints.match.fg = base11        # Font color for the matched part of hints
