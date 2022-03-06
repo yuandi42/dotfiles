@@ -15,3 +15,4 @@ Logout)
   var2=$(echo -e 'No\nYes'| dmenu -c -i -bw 2 -p 'Sure?' -fn sans-16)
   if [ $var2 = Yes ]; then loginctl | egrep -v "root|SESSION|listed" | awk '{print $1}' | xargs loginctl terminate-session; fi;;
 esac
+exit 1

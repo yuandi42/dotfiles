@@ -31,7 +31,7 @@ super + {_,shift}  + f
 
 # keybindings for my scripts.
 Insert
-    sh ~/.config/scripts/dmenu_icon.sh
+    sh ~/.config/scripts/dmenu_unicode.sh
 super + shift + x
     sh ~/.config/scripts/dmenu_SNR.sh
 
