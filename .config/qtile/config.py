@@ -6,6 +6,7 @@
  #  \_/\_\\__|_|_|\___|
  #  TODO: I think necessary funcs have been setted up already. May
  #  little polish the screen bar and write a readme later.
+#   Well, seems that I need to rewrite the colorscheme from scratch.
 
 from libqtile import bar, layout, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
@@ -17,17 +18,15 @@ from typing import List
 mod = "mod4" # super key.
 myTerm ="alacritty"
 
-# the set of colours used in panel.
-colours = [["#282828", "#282828"], # Background black
-           ["#EBDBB2", "#EBDBB2"], # Foreground white
-           ["#807863", "#807863"], # Grey Colour
-           ["#E35374", "#E35374"], # Peach Pink
-           ["#89CA78", "#89CA78"], # Green
-           ["#61AFEF", "#61AFEF"], # Sky blue
-           # maybe got some use one day.
-           # ["#D55FDE", "#D55FDE"], # Purple
-           ["#00000000", "#00000000"], # Magic transparency
-    ]
+# Gruvbox colorscheme.
+bg = ["#282828", "#3C3836"] 
+fg = ["#EBDBB2", "#fbf1c7"]
+grey = ["#A89984", "#928374"]
+red = ["#FB4934", "#CC241d"]
+green = ["#98971A", "#B8BB26"]
+blue = ["#458588", "#83A598"]
+purple = ["#B16286", "#D3869B"]
+transparency = ["#00000000", "#00000000"]
 
 keys = [
     # Switch between windows
@@ -49,15 +48,19 @@ keys = [
     Key([mod, "shift"], "e", lazy.layout.flip(),
         desc = "Switch which horizontal side the main pane will occupy"),
 
-    # Adjust the size of windows,and determine if the window is floating.
+    # Adjust the size of windows.
     Key([mod], "i", lazy.layout.grow(), desc="Window grows"),
     Key([mod], "m", lazy.layout.shrink(), desc="Window shrinks"),
     Key([mod], "o", lazy.layout.maximize(), 
-        desc="Window get maximized/minimized"),
+        desc="Main pane get maximized/minimized"),
     Key([mod], "r", lazy.layout.reset(), 
         desc="Reset all client windows to their default sizes"),
-    Key([mod, "mod1"], "f", lazy.window.toggle_floating(),
-        desc="Put the focused window to/from floating mode"), # btw, mod1 is alt.
+
+    # Floating window operation
+    Key([mod], "c", lazy.window.toggle_floating(),
+        desc="Change the focused window to/from floating mode"),
+    Key([mod], "w", lazy.window.bring_to_front(),
+        desc="Bring underlying window to the top and change it to floating"),
     
     # Switch between groups.
     Key([mod], "period", lazy.screen.next_group(skip_empty=True),
@@ -111,8 +114,8 @@ layouts = [
     layout.MonadTall(
         margin = 5,
         border_width = 2,
-        border_focus = colours[4],
-        border_normal = colours[0],
+        border_focus = green,
+        border_normal = bg,
     ),
     layout.Max(),
 ]
@@ -120,20 +123,21 @@ layouts = [
 prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
 
 widget_defaults = dict(
-    background = colours[0],
-    foreground = colours[1],
+    background = bg[1],
+    foreground = fg[1],
     font = "sans",
     fontsize = 20,
     padding = 2,
 )
 extension_defaults = widget_defaults.copy()
 textbox_defaults = dict(
-    background = colours[6],
+    background = transparency,
     foreground = widget_defaults["background"],
     fontsize = widget_defaults["fontsize"] + 5,
     padding = 0,
 )
 
+# Welcome to the hell.
 screens = [
     Screen(
         top =  
@@ -142,29 +146,30 @@ screens = [
                     widget.TextBox(fmt = "", **textbox_defaults),
                     widget.GroupBox(
                         borderwidth = 3,
-                        inactive = colours[2],
-                        active = colours[1],
-                        this_current_screen_border = colours[4],
-                        this_screen_border = colours[4],
-                        fontsize = 20,
+                        background = bg[1],
+                        inactive = grey[0],
+                        active = fg[1],
+                        this_current_screen_border = green[0],
+                        this_screen_border = green[0],
+                        fontsize = 19,
                         font = "NotoSansMono Nerd Font Mono",
                         highlight_method = 'line',
-                        highlight_color = colours[0],
+                        highlight_color = bg[1],
                         urgent_alert_method = 'line',
-                        urgent_border = colours[3],
+                        urgent_border = red[0],
                         disable_drag = True,
-                        margin = 2,
+                        margin = 1,
                     ),
                     widget.TextBox(fmt = "", ),
                     widget.CurrentLayoutIcon(custom_icon_paths = [os.path.expanduser("~/.config/qtile/icons")], scale = 0.8),
                     widget.Prompt(),
                     widget.TextBox(fmt = "", **textbox_defaults),
-                    widget.Spacer(background = colours[6]),
+                    widget.Spacer(background = transparency),
                     widget.TextBox(fmt = "", **textbox_defaults),
                     widget.TextBox(fmt = "", font = "NotoSansMono Nerd Font Mono"),
                     widget.Clock(font = "Monospace",format = "%a, %b %d - %H:%M",),
                     widget.TextBox(fmt = "", **textbox_defaults),
-                    widget.Spacer(background = colours[6]),
+                    widget.Spacer(background = transparency),
                     widget.TextBox(fmt = "", **textbox_defaults),
                     # python-psutil is needed.
                     widget.TextBox(fmt = "", font = "NotoSansMono Nerd Font Mono"),
@@ -174,8 +179,8 @@ screens = [
                     ),
                     widget.ThermalSensor(
                         fmt = '{}',
-                        foreground = colours[1],
-                        foreground_alert = colours[3],
+                        foreground = fg,
+                        foreground_alert = red,
                         tag_sensor = "Core 0",
                         threshold = 75,
                         mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e htop')},
@@ -218,7 +223,7 @@ screens = [
                 # get opacity of background and widgets remain visible.
                 opacity = 1,
                 margin = [10, 5, 10, 5],
-                background = colours[6],
+                background = transparency,
             ),
         bottom = bar.Gap(10),
         right = bar.Gap(10),
@@ -241,10 +246,10 @@ follow_mouse_focus = True
 bring_front_click = True
 cursor_warp = False
 floating_layout = layout.Floating(
-    border_width = 3,
+    border_width = 2,
     fullscreen_border_width = 0,
-    border_focus = colours[5],
-    border_normal = colours[2],
+    border_focus = blue,
+    border_normal = grey,
     float_rules=[
     # Run the utility of `xprop` to see the wm class and name of an X client.
     *layout.Floating.default_float_rules,
