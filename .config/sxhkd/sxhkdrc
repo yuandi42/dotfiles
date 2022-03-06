@@ -36,5 +36,6 @@ super + shift + x
     sh ~/.config/scripts/dmenu_SNR.sh
 
 # keybindings for screenshot. maim is needed.
-{_,super + }Print
-    maim {-u,-s -d 0.1} -o ~/Pictures/Screenshots/$(date +%s).png
+# ctrl for clipboard, shift for selection. 
+{_,shift } + {_,ctrl} + Print
+    maim {-u,-s -d 0.05} -o {~/Pictures/Screenshots/$(date +%s).png,| xclip -selection clipboard -t image/png}
