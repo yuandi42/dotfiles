@@ -31,9 +31,9 @@ super + {_,shift}  + f
 
 # keybindings for my scripts.
 Insert
-    sh ~/.config/scripts/dmenu_unicode.sh
+    dmenu_unicode
 super + shift + x
-    sh ~/.config/scripts/dmenu_SNR.sh
+    dmenu_SNR
 
 # keybindings for screenshot. maim is needed.
 # ctrl for clipboard, shift for selection. 

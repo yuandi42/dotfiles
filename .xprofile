@@ -1,0 +1,2 @@
+export PATH="$PATH:$HOME/.local/bin"
+xwallpaper --zoom ~/.config/wallpaper/wallpaper08.png&
