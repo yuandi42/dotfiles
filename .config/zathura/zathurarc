@@ -1,12 +1,14 @@
 # Gernal setting
 set adjust-open "best-fit"
 set selection-clipboard clipboard
-set smooth-scroll "true"
 set scroll-full-overlap 0.01
 set scroll-step 100
 
 map r reload
 map R rotate
+map x toggle_statusbar
+
+set font "Source Code Pro 14"
 
 # gruvbox colorsheme.
 # stolen from https://github.com/eastack/zathura-gruvbox
