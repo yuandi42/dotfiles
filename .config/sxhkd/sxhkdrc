@@ -37,5 +37,8 @@ super + shift + x
 
 # keybindings for screenshot. maim is needed.
 # ctrl for clipboard, shift for selection. 
-{_,shift } + {_,ctrl} + Print
-    maim {-u,-s -d 0.05} -o {~/Pictures/Screenshots/$(date +%s).png,| xclip -selection clipboard -t image/png}
+# And super for both clipboard and saving.
+{_,shift} + {_,ctrl} + Print
+    maim {-u,-s -d 0.05} -o {~/Pictures/Screenshots/$(date +%s).png | xclip -selection clipboard -t image/png}
+super + {_,shift} + Print
+    maim {-u,-s -d 0.05} -o | tee ~/Pictures/Screenshots/$(date +%s).png | xclip -selection clipboard -t image/png
