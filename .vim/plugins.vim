@@ -44,4 +44,5 @@ let g:startify_lists = [
 " which-key
 set timeoutlen=500
 nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+vnoremap <silent> <leader> :WhichKeyVisual '<Space>'<CR>
 let g:which_key_use_floating_win = 1
