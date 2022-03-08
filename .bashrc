@@ -20,8 +20,6 @@ export EDITOR='vim'
 ## my alias ##
 ##############
 alias ls='ls --color=auto'
-alias vfr='sh ~/.config/vifm/scripts/vifmrun'
-
 alias lgot='loginctl | egrep -v "root|SESSION|listed" | awk "{print $1}" | xargs loginctl terminate-session'
 
 # easily get the name of key events.

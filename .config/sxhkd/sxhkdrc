@@ -27,7 +27,7 @@ super + Return
 super + {_,shift} + b
     {qutebrowser,firefox}
 super + {_,shift}  + f
-    {alacritty -e sh ~/.config/vifm/scripts/vifmrun,pcmanfm}
+    {alacritty -e vfr,pcmanfm}
 
 # keybindings for my scripts.
 Insert
