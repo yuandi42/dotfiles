@@ -1,0 +1,7 @@
+#!/usr/bin/sh
+# Toggle my greasymonkey scripts in qutebrowser. WIP.
+y=$(for x in ~/.config/qutebrowser/greasemonkey/*.js*; do echo "$x"; done)
+z=$(echo -e "$y" | awk -F / '{print $NF}' | dmenu -c -l 5)
+if z==*.js; then mv $z $z.disable; fi;
+if z==*.js.disable; then mv $z $z.js; fi;
+exit 0
