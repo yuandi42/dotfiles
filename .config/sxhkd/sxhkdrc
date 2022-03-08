@@ -39,6 +39,6 @@ super + shift + x
 # ctrl for clipboard, shift for selection. 
 # And super for both clipboard and saving.
 {_,shift} + {_,ctrl} + Print
-    maim {-u,-s -d 0.05} -o {~/Pictures/Screenshots/$(date +%s).png | xclip -selection clipboard -t image/png}
+    maim {-u,-s -d 0.05} -o {~/Pictures/Screenshots/$(date +%s).png,| xclip -selection clipboard -t image/png}
 super + {_,shift} + Print
     maim {-u,-s -d 0.05} -o | tee ~/Pictures/Screenshots/$(date +%s).png | xclip -selection clipboard -t image/png
