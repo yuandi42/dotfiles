@@ -1,0 +1,16 @@
+#!/usr/bin/sh
+# Toggle my greasymonkey scripts in qutebrowser. WIP.
+
+sdir=$HOME/.config/qutebrowser/greasemonkey
+y=$(for x in $sdir/*.js*; do echo "$x"; done)
+z=$(echo -e "$y" | awk -F / '{print $NF}' | dmenu -c -l 5)
+case $z in
+    *\.disable ) 
+        nz=$(printf "%s" $z | rev | cut -d'.' --complement -f 1 | rev)
+        mv $sdir/$z $sdir/$nz
+        notify-send "GM scripts manager" "$nz is enabled!";;
+    *\.js ) 
+        mv $sdir/$z $sdir/$z.disable
+        notify-send "GM scripts manager" "$z is disabled!";;
+esac
+exit 0
