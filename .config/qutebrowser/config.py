@@ -71,6 +71,8 @@ config.bind('<', 'tab-move -', mode='normal')
 config.bind('xb', 'config-cycle statusbar.show never always', mode = 'normal')
 config.bind('xt','config-cycle tabs.show never always', mode = 'normal')
 config.bind('yf','hint links yank', mode = 'normal')
+config.bind('gs','spawn --userscript dmenu_gms' , mode = 'normal')
+config.bind('gT','spawn --userscript deepl')
 
 # Font and define colors values
 c.fonts.default_family = ['Inconsolata']
