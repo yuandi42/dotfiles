@@ -1,5 +1,4 @@
 #!/usr/bin/sh
 # open a tab and translate selected to chinese in DeepL.
-# Maybe someone can set source lang to be '''detect'''?
-echo "open -t https://www.deepl.com/translator#en/zh/$QUTE_SELECTED_TEXT" > "$QUTE_FIFO"
+echo "open -t https://www.deepl.com/translator#null/zh/$QUTE_SELECTED_TEXT" > "$QUTE_FIFO"
 exit 0
