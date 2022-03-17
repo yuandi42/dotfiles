@@ -17,6 +17,10 @@ bind-key D pb-download
 bind-key U show-urls
 bind-key x pb-delete
 
+browser "qutebrowser --target tab %u >/dev/null 2>&1 &"
+macro m set browser "mpv %u &"; open-in-browser-noninteractively; set browser "qutebrowser --target tab %u >/dev/null 2>&1 &"
+macro l set browser "lynx %u"; open-in-browser; set browser "qutebrowser --target tab %u >/dev/null 2>&1 &"
+
 # Colors from "gruvbox" colorscheme https://github.com/morhetz/gruvbox
 color article                              color223 color236
 color background                           color100 color236
