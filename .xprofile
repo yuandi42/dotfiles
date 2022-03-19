@@ -1,2 +1,6 @@
 export PATH="$PATH:$HOME/.local/bin"
+export EDITOR="vim"
+export TERMINAL="alacritty"
+export BROWSER="qutebrowser"
+
 xwallpaper --zoom ~/.config/wallpaper/wallpaper08.png&
