@@ -93,7 +93,7 @@ groups = [
     Group("", matches = [Match(wm_class = ["Zathura","p3x-onenote"]) ]),
     Group("", matches = [Match(wm_class = ["qutebrowser","firefox"]) ]),
     Group(""),
-    Group("", layout = 'max', matches = [Match(wm_class = ["Steam"]) ]),
+    Group("", layout = 'max', matches = [Match(wm_class = ["Steam", "Gamehub", "itch"]) ]),
     Group(""),
 ]
 
@@ -257,6 +257,7 @@ floating_layout = layout.Floating(
     Match(wm_class='maketag'),  # gitk
     Match(wm_class='ssh-askpass'),  # ssh-askpass
     Match(wm_class='icalingua'),
+    Match(wm_class='goldendict'),
     Match(title='branchdialog'),  # gitk
     Match(title='pinentry'),  # GPG key password entry
 ])
