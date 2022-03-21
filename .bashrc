@@ -32,6 +32,9 @@ alias fldoom='figlet -f $HOME/.config/figlet/doom.flf'
 alias dfc='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME' 
 alias lzdc='lazygit -g ~/.dotfiles/ -w $HOME'
 
+# for suckless tools
+alias slm='rm config.h && sudo make clean install && make clean'
+
 # for my onedrive synchronization.
 alias odupd='onedrive --synchronize --single-directory "Documents"'
 ##############

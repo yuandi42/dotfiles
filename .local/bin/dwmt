@@ -1,0 +1,5 @@
+#!/usr/bin/sh
+# dwm testing
+Xephyr -br -ac -noreset -screen 800x600 :1> /dev/null 2>&1&
+inotifywait --timeout 9 /tmp/.X11-unix/
+DISPLAY=:1 dwm&
