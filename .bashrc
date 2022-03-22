@@ -33,7 +33,7 @@ alias dfc='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias lzdc='lazygit -g ~/.dotfiles/ -w $HOME'
 
 # for suckless tools
-alias slm='rm config.h && sudo make clean install && make clean'
+alias slm='rm -i config.h && sudo make clean install && make clean'
 
 # for my onedrive synchronization.
 alias odupd='onedrive --synchronize --single-directory "Documents"'
