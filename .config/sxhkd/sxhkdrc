@@ -9,13 +9,15 @@
 # it will reload its configuration file.
 super + alt + r
     killall -SIGUSR1 sxhkd
+super + ctrl + r
+    pkill -SIGUSR1 dwmblocks
 
 # my volume and backlight control.
 # alsa-utils and light is needed.
 XF86Audio{LowerVolume,RaiseVolume,Mute}
-    amixer set Master {5%-,5%+,toggle}
+    amixer set Master {5%-,5%+,toggle} && pkill -RTMIN+3 dwmblocks
 XF86MonBrightness{Down,Up}
-    light {-U 5,-A 5}
+    light {-U 5,-A 5} && pkill -RTMIN+2 dwmblocks
 
 # run dmenu as application launcher.
 super + space
@@ -31,9 +33,9 @@ super + {_,shift}  + f
 
 # keybindings for my scripts.
 Insert
-    dmenu_unicode
+    dmenu-unicode
 super + shift + x
-    dmenu_SNR
+    dmenu-sysact
 
 # keybindings for screenshot. maim is needed.
 # ctrl for clipboard, shift for selection. 
