@@ -6,7 +6,8 @@ add_newline = false
 # disabled = true
 
 format = """
-[╭── ](green)[](blue)$directory\
+[╭── ](green)\\[$username$hostname\\] \
+                            $directory\
                             $python\
                             $git_branch\
                             $git_commit\
@@ -21,3 +22,16 @@ format = """
 success_symbol = "[>](bold green)"
 error_symbol = "[>](bold red)"
 vicmd_symbol = "[|](bold green)"
+
+[username]
+style_user = "yellow bold"
+style_root = "white bold"
+format = "[$user]($style) "
+disabled = false
+show_always = true
+
+[hostname]
+ssh_only = false
+format = "on [$hostname](bold blue)"
+trim_at = ".companyname.com"
+disabled = false
