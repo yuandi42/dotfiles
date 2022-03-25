@@ -1,6 +1,7 @@
 # dotfiles Personal configuration for my Arch linux.
 
-## Screenshot ![Screenshot](unixporn.png 'WIP though')
+## Screenshot
+![Screenshot](unixporn.png 'WIP though')
 
 ## Programs for my daily use.  
 ### Basic 
