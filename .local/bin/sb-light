@@ -1,0 +1,9 @@
+#!/usr/bin/sh
+
+# case $BLOCK_BUTTON in
+    # 4) light -A 5 && pkill -RTMIN+2 dwmblocks;;
+    # 5) light -U 5 && pkill -RTMIN+2 dwmblocks;;
+# esac
+
+lgt=$(light -G | cut -d . -f 1)
+printf " $lgt%%"

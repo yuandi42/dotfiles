@@ -1,0 +1,25 @@
+#!/bin/sh
+# Prints the current volume, WIP.
+
+# case $BLOCK_BUTTON in
+    # 1) amixer -q set Master toggle && pkill -RTMIN+3 dwmblocks;;
+    # 4) amixer -q set Master 5%+ && pkill -RTMIN+3 dwmblocks;;
+    # 5) amixer -q set Master 5%- && pkill -RTMIN+3 dwmblocks;;
+# esac
+
+volinfo=$(amixer get Master | tail -n 1 | tr -d '[]%'| cut -d ' ' -f 6,8)
+vol=$(echo $volinfo | cut -d ' ' -f 1)
+case $volinfo in
+    *off) echo " Off " && exit ;;
+    *on) 
+        if [ "$vol" -gt "55" ]; then
+            icon=""
+        elif [ "$vol" -gt "25" ]; then
+            icon=""
+        elif [ "$vol" -gt "0" ]; then
+            icon=""
+        else
+                echo " Off " && exit
+        fi;;
+esac
+printf "$icon $vol%%"

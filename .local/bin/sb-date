@@ -1,0 +1,2 @@
+#!/bin/sh
+printf " $(date '+%d/%m,%a %H:%M')"
