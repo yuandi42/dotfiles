@@ -10,7 +10,7 @@
 super + alt + r
     killall -SIGUSR1 sxhkd
 super + ctrl + r
-    pkill -SIGUSR1 dwmblocks
+    killall dwmblocks && dwmblocks
 
 # my volume and backlight control.
 # alsa-utils and light is needed.
