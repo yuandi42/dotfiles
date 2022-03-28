@@ -1,11 +1,11 @@
 #!/bin/sh
-# Prints the current volume, WIP.
+# Prints the current volume.
 
-# case $BLOCK_BUTTON in
-    # 1) amixer -q set Master toggle && pkill -RTMIN+3 dwmblocks;;
-    # 4) amixer -q set Master 5%+ && pkill -RTMIN+3 dwmblocks;;
-    # 5) amixer -q set Master 5%- && pkill -RTMIN+3 dwmblocks;;
-# esac
+case $BLOCK_BUTTON in
+    1) amixer -q set Master toggle && pkill -RTMIN+3 dwmblocks;;
+    4) amixer -q set Master 5%+ && pkill -RTMIN+3 dwmblocks;;
+    5) amixer -q set Master 5%- && pkill -RTMIN+3 dwmblocks;;
+esac
 
 volinfo=$(amixer get Master | tail -n 1 | tr -d '[]%'| cut -d ' ' -f 6,8)
 vol=$(echo $volinfo | cut -d ' ' -f 1)
