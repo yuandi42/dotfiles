@@ -1,5 +1,9 @@
 #!/usr/bin/sh
 # Loop through all attached batteries and format the info
+case $BLOCK_BUTTON in
+    1) "$TERMINAL" -e "$EDITOR" "$0";; 
+esac
+
 for battery in /sys/class/power_supply/BAT?*; do
 	# If non-first battery, print a space separator.
 	[ -n "${capacity+x}" ] && printf " "
@@ -10,12 +14,13 @@ for battery in /sys/class/power_supply/BAT?*; do
 		"Charging") status="" ;;
 		"Not charging") status="" ;;
 		"Unknown") status="" ;;
-		*) exit 1 ;;
+		*) printf "error" && exit 1 ;;
 	esac
 	capacity="$(cat "$battery/capacity" 2>&1)"
+    color=#79740e
 	# Will make a warn variable if discharging and low
-	[ "$status" = "" ] && [ "$capacity" -le 25 ] && warn="" && 
+	[ "$status" = "" ] && [ "$capacity" -le 25 ] && warn="" && color=#fb4934 && 
     \ notify-send -u critical "LOW BATTERY!" "The capacity of battery is less than 25% now!"
 	# Prints the info
-	printf "%s%s%d%%" "$status" "$warn" "$capacity"; unset warn
+	printf "^c$color^%s%s%d%%^d^" "$status" "$warn" "$capacity"; unset warn
 done && printf "\\n"
