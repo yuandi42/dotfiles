@@ -24,7 +24,7 @@ error_symbol = "[>](bold red)"
 vicmd_symbol = "[|](bold green)"
 
 [username]
-style_user = "yellow bold"
+style_user = "blue bold"
 style_root = "white bold"
 format = "[$user]($style) "
 disabled = false
@@ -32,6 +32,6 @@ show_always = true
 
 [hostname]
 ssh_only = false
-format = "on [$hostname](bold blue)"
+format = "on [$hostname](bold yellow)"
 trim_at = ".companyname.com"
 disabled = false

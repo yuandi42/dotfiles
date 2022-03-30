@@ -10,7 +10,8 @@
 super + alt + r
     killall -SIGUSR1 sxhkd
 super + ctrl + r
-    killall dwmblocks && dwmblocks
+    # killall dwmblocks && dwmblocks
+    pkill -SIGUSR1 dwmblocks
 
 # my volume and backlight control.
 # alsa-utils and light is needed.
@@ -29,7 +30,7 @@ super + Return
 super + {_,shift} + b
     {qutebrowser,firefox}
 super + {_,shift}  + f
-    {alacritty -e vfr,pcmanfm}
+    {alacritty -t vifm -e vfr,pcmanfm}
 
 # keybindings for my scripts.
 Insert
