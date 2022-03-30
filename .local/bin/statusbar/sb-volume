@@ -3,6 +3,7 @@
 
 case $BLOCK_BUTTON in
     1) amixer -q set Master toggle && pkill -RTMIN+3 dwmblocks;;
+    3) "$TERMINAL" -e "$EDITOR" "$0";; 
     4) amixer -q set Master 5%+ && pkill -RTMIN+3 dwmblocks;;
     5) amixer -q set Master 5%- && pkill -RTMIN+3 dwmblocks;;
 esac

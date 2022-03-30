@@ -1,30 +1,32 @@
 #!/usr/bin/sh
 # show mpd status. WIP
 
+icon=" ------"
 color="^c#7c6f64^"
 if [ $(pidof mpd) ]; then 
+    # bug: why doesn't the fucking line below run in bg???
     # pidof -x sb-mpdup >/dev/null 2>&1 || sb-mpdup >/dev/null 2>&1 &
-    pidof -x sb-mpdup >/dev/null 2>&1 || sb-mpdup >/dev/null 2>&1 
-    stt=$(mpc status | grep '^\['| cut -d " " -f 1)
     case $BLOCK_BUTTON in
-        1) mpc toggle >/dev/null 2>&1 ;;  # left click, pause/unpause
+        1) mpc toggle >/dev/null 2>&1 && pkill -RTMIN+15 dwmblocks;;  # left click, pause/unpause
         # 2) mpc status |  ;;  # right click, show status
-        2) pkill -RTMIN+20 dwmblocks;; 
-        3) setsid -f "$TERMINAL" -e ncmpcpp ;;  # right click, pause/unpause
+        2) pkill -RTMIN+15 dwmblocks;; # refresh the block 
+        3) setsid -f "$TERMINAL" -e ncmpcpp ;;  # right click, open ncmpcpp
         4) mpc prev >/dev/null 2>&1  ;;  # scroll up, previous
         5) mpc next >/dev/null 2>&1  ;;  # scroll down, next
     esac
+    stt=$(mpc status | grep '^\[p'| cut -d " " -f 1)
     case $stt in
         *pause*) icon=" PAUSED";;
-        *play*) icon=" PLAYING"; color="^c#427b58^";;
-        *) icon=" ??";;
+        *play*)  icon=" PLYING"; color="^c#427b58^";;
     esac
 else 
     case $BLOCK_BUTTON in
-        1) mpd && pkill -RTMIN+20 dwmblocks;; 
-        2) pkill -RTMIN+20 dwmblocks;; 
+        # 1) mpd ; pkill -RTMIN+15 dwmblocks;; 
+        1) "$TERMINAL" -e "$EDITOR" "$0";; 
+        3) mpd && pkill -RTMIN+15 dwmblocks;; 
+        # 3) "$TERMINAL" -e "$EDITOR" "$0";; 
     esac
     icon=" NO MPD"
 fi
 
-printf "$color$icon^d^"
+printf "|$color$icon^d^"

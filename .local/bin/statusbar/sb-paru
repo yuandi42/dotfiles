@@ -1,0 +1,7 @@
+#!/usr/bin/sh
+
+case $BLOCK_BUTTON in
+    1) "$TERMINAL" -e "sb-popup";;
+    3) "$TERMINAL" -e "$EDITOR" "$0" ;; 
+esac
+printf "^c#d65d0e^ $(paru -Qu | wc -l)^d^"
