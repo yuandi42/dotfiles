@@ -19,6 +19,7 @@ c.editor.command = [myTerm, "-e", "vim", "-f", "{}"]
 c.completion.cmd_history_max_items = 100
 c.completion.open_categories = ["searchengines", "quickmarks", "bookmarks", "filesystem"]
 c.statusbar.show = "never"
+c.zoom.default = 120
 
 # Stylesheet
 #  c.content.user_stylesheets = 
