@@ -20,7 +20,11 @@ export EDITOR='vim'
 ## my alias ##
 ##############
 alias ls='ls --color=auto'
-alias lgot='loginctl | egrep -v "root|SESSION|listed" | awk "{print $1}" | xargs loginctl terminate-session'
+alias c='clear'
+
+alias p='paru'
+alias pss='paru -Ss'
+alias pq='paru -Qs'
 
 # easily get the name of key events.
 alias xkeyname='xev | awk -F'\''[ )]+'\'' '\''/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'\'''
@@ -36,7 +40,9 @@ alias lzdc='lazygit -g ~/.dotfiles/ -w $HOME'
 alias slm='rm -i config.h && sudo make clean install && make clean'
 
 # for my onedrive synchronization.
-alias odupd='onedrive --synchronize --single-directory "Documents"'
+alias o='onedrive --synchronize'
+alias os='onedrive --synchronize --single-directory'
+alias od='onedrive --synchronize --single-directory "Documents"'
 ##############
 ## my alias ##
 ##############
