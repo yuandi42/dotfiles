@@ -56,7 +56,7 @@ c.content.blocking.adblock.lists = [
 
 # Search
 c.url.searchengines['DEFAULT'] = 'https://duckduckgo.com/?q={}'
-c.url.searchengines['gg'] = 'https://www.google.com/search?hl=en&source=hp&ie=UTF-8-l&q={}'
+c.url.searchengines['gg'] = 'https://www.google.com/search?hl=en&source=hp&q={}'
 c.url.searchengines['gh'] = 'https://github.com/search?q={}'
 c.url.searchengines['ew'] = 'https://en.wikipedia.org/w/index.php?search={}'
 c.url.searchengines['zw'] = 'https://zh.wikipedia.org/w/index.php?search={}'
