@@ -37,6 +37,8 @@ Insert
     dmenu-unicode
 super + shift + x
     dmenu-sysact
+super + ctrl + m
+    dmenu-mpc
 
 # keybindings for screenshot. maim is needed.
 # ctrl for clipboard, shift for selection. 
