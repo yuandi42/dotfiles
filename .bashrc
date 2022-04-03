@@ -14,13 +14,13 @@
 ## This is commented out if using starship prompt.
 # PS1='[\u@\h \W]\$ '
 
-export EDITOR='vim'
-
 ##############
 ## my alias ##
 ##############
 alias ls='ls --color=auto'
 alias c='clear'
+alias s='sudo'
+alias v='vim'
 
 alias p='paru'
 alias pss='paru -Ss'

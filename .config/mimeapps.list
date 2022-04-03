@@ -1,6 +1,7 @@
 [Default Applications]
 text/plain=text.desktop;
 text/html=org.qutebrowser.qutebrowser.desktop;
+text/x-chdr=text.desktop
 application/postscript=pdf.desktop;
 application/pdf=pdf.desktop;
 application/x-shellscript=text.desktop
