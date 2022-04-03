@@ -1,0 +1,9 @@
+#!/usr/bin/sh
+# show systray below the bar when clicked.
+
+case $BLOCK_BUTTON in
+    1) pidof stalonetray >/dev/null &&pkill stalonetray || setsid -f stalonetray >/dev/null 2>&1;;
+    3) "$TERMINAL" -e "$EDITOR" "$0" ;;
+esac
+
+printf "^c#fe8019^ ^d^"
