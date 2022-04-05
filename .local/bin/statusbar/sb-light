@@ -1,7 +1,7 @@
 #!/usr/bin/sh
 
 case $BLOCK_BUTTON in
-    1) "$TERMINAL" -e "$EDITOR" "$0";;
+    3) setsid -f "$TERMINAL" -e "$EDITOR" "$0";;
     4) light -A 5 && pkill -RTMIN+2 dwmblocks;;
     5) light -U 5 && pkill -RTMIN+2 dwmblocks;;
 esac

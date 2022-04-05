@@ -1,7 +1,7 @@
 #!/usr/bin/sh
 # Loop through all attached batteries and format the info
 case $BLOCK_BUTTON in
-    1) "$TERMINAL" -e "$EDITOR" "$0";; 
+    1) setsid -f "$TERMINAL" -e "$EDITOR" "$0";;
 esac
 
 for battery in /sys/class/power_supply/BAT?*; do

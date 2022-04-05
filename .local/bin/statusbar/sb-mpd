@@ -4,13 +4,10 @@
 icon=" ------"
 color="^c#7c6f64^"
 if [ $(pidof mpd) ]; then 
-    # bug: why doesn't the fucking line below run in bg???
-    # pidof -x sb-mpdup >/dev/null 2>&1 || sb-mpdup >/dev/null 2>&1 &
     case $BLOCK_BUTTON in
-        1) mpc toggle >/dev/null 2>&1 && pkill -RTMIN+15 dwmblocks;;  # left click, pause/unpause
-        # 2) mpc status |  ;;  # right click, show status
+        1) mpc toggle >/dev/null 2>&1 && pkill -RTMIN+15 dwmblocks;;
         2) notify-send "Current Music" "$(mpc status|head -n1)"
-           pkill -RTMIN+15 dwmblocks;; # show current music,refresh the block 
+           pkill -RTMIN+15 dwmblocks;; # show current music
         3) setsid -f "$TERMINAL" -e ncmpcpp ;;  # right click, open ncmpcpp
         4) mpc prev >/dev/null 2>&1  ;;  # scroll up, previous
         5) mpc next >/dev/null 2>&1  ;;  # scroll down, next
@@ -20,12 +17,11 @@ if [ $(pidof mpd) ]; then
         *pause*) icon=" PAUSED";;
         *play*)  icon=" PLYING"; color="^c#427b58^";;
     esac
+    # pidof -x sb-mpdup >/dev/null 2>&1 || sb-mpdup >/dev/null 2>&1 &
 else 
     case $BLOCK_BUTTON in
-        # 1) mpd ; pkill -RTMIN+15 dwmblocks;; 
-        1) "$TERMINAL" -e "$EDITOR" "$0";; 
-        3) mpd && pkill -RTMIN+15 dwmblocks;; 
-        # 3) "$TERMINAL" -e "$EDITOR" "$0";; 
+        1) mpd && pkill -RTMIN+15 dwmblocks;; # left click to launch mpd
+        3) "$TERMINAL" -e "$EDITOR" "$0";; 
     esac
     icon=" NO MPD"
 fi
