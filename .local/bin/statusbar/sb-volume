@@ -11,7 +11,7 @@ esac
 volinfo=$(amixer get Master | tail -n 1 | tr -d '[]%'| cut -d ' ' -f 6,8)
 vol=$(echo $volinfo | cut -d ' ' -f 1)
 case $volinfo in
-    *off) echo " OFF " && exit ;;
+    *off) printf " OFF " && exit ;;
     *on) 
         if [ "$vol" -gt "55" ]; then
             icon=""
@@ -20,7 +20,7 @@ case $volinfo in
         elif [ "$vol" -gt "0" ]; then
             icon=""
         else
-                echo " OFF " && exit
+                printf " OFF " && exit
         fi;;
 esac
 printf "^c#d3869b^$icon $vol%%^d^"
