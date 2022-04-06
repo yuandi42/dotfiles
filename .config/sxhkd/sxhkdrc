@@ -24,21 +24,19 @@ XF86MonBrightness{Down,Up}
 super + space
     dmenu_run -i -c -bw 2 -l 10 -p " "
 
-# keybindings for programs
+# keybindings for programs and scripts
 super + Return
     alacritty
 super + {_,shift} + b
     {qutebrowser,firefox}
 super + {_,shift}  + f
     {alacritty -t vifm -e vfr,pcmanfm}
-
-# keybindings for my scripts.
+super + ctrl + m
+    xsetroot -name "fsignal:2"
 Insert
     dmenu-unicode
 super + shift + x
     dmenu-sysact
-super + ctrl + m
-    dmenu-mpc
 
 # keybindings for screenshot. maim is needed.
 # ctrl for clipboard, shift for selection. 

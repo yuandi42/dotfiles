@@ -1,5 +1,5 @@
 #!/usr/bin/sh
-# control mpd by dmenu
+# control mpd by dmenu. No need now.
 
 x=$(echo -e "toggle\nnext\nprev\n" | dmenu -c -bw 2)
 y=$(mpc $x|head -n1); notify-send "Current Music" "$y"
