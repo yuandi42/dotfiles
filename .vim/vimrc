@@ -83,8 +83,8 @@ noremap <leader>i <c-i>
 noremap <leader>w <c-w>
 
 " keybindings for buffers
-noremap <silent> <leader>bj :bp<CR>
-noremap <silent> <leader>bk :bn<CR>
+noremap <silent> <leader>bp :bp<CR>
+noremap <silent> <leader>bn :bn<CR>
 noremap <silent> <leader>bh :bf<CR>
 noremap <silent> <leader>bl :bl<CR>
 noremap <leader>bd :bd<CR>
