@@ -7,8 +7,8 @@ if [ $(pidof mpd) ]; then
     case $BLOCK_BUTTON in
         1) mpc toggle >/dev/null 2>&1 && pkill -RTMIN+15 dwmblocks;;
         2) notify-send "Current Music" "$(mpc status|head -n1)"
-           pkill -RTMIN+15 dwmblocks;; # show current music
-        3) setsid -f "$TERMINAL" -e ncmpcpp ;;  # right click, open ncmpcpp
+           pkill -RTMIN+15 dwmblocks ;;  # show current music
+        3) xsetroot -name "fsignal:2";;  # toggle musicpad
         4) mpc prev >/dev/null 2>&1  ;;  # scroll up, previous
         5) mpc next >/dev/null 2>&1  ;;  # scroll down, next
     esac
@@ -21,7 +21,7 @@ if [ $(pidof mpd) ]; then
 else 
     case $BLOCK_BUTTON in
         1) mpd && pkill -RTMIN+15 dwmblocks;; # left click to launch mpd
-        3) "$TERMINAL" -e "$EDITOR" "$0";; 
+        3) setsid -f "$TERMINAL" -e "$EDITOR" "$0";; 
     esac
     icon=" NO MPD"
 fi
