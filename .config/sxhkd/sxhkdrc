@@ -33,6 +33,8 @@ super + {_,shift}  + f
     {alacritty -t vifm -e vfr,pcmanfm}
 super + ctrl + m
     xsetroot -name "fsignal:2"
+super + ctrl + t
+    toggle-tray
 Insert
     dmenu-unicode
 super + shift + x

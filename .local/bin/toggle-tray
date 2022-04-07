@@ -1,0 +1,2 @@
+#!/usr/bin/sh
+pidof stalonetray >/dev/null &&pkill stalonetray || setsid -f stalonetray >/dev/null 2>&1
