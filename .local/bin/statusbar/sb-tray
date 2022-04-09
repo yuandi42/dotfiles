@@ -6,4 +6,4 @@ case $BLOCK_BUTTON in
     3) setsid -f "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
-printf "^c#fe8019^ ^d^"
+printf "^b#d65d0e^^c#282828^   ^d^"

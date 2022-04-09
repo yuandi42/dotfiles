@@ -11,16 +11,17 @@ esac
 volinfo=$(amixer get Master | tail -n 1 | tr -d '[]%'| cut -d ' ' -f 6,8)
 vol=$(echo $volinfo | cut -d ' ' -f 1)
 case $volinfo in
-    *off) printf " OFF " && exit ;;
+    *off) 
+        printf "^b#d3869b^^c#282828^   ^d^^b#a89984^^c#282828^ OFF ^d^" && exit;;
     *on) 
-        if [ "$vol" -gt "55" ]; then
+        if [ "$vol" -gt "50" ]; then
             icon=""
-        elif [ "$vol" -gt "25" ]; then
+        elif [ "$vol" -gt "15" ]; then
             icon=""
         elif [ "$vol" -gt "0" ]; then
             icon=""
         else
-                printf " OFF " && exit
+            printf "^b#d3869b^^c#282828^   ^d^^b#a89984^^c#282828^ OFF ^d^" && exit
         fi;;
 esac
-printf "^c#d3869b^$icon $vol%%^d^"
+printf "^b#d3869b^^c#282828^ $icon  ^d^^b#a89984^^c#282828^ $vol%% ^d^"

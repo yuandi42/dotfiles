@@ -1,8 +1,7 @@
 #!/usr/bin/sh
 # show mpd status. WIP
 
-icon=" ------"
-color="^c#7c6f64^"
+icon=""; desc="-------"
 if [ $(pidof mpd) ]; then 
     case $BLOCK_BUTTON in
         1) mpc toggle >/dev/null 2>&1 && pkill -RTMIN+15 dwmblocks;;
@@ -14,8 +13,8 @@ if [ $(pidof mpd) ]; then
     esac
     stt=$(mpc status | grep '^\[p'| cut -d " " -f 1)
     case $stt in
-        *pause*) icon=" PAUSED";;
-        *play*)  icon=" PLYING"; color="^c#427b58^";;
+        *pause*) icon=" "; desc="PAUSED";;
+        *play*)  icon=""; desc="PLAYING";;
     esac
     # pidof -x sb-mpdup >/dev/null 2>&1 || sb-mpdup >/dev/null 2>&1 &
 else 
@@ -23,7 +22,7 @@ else
         1) mpd && pkill -RTMIN+15 dwmblocks;; # left click to launch mpd
         3) setsid -f "$TERMINAL" -e "$EDITOR" "$0";; 
     esac
-    icon=" NO MPD"
+    icon=" "; desc="NO MPD"
 fi
-
-printf "|$color$icon^d^"
+# printf "$color$icon$desc^d^"
+printf "^b#427b58^^c#282828^ $icon ^d^^b#a89984^^c#282828^ $desc ^d^"

@@ -7,4 +7,4 @@ case $BLOCK_BUTTON in
 esac
 
 lgt=$(light -G | cut -d . -f 1)
-printf "^c#d79921^ $lgt%%^d^"
+printf "^b#d79921^^c#282828^   ^d^^b#a89984^^c#282828^ $lgt%% ^d^"

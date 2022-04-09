@@ -1,6 +1,8 @@
 #!/usr/bin/sh
 # Loop through all attached batteries and format the info
 case $BLOCK_BUTTON in
+    1) notify-send "Battery condition" "blabla"
+       pkill -RTMIN+11 dwmblocks;;
     3) setsid -f "$TERMINAL" -e "$EDITOR" "$0";;
 esac
 
@@ -17,10 +19,11 @@ for battery in /sys/class/power_supply/BAT?*; do
 		*) printf "error" && exit 1 ;;
 	esac
 	capacity="$(cat "$battery/capacity" 2>&1)"
-    color=#79740e
+    color=#b8bb26
 	# Will make a warn variable if discharging and low
 	[ "$status" = "" ] && [ "$capacity" -le 25 ] && warn="" && color=#fb4934 && 
     \ notify-send -u critical "LOW BATTERY!" "The capacity of battery is less than 25% now!"
 	# Prints the info
-	printf "^c$color^%s%s%d%%^d^" "$status" "$warn" "$capacity"; unset warn
-done && printf "\\n"
+    # printf "^r0,7,2,4^^r2,4,22,10^^c#282828^^r3,5,20,8^^c#ebdbb2^^r10,5,13,8^^d^^f24^"
+	printf "^b$color^ ^c#282828^%s%s ^d^^b#a89984^^c#282828^ %d%% ^d^" "$status" "$warn" "$capacity"; unset warn
+done

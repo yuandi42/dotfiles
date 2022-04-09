@@ -1,5 +1,8 @@
 #!/bin/sh
 case $BLOCK_BUTTON in
+    1) pkill -RTMIN+12 dwmblocks;;
     3) setsid -f "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
-printf "^c#83a598^ $(date '+%d/%m(%a)^c#689d6a^ %H:%M')^d^"
+# printf "^c#83a598^ ^d^$(date '+%d/%m(%a)^c#689d6a^ ^d^%H:%M')"
+printf "^b#83a598^^c#282828^   ^d^^b#a89984^^c#282828^ $(date '+%d/%m(%a)') ^d^"
+printf "^b#689d6a^^c#282828^   ^d^^b#a89984^^c#282828^ $(date '+%H:%M') ^d^"
