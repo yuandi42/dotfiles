@@ -17,9 +17,13 @@ bind-key D pb-download
 bind-key U show-urls
 bind-key x pb-delete
 
-browser "qutebrowser --target tab %u >/dev/null 2>&1 &"
-macro m set browser "mpv %u &"; open-in-browser-noninteractively; set browser "qutebrowser --target tab %u >/dev/null 2>&1 &"
-macro l set browser "lynx %u"; open-in-browser; set browser "qutebrowser --target tab %u >/dev/null 2>&1 &"
+browser "setsid -f qutebrowser --target tab %u >/dev/null 2>&1 &"
+macro m set browser "setsid -f mpv %u &"; open-in-browser-noninteractively; set browser "setsid -f qutebrowser --target tab %u >/dev/null 2>&1 &"
+macro l set browser "lynx %u"; open-in-browser; set browser "setsid -f qutebrowser --target tab %u >/dev/null 2>&1 &"
+
+# Podboat items
+download-path "~/.cache/podboat/"
+player "abduco pod mpv"
 
 # Colors from "gruvbox" colorscheme https://github.com/morhetz/gruvbox
 color article                              color223 color236
