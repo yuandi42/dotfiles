@@ -26,6 +26,10 @@ alias p='paru'
 alias pss='paru -Ss'
 alias pq='paru -Qs'
 
+alias a='abduco'
+alias aa='abduco -A'
+alias ai='abduco -A init'
+
 # easily get the name of key events.
 alias xkeyname='xev | awk -F'\''[ )]+'\'' '\''/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'\'''
 
