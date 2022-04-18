@@ -1,28 +1,28 @@
 #!/usr/bin/sh
 # show mpd status. WIP
+# SIGNAL 15
 
-icon=""; desc="-------"
+color=#427b58
+desc="------"
 if [ $(pidof mpd) ]; then 
     case $BLOCK_BUTTON in
-        1) mpc toggle >/dev/null 2>&1 && pkill -RTMIN+15 dwmblocks;;
-        2) notify-send "Current Music" "$(mpc status|head -n1)"
-           pkill -RTMIN+15 dwmblocks ;;  # show current music
-        3) xsetroot -name "fsignal:2";;  # toggle musicpad
-        4) mpc prev >/dev/null 2>&1  ;;  # scroll up, previous
-        5) mpc next >/dev/null 2>&1  ;;  # scroll down, next
+        1) mpc -q toggle;; # toggle mpd
+        2) mpdnoti;; # send notification
+        3) xsetroot -name "fsignal:2";; # toggle musicpad
+        4) mpc -q prev;; # scroll up, previous
+        5) mpc -q next;; # scroll down, next
     esac
-    stt=$(mpc status | grep '^\[p'| cut -d " " -f 1)
+    stt=$(mpc status '%state%')
     case $stt in
-        *pause*) icon=" "; desc="PAUSED";;
-        *play*)  icon=""; desc="PLAYING";;
+        *pause*) desc="PAUSED";;
+        *play*)  desc="PLAYING";;
     esac
-    # pidof -x sb-mpdup >/dev/null 2>&1 || sb-mpdup >/dev/null 2>&1 &
+    # pidof -x sb-mpdup || setsid -f sb-mpdup # why doesn't setsid -f work?
 else 
     case $BLOCK_BUTTON in
-        1) mpd && pkill -RTMIN+15 dwmblocks;; # left click to launch mpd
+        1) mpd;; # left click to launch mpd
         3) setsid -f "$TERMINAL" -e "$EDITOR" "$0";; 
     esac
-    icon=" "; desc="NO MPD"
+    desc="NO MPD"
 fi
-# printf "$color$icon$desc^d^"
-printf "^b#427b58^^c#282828^ $icon ^d^^b#a89984^^c#282828^ $desc ^d^"
+sb-show $color  $desc
