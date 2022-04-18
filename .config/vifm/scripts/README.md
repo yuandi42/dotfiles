@@ -6,3 +6,5 @@
 * [ddjvu](http://djvu.sourceforge.net/doc/man/ddjvu.html) (Contains in the Debian/Ubuntu `djvulibre-bin` package.)
 * [epub-thumbnailer](https://github.com/marianosimone/epub-thumbnailer)
 * [fontpreview](https://github.com/sdushantha/fontpreview)
+## See more
+[vifmimg](https://github.com/cirala/vifmimg)
