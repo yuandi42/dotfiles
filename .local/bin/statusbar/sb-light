@@ -1,10 +1,12 @@
 #!/usr/bin/sh
+# SIGNAL 2
 
 case $BLOCK_BUTTON in
     3) setsid -f "$TERMINAL" -e "$EDITOR" "$0";;
-    4) light -A 5 && pkill -RTMIN+2 dwmblocks;;
-    5) light -U 5 && pkill -RTMIN+2 dwmblocks;;
+    4) light -A 5;;
+    5) light -U 5;;
 esac
 
 lgt=$(light -G | cut -d . -f 1)
-printf "^b#d79921^^c#282828^   ^d^^b#a89984^^c#282828^ $lgt%% ^d^"
+color=#d79921
+sb-show $color ' ' $lgt%%

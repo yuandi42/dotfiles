@@ -1,27 +1,29 @@
 #!/bin/sh
 # Prints the current volume.
+# SIGNAL 3
 
 case $BLOCK_BUTTON in
-    1) amixer -q set Master toggle && pkill -RTMIN+3 dwmblocks;;
+    1) amixer -q set Master toggle;;
     3) setsid -f "$TERMINAL" -e "$EDITOR" "$0";;
-    4) amixer -q set Master 5%+ && pkill -RTMIN+3 dwmblocks;;
-    5) amixer -q set Master 5%- && pkill -RTMIN+3 dwmblocks;;
+    4) amixer -q set Master 5%+;;
+    5) amixer -q set Master 5%-;;
 esac
 
+color=#d3869b
 volinfo=$(amixer get Master | tail -n 1 | tr -d '[]%'| cut -d ' ' -f 6,8)
 vol=$(echo $volinfo | cut -d ' ' -f 1)
 case $volinfo in
     *off) 
-        printf "^b#d3869b^^c#282828^   ^d^^b#a89984^^c#282828^ OFF ^d^" && exit;;
+        sb-show $color ' ' 'OFF' && exit;;
     *on) 
         if [ "$vol" -gt "50" ]; then
-            icon=""
+            icon=''
         elif [ "$vol" -gt "15" ]; then
-            icon=""
+            icon=''
         elif [ "$vol" -gt "0" ]; then
-            icon=""
+            icon=''
         else
-            printf "^b#d3869b^^c#282828^   ^d^^b#a89984^^c#282828^ OFF ^d^" && exit
+            sb-show $color ' ' 'OFF' && exit
         fi;;
 esac
-printf "^b#d3869b^^c#282828^ $icon  ^d^^b#a89984^^c#282828^ $vol%% ^d^"
+sb-show $color $icon' '  $vol%% && exit
