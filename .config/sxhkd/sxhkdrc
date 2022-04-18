@@ -21,7 +21,7 @@ XF86MonBrightness{Down,Up}
     light {-U 5,-A 5} && pkill -RTMIN+2 dwmblocks
 
 # run dmenu as application launcher.
-super + space
+super + {space,x}
     dmenu_run -i -c -bw 2 -l 10 -p " "
 
 # keybindings for programs and scripts
