@@ -23,7 +23,7 @@ macro l set browser "lynx %u"; open-in-browser; set browser "setsid -f qutebrows
 
 # Podboat items
 download-path "~/.cache/podboat/"
-player "abduco pod mpv"
+player "abduco -A pod ffplay -nodisp -autoexit"
 
 # Colors from "gruvbox" colorscheme https://github.com/morhetz/gruvbox
 color article                              color223 color236
