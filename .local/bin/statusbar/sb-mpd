@@ -3,7 +3,7 @@
 # SIGNAL 15
 
 color=#427b58
-desc="------"
+desc='------'
 if [ $(pidof mpd) ]; then 
     case $BLOCK_BUTTON in
         1) mpc -q toggle;; # toggle mpd
@@ -14,15 +14,15 @@ if [ $(pidof mpd) ]; then
     esac
     stt=$(mpc status '%state%')
     case $stt in
-        *pause*) desc="PAUSED";;
-        *play*)  desc="PLAYING";;
+        *pause*) desc='PAUSED';;
+        *play*)  desc='PLAYING';;
     esac
     # pidof -x sb-mpdup || setsid -f sb-mpdup # why doesn't setsid -f work?
 else 
     case $BLOCK_BUTTON in
-        1) mpd;; # left click to launch mpd
+        1) mpd;;
         3) setsid -f "$TERMINAL" -e "$EDITOR" "$0";; 
     esac
     desc="NO MPD"
 fi
-sb-show $color  $desc
+sb-show $color  "$desc"
