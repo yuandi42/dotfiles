@@ -1,13 +1,16 @@
+#!/usr/bin/bash
 # ______           _     
 # | ___ \         | |    
 # | |_/ / __ _ ___| |__  
 # | ___ \/ _` / __| '_ \ 
 # | |_/ / (_| \__ \ | | |
 # \____/ \__,_|___/_| |_|
-#!/usr/bin/bash
-# TODO: I actually plan to move all my bash stuff to .config/*/, just to
-# leave myself a cleaner ls -la $HOME.
-                       
+# add following lines to /etc/bash.bashrc or it wont' work when you open an
+# interactive shell inside a session.
+# if [ -s "${XDG_CONFIG_HOME:-$HOME/.config}/bash/bashrc" ]; then
+    # . "${XDG_CONFIG_HOME:-$HOME/.config}/bash/bashrc"
+# fi
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -57,6 +60,3 @@ set -o vi
 ## enable starship prompt ##
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 eval "$(starship init bash)"
-
-## it's secret.
-[[ -f ~/.bash_private ]] && . ~/.bash_private

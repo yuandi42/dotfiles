@@ -10,7 +10,7 @@ day=$(< $dayfile)
 nday=$(date '+%d'|tee $dayfile)
 if [ $day -ne $nday ]; then 
     # notify-send "HELLO WORLD!" "ONE DAY PASSED"
-    pkill -RTMIN+12 dwmblocks
+    pkill -RTMIN+12 dwmblocks # refresh sb-date
 # else
     # notify-send "THE WORLD!" "TIME PAUSED"
 fi
