@@ -4,7 +4,7 @@
 
 case $BLOCK_BUTTON in
     1) amixer -q set Master toggle;;
-    3) setsid -f "$TERMINAL" -e "$EDITOR" "$0";;
+    3) setsid -f "$TERMINAL" -e "$EDITOR" "$0" >/dev/null 2>&1 &;;
     4) amixer -q set Master 5%+;;
     5) amixer -q set Master 5%-;;
 esac
