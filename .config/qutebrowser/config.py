@@ -22,7 +22,7 @@ c.statusbar.show = "never"
 c.zoom.default = 120
 
 # Stylesheet
-#  c.content.user_stylesheets = 
+#  c.content.user_stylesheets = ['~/.config/qutebrowser/solarized-light-all-sites.css']
 
 # Startpage
 c.url.start_pages = ['~/.config/qutebrowser/startpage/index.html']
