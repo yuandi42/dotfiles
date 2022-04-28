@@ -234,10 +234,10 @@ fileviewer {*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
 
 " Web
 filextype {*.html,*.htm},<text/html>
+        \ {Open with firefox}
+        \ setsid -f firefox %f &,
         \ {Open with qutebrowser}
         \ setsid -f qutebrowser %f &,
-        \ {Open with firefox}
-        \ firefox %f &,
         \ {Open with uzbl}
         \ uzbl-browser %f %i &,
 filetype {*.html,*.htm},<text/html> links, lynx

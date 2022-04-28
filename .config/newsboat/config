@@ -17,9 +17,9 @@ bind-key D pb-download
 bind-key U show-urls
 bind-key x pb-delete
 
-browser "setsid -f qutebrowser --target tab %u >/dev/null 2>&1 &"
-macro m set browser "setsid -f mpv %u &"; open-in-browser-noninteractively; set browser "setsid -f qutebrowser --target tab %u >/dev/null 2>&1 &"
-macro l set browser "lynx %u"; open-in-browser; set browser "setsid -f qutebrowser --target tab %u >/dev/null 2>&1 &"
+browser "setsid -f firefox %u >/dev/null 2>&1 &"
+macro m set browser "setsid -f mpv %u &"; open-in-browser-noninteractively; set browser "setsid -f firefox %u >/dev/null 2>&1 &"
+macro l set browser "lynx %u"; open-in-browser; set browser "setsid -f firefox %u >/dev/null 2>&1 &"
 
 # Podboat items
 download-path "~/.cache/podboat/"
