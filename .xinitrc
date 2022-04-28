@@ -35,4 +35,5 @@ fi
 numlockx &
 xwallpaper --zoom ~/.local/share/bg&
 mpd&
+unclutter -b
 exec dwm
