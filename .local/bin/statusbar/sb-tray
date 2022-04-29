@@ -1,5 +1,5 @@
 #!/usr/bin/sh
-# show systray below the bar when clicked.
+# toggle systray below the bar when clicked.
 # SIGNAL 13
 
 case $BLOCK_BUTTON in

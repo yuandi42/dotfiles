@@ -24,7 +24,7 @@ for battery in /sys/class/power_supply/BAT?*; do
 	capacity="$(cat "$battery/capacity" 2>&1)"
     color=#b8bb26
 	# Will make a warn variable if discharging and low
-	[ "$status" = "" ] && [ "$capacity" -le 25 ] && $status="" && color=#fb4934 && 
+	[ "$status" = "" ] && [ "$capacity" -le 25 ] && $status="" && color=#fb4934 && 
     \ notify-send -u critical "LOW BATTERY!" "The capacity of battery is less than 25% now!"
 	# Prints the info
 	sb-show $color $status $capacity%%

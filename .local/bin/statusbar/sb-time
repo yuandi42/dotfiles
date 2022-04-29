@@ -7,12 +7,10 @@ case $BLOCK_BUTTON in
 esac
 dayfile=$HOME/.cache/dwm-date
 day=$(< $dayfile)
-nday=$(date '+%d'|tee $dayfile)
+nday=$(date '+%d')
 if [ $day -ne $nday ]; then 
-    # notify-send "$day" "$nday"
     pkill -RTMIN+12 dwmblocks # refresh sb-date
-# else
-    # notify-send "$day" "$nday"
+    echo "$nday" > $dayfile
 fi
 
 color=#689d6a
