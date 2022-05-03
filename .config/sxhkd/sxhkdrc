@@ -28,7 +28,7 @@ super + {space,x}
 super + Return
     alacritty
 super + {_,shift} + b
-    {firefox,qutebrowser}
+    {firefox,luakit}
 super + {_,shift}  + f
     {alacritty -t vifm -e vfr,pcmanfm}
 super + ctrl + m
