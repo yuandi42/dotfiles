@@ -9,6 +9,7 @@ export XDG_STATE_HOME="$HOME/.local/state"
 
 export WINEPREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/wineprefixes/default"
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
+export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/password-store"
 export GTK_RC_FILES="$XDG_CONFIG_HOME"/gtk-1.0/gtkrc
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 export GOPATH="$XDG_DATA_HOME"/go
