@@ -1,7 +1,0 @@
-#!/usr/bin/sh
-# control mpd by dmenu. No need now.
-
-x=$(echo -e "toggle\nnext\nprev\n" | dmenu -c -bw 2)
-y=$(mpc $x|head -n1); notify-send "Current Music" "$y"
-pkill -RTMIN+15 dwmblocks
-exit 0
