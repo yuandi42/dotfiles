@@ -6,7 +6,7 @@ case $BLOCK_BUTTON in
     3) setsid -f "$TERMINAL" -e "$EDITOR" "$0" >/dev/null 2>&1 &;;
 esac
 dayfile=$HOME/.cache/dwm-date
-day=$(< $dayfile)
+day=$(cat $dayfile)
 nday=$(date '+%d')
 if [ $day -ne $nday ]; then 
     pkill -RTMIN+12 dwmblocks # refresh sb-date
