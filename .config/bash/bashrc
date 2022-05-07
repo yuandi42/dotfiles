@@ -1,10 +1,4 @@
 #!/usr/bin/bash
-# ______           _     
-# | ___ \         | |    
-# | |_/ / __ _ ___| |__  
-# | ___ \/ _` / __| '_ \ 
-# | |_/ / (_| \__ \ | | |
-# \____/ \__,_|___/_| |_|
 # add following lines to /etc/bash.bashrc or it wont' work when you open an
 # interactive shell inside a session.
 # if [ -s "${XDG_CONFIG_HOME:-$HOME/.config}/bash/bashrc" ]; then
@@ -14,50 +8,11 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-## This is commented out if using starship prompt.
 # PS1='[\u@\h \W]\$ '
-export PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[35m\]$MSYSTEM\[\e[0m\] \[\e[33m\]\w\[\e[0m\]\n'"${_ps1_symbol}"' '
+export PS1="╭── [\u on \h] in [$0 - \W]\n╰─> "
 
-##############
-## my alias ##
-##############
-alias ls='ls --color=auto'
-alias c='clear'
-alias s='sudo'
-alias v='vim'
-
-alias p='paru'
-alias pss='paru -Ss'
-alias pq='paru -Qs'
-
-alias a='abduco'
-alias aa='abduco -A'
-alias ai='abduco -A init'
-
-# easily get the name of key events.
-alias xkeyname='xev | awk -F'\''[ )]+'\'' '\''/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'\'''
-
-# print figlet in doom font.
-alias fldoom='figlet -f $HOME/.config/figlet/doom.flf'
-
-# for my .dotfiles management. dfc stands for dotfiles config.
-alias dfc='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME' 
-alias lzdc='lazygit -g ~/.dotfiles/ -w $HOME'
-
-# for suckless tools
-alias slm='rm -i config.h && sudo make clean install && make clean'
-
-# for my onedrive synchronization.
-alias o='onedrive --synchronize'
-alias os='onedrive --synchronize --single-directory'
-alias od='onedrive --synchronize --single-directory "Documents"'
-##############
-## my alias ##
-##############
+# load my aliases
+source "$HOME/.config/shell/aliasrc"
 
 ## set keybindings to vi mode.
 set -o vi
-
-## enable starship prompt ##
-export STARSHIP_CONFIG=~/.config/starship/starship.toml
-eval "$(starship init bash)"

@@ -4,7 +4,7 @@ Personal configuration for my Arch linux.
 
 ## Screenshot
 
-![Screenshot](unixporn.png 'WIP though')
+![Screenshot](.local/share/unixporn.png 'WIP forever')
 
 ## Programs for my daily use.  
 
@@ -29,9 +29,7 @@ hopping.
 
 Terminal: alacritty. An easily customizable terminal.
 
-Shell: bash which every noobs use, with starship prompt as my shell prompt.
-Well, I plan to switch from starship to a normal PS1, use dash as my login
-shell and zsh as my interact shell.
+Shell: `dash` as system shell and login shell, `zsh` as interactive shell.
 
 Web browser: Firefox for my daily use, with modified `user.js`,
 `userChrome.css`, and `vimFx`. Yeah, you can use this classic addon with a bit

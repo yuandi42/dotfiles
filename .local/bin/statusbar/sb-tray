@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/bin/sh
 # toggle systray below the bar when clicked.
 # SIGNAL 13
 

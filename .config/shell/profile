@@ -1,5 +1,4 @@
-#!/usr/bin/sh
-
+#!/bin/sh
 # profile file. Runs on login. Environmental variables are set here.
 
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -7,8 +6,10 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 
+export ZDOTDIR="$HOME/.config/zsh"
 export WINEPREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/wineprefixes/default"
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
+export MBSYNCRC="${XDG_CONFIG_HOME:-~/.config}/mbsync/config"
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/password-store"
 export GTK_RC_FILES="$XDG_CONFIG_HOME"/gtk-1.0/gtkrc
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
@@ -28,11 +29,8 @@ export PATH="$PATH:$HOME/.local/bin:$HOME/.local/bin/statusbar"
 export EDITOR="vim"
 export TERMINAL="alacritty"
 export BROWSER="firefox"
+export SHELL="/bin/zsh"
 
-if [ -s "${XDG_CONFIG_HOME:-$HOME/.config}/bash/bashrc" ]; then
-    . "${XDG_CONFIG_HOME:-$HOME/.config}/bash/bashrc"
-fi
-
-if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-    exec startx
+if [ !$DISPLAY ] && [ $XDG_VTNR -eq 1 ]; then 
+    exec startx;
 fi
