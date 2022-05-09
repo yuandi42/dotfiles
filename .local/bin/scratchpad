@@ -1,2 +1,2 @@
 #!/bin/sh
-tabbed -r 2 alacritty --embed '' -o window.opacity=0.95 font.size=8.5 -t scratchpad
+tabbed -g 1200x900+0+0 -r 2 alacritty --embed '' -o window.opacity=0.8 -t scratchpad
