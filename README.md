@@ -60,3 +60,10 @@ Image viewer: sxiv.
 
 Application laucher: my own build of `dmenu_run` with ability to store history
 and run command in terminal.
+
+## TODO
+* Switch to nvim since why not dude.
+* Find method to move a window into tabbed scratchpad.
+* Better keybindings for dynamic scratchpad.
+* Move vifm scripts to `$PATH`.
+* An auto-setup script.
