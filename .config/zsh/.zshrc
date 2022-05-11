@@ -33,8 +33,6 @@ preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 autoload -U colors && colors
 PROMPT="%{$fg[red]%}%n%{$reset_color%} on %{$fg[blue]%}%m %{$fg[yellow]%}%1~ %{$reset_color%}%# "
 
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
 case ${TERM} in
   st*|alacritty*|xterm*|rxvt*|Eterm|aterm|kterm|gnome*)
     precmd () {print -Pn "\e]0;%n@%m: %~\a"}
@@ -42,3 +40,5 @@ case ${TERM} in
   tmux*|screen*)
     ;;
 esac
+
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
