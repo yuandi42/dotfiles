@@ -35,9 +35,7 @@ Web browser: Firefox for my daily use, with modified `user.js`,
 `userChrome.css`, and `vimFx`. Yeah, you can use this classic addon with a bit
 of hacking. And I also use Luakit from some simple tasks such as html preview.
 
-Text editing: vim for certain. It's so powerful and extensible that other
-editors look just like toys compared to our mighty beast. 
-
+Text editing: (neo)vim, cleaner code base and lua plug-in support.
 ### Utilities 
 
 File manager: vifm for terminal, pcmanfm for GUI.
@@ -62,8 +60,8 @@ Application laucher: my own build of `dmenu_run` with ability to store history
 and run command in terminal.
 
 ## TODO
-* Switch to nvim since why not dude.
 * Find method to move a window into tabbed scratchpad.
+* Set system boommark for (directories + files)
 * Better keybindings for dynamic scratchpad.
 * Move vifm scripts to `$PATH`.
 * An auto-setup script.
