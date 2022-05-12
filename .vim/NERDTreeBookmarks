@@ -1,0 +1,6 @@
+home ~
+config ~/.config
+vim ~/.vim
+qute ~/.config/qutebrowser
+scripts ~/.local/bin
+

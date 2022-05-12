@@ -47,6 +47,3 @@ set -o vi
 ## enable starship prompt ##
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 eval "$(starship init bash)"
-
-## it's secret.
-[[ -f ~/.bash_private ]] && . ~/.bash_private

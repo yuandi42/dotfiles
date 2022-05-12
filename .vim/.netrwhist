@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =7
+let g:netrw_dirhist_7='/home/fxda/dmenu-yuandi42'
+let g:netrw_dirhist_6='/home/fxda'
+let g:netrw_dirhist_5='/home/fxda/.vim'
+let g:netrw_dirhist_4='/home/fxda/dmenu-yuandi42'
+let g:netrw_dirhist_3='/home/fxda/.config/qutebrowser'
+let g:netrw_dirhist_2='/home/fxda/.config/qutebrowser/greasemonkey'
+let g:netrw_dirhist_1='/home/fxda/.config/qutebrowser/bookmarks'
+let g:netrw_dirhist_0='/home/fxda/dmenu-yuandi42/.git'
+let g:netrw_dirhist_9='/home/fxda/dmenu-yuandi42/.git/branches'
+let g:netrw_dirhist_8='/home/fxda/dmenu-yuandi42/.git'

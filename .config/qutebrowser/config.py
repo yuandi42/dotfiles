@@ -19,9 +19,10 @@ c.editor.command = [myTerm, "-e", "vim", "-f", "{}"]
 c.completion.cmd_history_max_items = 100
 c.completion.open_categories = ["searchengines", "quickmarks", "bookmarks", "filesystem"]
 c.statusbar.show = "never"
+c.zoom.default = 120
 
 # Stylesheet
-#  c.content.user_stylesheets = 
+#  c.content.user_stylesheets = ['~/.config/qutebrowser/solarized-light-all-sites.css']
 
 # Startpage
 c.url.start_pages = ['~/.config/qutebrowser/startpage/index.html']
@@ -55,7 +56,7 @@ c.content.blocking.adblock.lists = [
 
 # Search
 c.url.searchengines['DEFAULT'] = 'https://duckduckgo.com/?q={}'
-c.url.searchengines['gg'] = 'https://www.google.com/search?hl=en&source=hp&ie=UTF-8-l&q={}'
+c.url.searchengines['gg'] = 'https://www.google.com/search?hl=en&source=hp&q={}'
 c.url.searchengines['gh'] = 'https://github.com/search?q={}'
 c.url.searchengines['ew'] = 'https://en.wikipedia.org/w/index.php?search={}'
 c.url.searchengines['zw'] = 'https://zh.wikipedia.org/w/index.php?search={}'
