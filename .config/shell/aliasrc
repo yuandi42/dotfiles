@@ -1,11 +1,27 @@
 ##############
 ## my alias ##
 ##############
-alias ls='ls --color=auto'
+# Verbosity and settings that you pretty much just always are going to want.
+alias \
+	cp="cp -iv" \
+	mv="mv -iv" \
+	rm="rm -vI" \
+	mkd="mkdir -pv" \
+	yt="youtube-dl --add-metadata -i" \
+	ffmpeg="ffmpeg -hide_banner"
+
+# Colorize commands when possible.
+alias \
+	ls="ls -hN --color=auto --group-directories-first" \
+	grep="grep --color=auto" \
+	diff="diff --color=auto" \
+	ccat="highlight --out-format=ansi" \
+	ip="ip -color=auto"
+
 alias c='clear'
 alias s='sudo'
 alias v='nvim'
-alias vim='nvim'
+[ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d"
 
 alias p='paru'
 alias pss='paru -Ss'
@@ -15,12 +31,17 @@ alias a='abduco'
 alias aa='abduco -A'
 alias ai='abduco -A init'
 
+# test if internet works
+alias tnet='ping archlinux.org'
 # easily get the name of key events.
-alias xkeyname='xev | awk -F'\''[ )]+'\'' '\''/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'\'''
+alias xkey='xev | awk -F'\''[ )]+'\'' '\''/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'\'''
 # prints the relevant properties of the selected client.
 alias xdwm='xprop | awk '\''
 	/^WM_CLASS/{sub(/.* =/, "instance:"); sub(/,/, "\nclass:"); print}
 	/^WM_NAME/{sub(/.* =/, "title:"); print}'\'''
+
+# Use $XINITRC variable if file exists.
+[ -f "$XINITRC" ] && alias startx="startx $XINITRC"
 
 # print figlet in doom font.
 alias fldoom='figlet -f $HOME/.config/figlet/doom.flf'
@@ -36,8 +57,6 @@ alias slm='rm -i config.h && sudo make clean install && make clean'
 alias o='onedrive --synchronize'
 alias os='onedrive --synchronize --single-directory'
 alias od='onedrive --synchronize --single-directory "Documents"'
-
-alias cnode3="ssh -p 1111 xdfang@fudancluster.fudannhpcc.com.cn"
 ##############
 ## my alias ##
 ##############

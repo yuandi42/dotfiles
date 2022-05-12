@@ -24,13 +24,26 @@ export QT_IM_MODULE=fcitx
 export XMODIFIERS=\@im=fcitx
 export QT_QPA_PLATFORMTHEME=qt5ct
 
-export PATH="$PATH:$HOME/.local/bin:$HOME/.local/bin/statusbar"
+export LESS=-R
+export LESS_TERMCAP_mb="$(printf '%b' '[1;31m')"
+export LESS_TERMCAP_md="$(printf '%b' '[1;36m')"
+export LESS_TERMCAP_me="$(printf '%b' '[0m')"
+export LESS_TERMCAP_so="$(printf '%b' '[01;44;33m')"
+export LESS_TERMCAP_se="$(printf '%b' '[0m')"
+export LESS_TERMCAP_us="$(printf '%b' '[1;32m')"
+export LESS_TERMCAP_ue="$(printf '%b' '[0m')"
+export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"
 
+export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
+export AWT_TOOLKIT="MToolkit wmname LG3D"	#May have to install wmname
+export _JAVA_AWT_WM_NONREPARENTING=1	# Fix for Java applications in dwm
+
+export PATH="${XDG_CONFIG_HOME:-$HOME/.config}/emacs/bin:$PATH:$HOME/.local/bin:$HOME/.local/bin/statusbar"
 export EDITOR="nvim"
 export TERMINAL="alacritty"
 export BROWSER="firefox"
 export SHELL="/bin/zsh"
 
-if [ !$DISPLAY ] && [ $XDG_VTNR -eq 1 ]; then 
+if [ !$DISPLAY ] && [ $XDG_VTNR -eq 1 ] && ! pidof -s Xorg >/dev/null 2>&1; then
     exec startx;
 fi
