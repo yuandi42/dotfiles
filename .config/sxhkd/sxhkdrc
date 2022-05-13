@@ -25,12 +25,14 @@ super + {space,x}
     dmenu_run -i -c -bw 2 -l 10 -p " "
 
 # keybindings for programs and scripts
-super + Return
-    alacritty
+super + {_,shift} + Return
+    {$TERMINAL,emacsclient -c -a 'emacs'}
 super + {_,shift} + b
-    {firefox,luakit}
+    {$BROWSER,luakit}
+super + {_,shift} + n
+    $TERMINAL -t {mails -e neomutt,rss-reader -e newsboat}
 super + {_,shift}  + f
-    {alacritty -t vifm -e vfr,pcmanfm}
+    {$TERMINAL -t vifm -e vfr,pcmanfm}
 super + ctrl + m
     xsetroot -name "fsignal:2"
 super + ctrl + t
