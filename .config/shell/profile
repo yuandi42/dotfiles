@@ -1,11 +1,13 @@
 #!/bin/sh
 # profile file. Runs on login. Environmental variables are set here.
 
+# set XDG base directory
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 
+# set envvar for XDG base dir support
 export ZDOTDIR="$HOME/.config/zsh"
 export WINEPREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/wineprefixes/default"
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
@@ -18,11 +20,12 @@ export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
 export TEXMACS_HOME_PATH=$XDG_STATE_HOME/texmacs
 export OCTAVE_HISTFILE="$XDG_CACHE_HOME/octave-hsts"
 export OCTAVE_SITE_INITFILE="$XDG_CONFIG_HOME/octave/octaverc"
+export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 export HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/history"
-export M_MODULE=fcitx
-export QT_IM_MODULE=fcitx
-export XMODIFIERS=\@im=fcitx
-export QT_QPA_PLATFORMTHEME=qt5ct
+export TEXMFHOME=$XDG_DATA_HOME/texmf
+export TEXMFVAR=$XDG_CACHE_HOME/texlive/texmf-var
+export TEXMFCONFIG=$XDG_CONFIG_HOME/texlive/texmf-config
+
 
 export LESS=-R
 export LESS_TERMCAP_mb="$(printf '%b' '[1;31m')"
@@ -34,6 +37,10 @@ export LESS_TERMCAP_us="$(printf '%b' '[1;32m')"
 export LESS_TERMCAP_ue="$(printf '%b' '[0m')"
 export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"
 
+export M_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=\@im=fcitx
+export QT_QPA_PLATFORMTHEME=qt5ct
 export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
 export AWT_TOOLKIT="MToolkit wmname LG3D"	#May have to install wmname
 export _JAVA_AWT_WM_NONREPARENTING=1	# Fix for Java applications in dwm
@@ -44,6 +51,6 @@ export TERMINAL="alacritty"
 export BROWSER="firefox"
 export SHELL="/bin/zsh"
 
-if [ !$DISPLAY ] && [ $XDG_VTNR -eq 1 ] && ! pidof -s Xorg >/dev/null 2>&1; then
+if [ ! $DISPLAY ] && [ $XDG_VTNR -eq 1 ] ; then
     exec startx;
 fi
