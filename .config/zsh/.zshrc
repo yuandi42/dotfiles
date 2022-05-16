@@ -5,6 +5,7 @@ setopt completealiases
 
 # Basic auto/tab complete:
 autoload -U compinit
+zstyle ':completion:*' completer _expand_alias _complete _ignored
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 compinit
@@ -31,7 +32,14 @@ echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 autoload -U colors && colors
-PROMPT="%{$fg[red]%}%n%{$reset_color%} on %{$fg[blue]%}%m %{$fg[yellow]%}%1~ %{$reset_color%}%# "
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' enable git svn
+precmd() {
+    vcs_info
+}
+setopt prompt_subst
+PROMPT="%{$fg[red]%}%n%{$reset_color%} on %{$fg[blue]%}%m%{$reset_color%} in %{$fg[cyan]%}ZSH%{$reset_color%} - %{$fg[yellow]%}%1~%{$reset_color%} ${vcs_info_msg_0_}
+%{$reset_color%}%# "
 
 case ${TERM} in
   st*|alacritty*|xterm*|rxvt*|Eterm|aterm|kterm|gnome*)
