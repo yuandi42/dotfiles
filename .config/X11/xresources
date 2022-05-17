@@ -1,0 +1,47 @@
+! set fonts for xterm
+XTerm*renderFont: true
+XTerm*faceName: Source Code Pro
+XTerm*faceSize: 14
+XTerm*utf8: 2
+XTerm*locale: true
+
+! set scale in xterm
+*vt100.translations: #override \n\
+	Ctrl <Key> -: smaller-vt-font() \n\
+	Ctrl <Key> =: larger-vt-font()
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! Gruvbox Material Dark
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! *background: #1d2021
+! medium
+*background: #282828
+! soft
+! *background: #32302f
+
+*foreground: #ebdbb2
+
+! Black + DarkGrey
+*color0:  #32302f
+*color8:  #1d2021
+! DarkRed + Red
+*color1:  #ea6962
+*color9:  #fb4934
+! DarkGreen + Green
+*color2:  #98971a
+*color10: #b8bb26
+! DarkYellow + Yellow
+*color3:  #d79921
+*color11: #b57614
+! DarkBlue + Blue
+*color4:  #458588
+*color12: #076678
+! DarkMagenta + Magenta
+*color5:  #b16286
+*color13: #d3869b
+! DarkCyan + Cyan
+*color6:  #689d6a
+*color14: #427b58
+! LightGrey + White
+*color7:  #d4be98
+*color15: #fbf1c7

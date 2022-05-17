@@ -8,6 +8,8 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 
 # set envvar for XDG base dir support
+export XINITRC="${XDG_CONFIG_HOME:-$HOME/.config}/X11/xinitrc"
+export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 export ZDOTDIR="$HOME/.config/zsh"
 export WINEPREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/wineprefixes/default"
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
@@ -52,5 +54,7 @@ export BROWSER="firefox"
 export SHELL="/bin/zsh"
 
 if [ ! $DISPLAY ] && [ $XDG_VTNR -eq 1 ] ; then
-    exec startx;
+    exec startx "$XINITRC"
+else
+    [ ! $0 = "/bin/zsh" ] && /bin/zsh
 fi

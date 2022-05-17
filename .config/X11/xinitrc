@@ -1,7 +1,7 @@
 #!/bin/sh
 
-userresources=$HOME/.Xresources
-usermodmap=$HOME/.Xmodmap
+userresources="${XDG_CONFIG_HOME:-$HOME/.config}/X11/xresources"
+usermodmap="${XDG_CONFIG_HOME:-$HOME/.config}/X11/xmodmap"
 sysresources=/etc/X11/xinit/.Xresources
 sysmodmap=/etc/X11/xinit/.Xmodmap
 
@@ -19,9 +19,10 @@ if [ -f "$userresources" ]; then
     xrdb -merge "$userresources"
 fi
 
-if [ -f "$usermodmap" ]; then
-    xmodmap "$usermodmap"
-fi
+# fcitx5 will overwrite xmodmap and load .Xmodmap instead.
+# if [ -f "$usermodmap" ]; then
+    # xmodmap "$usermodmap"
+# fi
 
 # start some nice programs
 
