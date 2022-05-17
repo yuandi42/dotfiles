@@ -63,5 +63,4 @@ and run command in terminal.
 * Find method to move a window into tabbed scratchpad.
 * Set system boommark for (directories + files)
 * Better keybindings for dynamic scratchpad.
-* Move vifm scripts to `$PATH`.
 * An auto-setup script.
