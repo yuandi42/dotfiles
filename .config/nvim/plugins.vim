@@ -1,19 +1,30 @@
 "" Plugins setting
 call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
+    " Interface
     Plug 'morhetz/gruvbox'
     Plug 'glepnir/dashboard-nvim'
+    Plug 'nvim-lualine/lualine.nvim'
+
+    " nerdtree
     Plug 'preservim/nerdtree'
     Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'for': 'nerdtree' }
     Plug 'PhilRunninger/nerdtree-visual-selection', { 'for': 'nerdtree' }
-    Plug 'preservim/nerdcommenter'
-    Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
+   
+    " fzf
     Plug 'junegunn/fzf'
     Plug 'junegunn/fzf.vim'
+   
+    " nvim-cmp
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'hrsh7th/cmp-buffer'
+    Plug 'hrsh7th/cmp-path'
+    Plug 'hrsh7th/cmp-cmdline'
+    Plug 'hrsh7th/nvim-cmp'
+    
+    Plug 'preservim/nerdcommenter'
+    Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!', 'WhichKeyVisual'] }
     Plug 'voldikss/vim-floaterm'
-    Plug 'bling/vim-bufferline'
-    Plug 'itchyny/lightline.vim'
-    " Plug 'mengelbrecht/lightline-bufferline'
-    Plug 'shinchu/lightline-gruvbox.vim'
     Plug 'zhimsel/vim-stay'
     Plug 'ryanoasis/vim-devicons'
 call plug#end()
@@ -57,11 +68,15 @@ set timeoutlen=500
 nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 vnoremap <silent> <leader> :WhichKeyVisual '<Space>'<CR>
 let g:which_key_use_floating_win = 1
-" source $HOME/.config/nvim/key-desc.vim
+" source $HOME/.config/nvim/key-desc.vim "TODO
 
 " fzf
 noremap <leader>fz :Files<space>
+noremap <leader>fr :Files<CR>
 noremap <silent> <leader>hh :Helptags<CR>
+
+" nvim-cmp
+" luafile $HOME/.config/nvim/cmp-setup.lua
 
 " floaterm
 noremap <silent> <c-t> :WhichKey '<Space>'<CR>t
@@ -70,21 +85,9 @@ noremap <silent> <leader>tn :FloatermNew<CR>
 noremap <silent> <leader>tf :FloatermNew vifm<CR>
 noremap <silent> <leader>tg :FloatermNew lazygit<CR>
 
-" vim-bufferline
-
-" lightline, lightline-bufferline, lightline-gruvbox
-set noshowmode
-let g:lightline = { 'colorscheme': 'gruvbox', }
-" let g:lightline#bufferline#show_number  = 1
-" let g:lightline#bufferline#shorten_path = 0
-" let g:lightline#bufferline#unnamed      = '[No Name]'
-" let g:lightline = {
-    " \ 'colorscheme': 'gruvbox',
-    " \ 'tabline': { 'left': [ ['buffers'] ], 'right': [ ['close'] ] },
-    " \ 'component_expand': { 'buffers': 'lightline#bufferline#buffers' },
-    " \ 'component_type': { 'buffers': 'tabsel' }
-    " \ }
-" autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
+" lualine
+" luado require('lualine').setup()
+luafile $HOME/.config/nvim/line-setup.lua
 
 " vim-stay
 set viewoptions=cursor,folds,slash,unix
