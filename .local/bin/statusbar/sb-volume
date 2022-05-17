@@ -1,5 +1,6 @@
 #!/bin/sh
 # Prints the current volume.
+# I use pluseaudio with alsa now sine former one is a dependency of wemeet.
 # SIGNAL 3
 
 case $BLOCK_BUTTON in
@@ -10,20 +11,15 @@ case $BLOCK_BUTTON in
 esac
 
 color=#d3869b
-volinfo=$(amixer get Master | tail -n 1 | tr -d '[]%'| cut -d ' ' -f 6,8)
-vol=$(echo $volinfo | cut -d ' ' -f 1)
-case $volinfo in
-    *off) 
-        sb-show $color ' ' 'OFF' && exit;;
-    *on) 
-        if [ "$vol" -gt "50" ]; then
-            icon=''
-        elif [ "$vol" -gt "15" ]; then
-            icon=''
-        elif [ "$vol" -gt "0" ]; then
-            icon=''
-        else
-            sb-show $color ' ' 'OFF' && exit
-        fi;;
-esac
+[ $(pamixer --get-mute) = true ] && sb-show $color ' ' 'OFF' && exit
+vol="$(pamixer --get-volume)"
+if [ "$vol" -gt "50" ]; then
+    icon=''
+elif [ "$vol" -gt "15" ]; then
+    icon=''
+elif [ "$vol" -gt "0" ]; then
+    icon=''
+else
+    sb-show $color ' ' 'OFF' && exit
+fi
 sb-show $color $icon' '  $vol%% && exit
