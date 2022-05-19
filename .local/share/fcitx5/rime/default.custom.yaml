@@ -2,6 +2,7 @@
 # encoding: utf-8
 
 patch:
+  "menu/page_size": 7
   schema_list:
     - schema: double_pinyin_mspy 
     - schema: luna_pinyin_simp
