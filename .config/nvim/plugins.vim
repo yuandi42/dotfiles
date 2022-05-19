@@ -26,6 +26,7 @@ call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
     Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!', 'WhichKeyVisual'] }
     Plug 'voldikss/vim-floaterm'
     Plug 'zhimsel/vim-stay'
+    Plug 'lilydjwg/fcitx.vim'
     Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
@@ -91,3 +92,6 @@ luafile $HOME/.config/nvim/line-setup.lua
 
 " vim-stay
 set viewoptions=cursor,folds,slash,unix
+
+" fcitx.vim
+let g:fcitx5_remote = "/usr/bin/fcitx5-remote"
