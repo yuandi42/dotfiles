@@ -10,7 +10,7 @@ lcdm(){
 gen=$(printf 'Math\nEmojis\nIcons'| lcdm )
 case $gen in
     Math)
-        cha=$(printf "WIP");;
+        cha=$(lcdm < ~/.local/bin/math_cha_list.txt);;
     Emojis)
         cha=$(lcdm < ~/.local/bin/emoji_list.txt);;
     Icons)
