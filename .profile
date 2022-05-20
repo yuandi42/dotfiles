@@ -1,1 +1,1 @@
-/home/fxda/.config/shell/profile
+.config/shell/profile
