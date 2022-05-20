@@ -33,12 +33,12 @@ super + {_,shift} + n
     $TERMINAL -t {mails -e neomutt,rss-reader -e newsboat}
 super + {_,shift}  + f
     {$TERMINAL -t vifm -e vfr,pcmanfm}
-super + ctrl + m
-    xsetroot -name "fsignal:2"
 super + ctrl + t
     toggle-tray
-Insert
+super + c
     dmenu-unicode
+super + alt + k
+    setxkbmap -option ctrl:nocaps && xcape -e 'Control_L=Escape'
 super + shift + x
     dmenu-sysact
 
