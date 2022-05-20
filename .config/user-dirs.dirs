@@ -1,4 +1,3 @@
-enabled=False
 XDG_DOWNLOAD_DIR="$HOME/Downloads"
 XDG_PUBLICSHARE_DIR="$HOME/Public"
 XDG_DOCUMENTS_DIR="$HOME/Documents"
