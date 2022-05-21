@@ -7,14 +7,16 @@ lcdm(){
     dmenu -l 10 -c -i -bw 2 -p "Select:" -fn sans-16 $1 | cut -d' ' -f1|tr -d '\n'
 }
 
-gen=$(printf 'Math\nEmojis\nIcons'| lcdm )
+gen=$(printf 'Math\nGreek\nEmojis\nIcons'| lcdm )
 case $gen in
     Math)
-        cha=$(lcdm < ~/.local/bin/math_cha_list.txt);;
+        cha=$(lcdm < ~/.local/share/unicode/math_cha_list.txt);;
+    Greek)
+        cha=$(lcdm < ~/.local/share/unicode/greek_cha_list.txt);;
     Emojis)
-        cha=$(lcdm < ~/.local/bin/emoji_list.txt);;
+        cha=$(lcdm < ~/.local/share/unicode/emoji_list.txt);;
     Icons)
-        cha=$(sed "s/\s*[A-F0-9]\{4\}//" ~/.local/bin/nerd_icons_list.txt | lcdm);;
+        cha=$(sed "s/\s*[A-F0-9]\{4\}//" ~/.local/share/unicode/nerd_icons_list.txt | lcdm);;
 esac
 
 [ -z "$cha" ] && exit
