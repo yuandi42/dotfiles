@@ -1,0 +1,9 @@
+#!/bin/sh
+
+tabid=$(xdotool search --classname scratchpad)
+wid=$(xdotool getactivewindow)
+
+[ -z $tabid ] && xsetroot -name "fsignal:1" && exit
+[ $tabid -eq $wid ] && xsetroot -name "fsignal:1" && exit
+
+xdotool windowreparent $wid $tabid

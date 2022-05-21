@@ -33,12 +33,16 @@ super + {_,shift} + n
     $TERMINAL -t {mails -e neomutt,rss-reader -e newsboat}
 super + {_,shift}  + f
     {$TERMINAL -t vifm -e vfr,pcmanfm}
-super + ctrl + t
-    toggle-tray
-super + c
-    dmenu-unicode
 super + alt + k
     setxkbmap -option ctrl:nocaps && xcape -e 'Control_L=Escape'
+super + ctrl + t
+    toggle-tray
+super + shift + q
+    toggle-map
+super + shift + grave
+    tab-spd
+super + c
+    dmenu-unicode
 super + shift + x
     dmenu-sysact
 
