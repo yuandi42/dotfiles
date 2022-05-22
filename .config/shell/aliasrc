@@ -8,7 +8,8 @@ alias \
 	rm="rm -vI" \
 	rmd="rmdir -v" \
 	mkd="mkdir -pv" \
-	yt="youtube-dl --add-metadata -i" \
+    yt="yt-dlp --embed-metadata -i" \
+    yta="yt -x -f bestaudio/best" \
 	ffmpeg="ffmpeg -hide_banner"
 
 # Colorize commands when possible.
@@ -20,7 +21,7 @@ alias \
 	ip="ip -color=auto"
 
 alias c='clear'
-alias s='sudo'
+alias s='sudo -E'
 [ -x "$(command -v nvim)" ] && alias v="nvim" vim="nvim" vimdiff="nvim -d"
 
 alias p='paru'
