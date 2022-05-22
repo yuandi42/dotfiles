@@ -1,11 +1,13 @@
 #!/bin/sh
-# WIP.
+# map/unmap window, unfortunately doesn't work on stupid wemeetapp. So
+# tencent, fxxk you!
 
-wid=$(xdotool getactivewindow)
-wstate=$(xwininfo -id $wid | grep "Map State:")
-
-if [ "$wstate" = *IsViewable ]; then
-    xdotool windowunmap $wid
+if [ -f /tmp/unmapwin ]; then 
+    wid=$(cat /tmp/unmapwin)
+    notify-send "map hidden window"
+    xdotool windowmap $wid && rm /tmp/unmapwin
 else
-    xdotool windowmap $wid
+    wid=$(xdotool getactivewindow)
+    notify-send "unmap current window"
+    xdotool windowunmap $wid && echo "$wid" > /tmp/unmapwin
 fi
