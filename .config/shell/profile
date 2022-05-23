@@ -10,6 +10,7 @@ export XDG_STATE_HOME="$HOME/.local/state"
 # set envvar for XDG base dir support
 export XINITRC="${XDG_CONFIG_HOME:-$HOME/.config}/X11/xinitrc"
 export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
+export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}/shell/inputrc"
 export ZDOTDIR="$HOME/.config/zsh"
 export WINEPREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/wineprefixes/default"
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
@@ -40,9 +41,12 @@ export LESS_TERMCAP_us="$(printf '%b' '[1;32m')"
 export LESS_TERMCAP_ue="$(printf '%b' '[0m')"
 export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"
 
-export M_MODULE=fcitx
+export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
-export XMODIFIERS=\@im=fcitx
+export XMODIFIERS="@im=fcitx"
+export QT4_IM_MODULE=fcitx
+export QT5_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
 export QT_QPA_PLATFORMTHEME=qt5ct
 export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
 export AWT_TOOLKIT="MToolkit wmname LG3D"	#May have to install wmname
