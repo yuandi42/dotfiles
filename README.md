@@ -60,7 +60,8 @@ Application laucher: my own build of `dmenu_run` with ability to store history
 and run command in terminal.
 
 ## TODO
-* Find method to move a window into tabbed scratchpad.
+* Find a way to detach child window from tabbed.
 * Set system boommark for (directories + files)
 * Better keybindings for dynamic scratchpad.
 * An auto-setup script.
+* Description for my scripts and config.
