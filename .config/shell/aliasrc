@@ -11,6 +11,7 @@ alias \
     yt="yt-dlp --embed-metadata -i" \
     yta="yt -x -f bestaudio/best" \
 	ffmpeg="ffmpeg -hide_banner"
+	ffplay="ffplay -hide_banner -nodisp"
 
 # Colorize commands when possible.
 alias \
@@ -22,6 +23,7 @@ alias \
 
 alias c='clear'
 alias s='sudo -E'
+alias se='sudo -e'
 [ -x "$(command -v nvim)" ] && alias v="nvim" vim="nvim" vimdiff="nvim -d"
 
 alias p='paru'
