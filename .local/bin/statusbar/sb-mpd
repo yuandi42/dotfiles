@@ -3,7 +3,7 @@
 # SIGNAL 15
 
 color=#427b58
-desc='------'
+desc='---'
 if [ $(pidof mpd) ]; then 
     case $BLOCK_BUTTON in
         1) mpc -q toggle;; # toggle mpd
@@ -14,8 +14,8 @@ if [ $(pidof mpd) ]; then
     esac
     stt=$(mpc status '%state%')
     case $stt in
-        *pause*) desc='PAUSED';;
-        *play*)  desc='PLAYING';;
+        *pause*) desc='|=|';;
+        *play*)  desc='>>>';;
     esac
     pidof -x sb-mpdup >/dev/null 2>&1 || setsid -f sb-mpdup >/dev/null 2>&1 &
 else 
@@ -23,6 +23,6 @@ else
         1) mpd;;
         3) setsid -f "$TERMINAL" -e "$EDITOR" "$0" >/dev/null 2>&1 &;; 
     esac
-    desc="NO MPD"
+    desc="XXX"
 fi
 sb-show $color  "$desc"
