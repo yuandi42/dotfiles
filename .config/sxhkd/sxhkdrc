@@ -30,7 +30,7 @@ super + {_,shift} + Return
 super + {_,shift} + b
     {$BROWSER,luakit}
 super + {_,shift} + n
-    $TERMINAL -t {mails -e neomutt,rss-reader -e newsboat}
+    $TERMINAL -t {email-client -e neomutt && pkill -RTMIN+6 dwmblocks,rss-reader -e newsboat && pkill -RTMIN+4 dwmblocks}
 super + {_,shift}  + f
     {$TERMINAL -t vifm -e vfr,pcmanfm}
 super + alt + k
