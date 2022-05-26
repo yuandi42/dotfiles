@@ -1,0 +1,14 @@
+#!/bin/sh
+# SIGNAL 4
+
+case $BLOCK_BUTTON in 
+    1) "$TERMINAL" -t "rss" -e "newsboat";;
+    2) setsid -f "$TERMINAL" -e "$EDITOR" "$0" >/dev/null 2>&1 &;;
+    3) notify-send "Newsboat update" "Syncing..." && newsboat -x reload >/dev/null 2>&1 && notify-send "Newsboat update" "Sync done."
+esac
+
+color=#458588
+unread=$(newsboat -x print-unread | cut -d' ' -f 1)
+[ $unread -eq 0 ] && sb-show $color ' ' '✓' && exit
+sb-show $color ' ' $unread
+

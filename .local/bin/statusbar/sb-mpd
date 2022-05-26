@@ -14,7 +14,7 @@ if [ $(pidof mpd) ]; then
     esac
     stt=$(mpc status '%state%')
     case $stt in
-        *pause*) desc='|=|';;
+        *pause*) desc='<=>';;
         *play*)  desc='>>>';;
     esac
     pidof -x sb-mpdup >/dev/null 2>&1 || setsid -f sb-mpdup >/dev/null 2>&1 &
