@@ -11,6 +11,7 @@ set background=dark
 set showmatch
 set showcmd
 set wildmenu
+set title
 syntax on
 
 " search setting
