@@ -3,6 +3,9 @@
 
 case $BLOCK_BUTTON in
     1) "$TERMINAL" -e "sb-popup";;
-    3) "$TERMINAL" -e "$EDITOR" "$0" ;; 
+    3) setsid -f "$TERMINAL" -e "$EDITOR" "$0" >/dev/null/ 2>&1 &;; 
 esac
-printf "^c#d65d0e^ $(paru -Qu | wc -l)^d^"
+color=#8ec07c
+update=$(paru -Qu | wc -l)
+[ $update -eq 0 ] && sb-show $color ' ' '✓' && exit
+sb-show $color ' ' "$update"
