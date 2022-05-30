@@ -475,7 +475,7 @@ set classify+=' ::*.7z,,*.apk,,*.bz2,,*.cab,,*.cpio,,*.deb,,*.gem,,*.gz,,*.gz
 set classify+=' ::*.cbr,,*.cbz::'
 set classify+=' ::*.log::'
 set classify+=' ::*.odt,,*.doc,,*.docx,,*.adoc::'
-set classify+=' ::*.ods,,*.xls,,*.xlsmx::'
+set classify+=' ::*.ods,,*.xls,,*.xlsx::'
 set classify+=' ::*.odp,,*.pptx,,*.ppt::'
 " ------------------------------------------------------------------------------
 
