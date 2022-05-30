@@ -474,9 +474,9 @@ set classify+=' ::*.pdf::'
 set classify+=' ::*.7z,,*.apk,,*.bz2,,*.cab,,*.cpio,,*.deb,,*.gem,,*.gz,,*.gzip,,*.lh,,*.lzh,,*.lzma,,*.rar,,*.rpm,,*.tar,,*.tgz,,*.xz,,*.zip::'
 set classify+=' ::*.cbr,,*.cbz::'
 set classify+=' ::*.log::'
-set classify+=' ::*.doc,,*.docx,,*.adoc::'
-set classify+=' ::*.xls,,*.xlsmx::'
-set classify+=' ::*.pptx,,*.ppt::'
+set classify+=' ::*.odt,,*.doc,,*.docx,,*.adoc::'
+set classify+=' ::*.ods,,*.xls,,*.xlsmx::'
+set classify+=' ::*.odp,,*.pptx,,*.ppt::'
 " ------------------------------------------------------------------------------
 
 " What should be saved automatically between vifm sessions.  Drop "savedirs"
