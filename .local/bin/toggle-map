@@ -4,10 +4,8 @@
 
 if [ -f /tmp/unmapwin ]; then 
     wid=$(cat /tmp/unmapwin)
-    notify-send "map hidden window"
-    xdotool windowmap $wid && rm /tmp/unmapwin
+    xdotool windowmap $wid && notify-send "map hidden window" && rm /tmp/unmapwin
 else
     wid=$(xdotool getactivewindow)
-    notify-send "unmap current window"
-    xdotool windowunmap $wid && echo "$wid" > /tmp/unmapwin
+    xdotool windowunmap $wid && notify-send "unmap current window" && echo "$wid" > /tmp/unmapwin
 fi

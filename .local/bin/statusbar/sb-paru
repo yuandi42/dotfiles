@@ -1,4 +1,5 @@
 #!/usr/bin/sh
+# SIGNAL 5
 
 case $BLOCK_BUTTON in
     1) "$TERMINAL" -e "sb-popup";;
