@@ -2,8 +2,8 @@
 # SIGNAL 5
 
 case $BLOCK_BUTTON in
-    1) "$TERMINAL" -e "sb-popup";;
-    3) setsid -f "$TERMINAL" -e "$EDITOR" "$0" >/dev/null/ 2>&1 &;; 
+    1) setsid -f "$TERMINAL" -e "sb-popup" >/dev/null 2>&1 &;;
+    3) setsid -f "$TERMINAL" -e "$EDITOR" "$0" >/dev/null 2>&1 &;;
 esac
 color=#8ec07c
 update=$(paru -Qu | wc -l)
