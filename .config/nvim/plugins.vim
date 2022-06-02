@@ -14,7 +14,7 @@ call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
     Plug 'junegunn/fzf'
     Plug 'junegunn/fzf.vim'
    
-    " nvim-cmp
+    " nvim-cmp, WIP.
     Plug 'neovim/nvim-lspconfig'
     Plug 'hrsh7th/cmp-nvim-lsp'
     Plug 'hrsh7th/cmp-buffer'
@@ -25,6 +25,7 @@ call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
     Plug 'preservim/nerdcommenter'
     Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!', 'WhichKeyVisual'] }
     Plug 'voldikss/vim-floaterm'
+    Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
     Plug 'zhimsel/vim-stay'
     Plug 'lilydjwg/fcitx.vim'
     Plug 'ryanoasis/vim-devicons'
@@ -89,6 +90,9 @@ noremap <silent> <leader>tg :FloatermNew lazygit<CR>
 " lualine
 " luado require('lualine').setup()
 luafile $HOME/.config/nvim/line-setup.lua
+
+" vim-hexokinase 
+let g:Hexokinase_highlighters = [ 'virtual' ]
 
 " vim-stay
 set viewoptions=cursor,folds,slash,unix
