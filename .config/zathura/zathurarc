@@ -4,12 +4,12 @@ set selection-clipboard clipboard
 set scroll-full-overlap 0.01
 set scroll-step 100
 
-map J scroll left
-map K scroll right
+# map J scroll left
+# map K scroll right
 # map h scroll full-up
 # map l scroll full-down
-map h goto previous
-map l goto next
+# map h goto previous
+# map l goto next
 map u scroll half-up
 map d scroll half-down
 
