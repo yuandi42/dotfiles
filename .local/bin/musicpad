@@ -1,2 +1,0 @@
-#!/bin/sh
-alacritty -o window.opacity=0.75 font.size=8.5 -t musicpad -e ncmpcpp

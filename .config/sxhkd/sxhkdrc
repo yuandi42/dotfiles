@@ -37,6 +37,8 @@ super + alt + k
     setxkbmap -option ctrl:nocaps && xcape -e 'Control_L=Escape'
 super + ctrl + p
     $TERMINAL -e sb-popup
+super + ctrl + m
+    $TERMINAL -e ncmpcpp -s playlist
 super + ctrl + t
     toggle-tray
 super + ctrl + x

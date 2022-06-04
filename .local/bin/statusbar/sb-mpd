@@ -8,7 +8,7 @@ if [ $(pidof mpd) ]; then
     case $BLOCK_BUTTON in
         1) mpc -q toggle;; # toggle mpd
         2) mpdnoti;; # send notification
-        3) xsetroot -name "fsignal:2";; # toggle musicpad
+        3) setsid -f "$TERMINAL" -e "ncmpcpp" -s "playlist" >/dev/null 2>&1 &;;
         4) mpc -q prev;; # scroll up, previous
         5) mpc -q next;; # scroll down, next
     esac
@@ -20,9 +20,9 @@ if [ $(pidof mpd) ]; then
     pidof -x sb-mpdup >/dev/null 2>&1 || setsid -f sb-mpdup >/dev/null 2>&1 &
 else 
     case $BLOCK_BUTTON in
-        1) mpd;;
-        3) setsid -f "$TERMINAL" -e "$EDITOR" "$0" >/dev/null 2>&1 &;; 
+        1) mpd && notify-send "🎼 MPD launched.";;
+        3) setsid -f "$TERMINAL" -e "$EDITOR" "$0" >/dev/null 2>&1 &;;
     esac
-    desc="XXX"
+    desc="<x>"
 fi
 sb-show $color  "$desc"
