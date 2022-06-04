@@ -2,15 +2,45 @@
 
 # Set as a cron job to check for new RSS entries for newsboat.
 # If newsboat is open, sends it an "R" key to refresh.
-# delay update fifth of a second if $1 is given.
+# Options:
+# d   delay update for 0.2 seconds
+# q   no notify-send
+# l   output log to $XDG_CACHE_HOME/rssup.log
 
-/usr/bin/notify-send "📰 Updating RSS feeds..."
+# Get the options
+while getopts "dql" opt; do
+    case ${opt} in
+        d) delay=1;;
+        q) quiet=1;;
+        l) log=1;;
+        ?) echo "Error: Invalid opt" && exit 2;;
+    esac
+done
+
+[ -z $quiet ] && /usr/bin/notify-send "📰 Updating RSS feeds..."
 
 pgrep -f newsboat$ && /usr/bin/xdotool key --window "$(/usr/bin/xdotool search --name "^newsboat$")" R && exit
+
 echo 🔃 > /tmp/newsupdate
-[ -z "$1" ] || sleep 0.1
+
+[ -z $delay ] || sleep 0.1
 pkill -RTMIN+4 dwmblocks
-[ -z "$1" ] || sleep 0.1
-/usr/bin/newsboat -x reload && /usr/bin/notify-send "📰 RSS feed update complete." || /usr/bin/notify-send "📰 RSS feed update error."
+[ -z $delay ] || sleep 0.1
+
+update(){
+    if [ -z $log ]; then
+        /usr/bin/newsboat -x reload > /dev/null 2>&1
+    else
+        logfile="${XDG_CACHE_HOME:-$HOME/.cache}/rssup.log"
+        echo "$(/usr/bin/date)" >> $logfile
+        /usr/bin/newsboat -x reload >> $logfile
+    fi
+}
+if [ -z $quiet ]; then
+    update && /usr/bin/notify-send "📰 RSS feed update complete." || /usr/bin/notify-send "📰 RSS feed update error."
+else
+    update || /usr/bin/notify-send "📰 RSS feed update error."
+fi
+
 pkill -RTMIN+4 dwmblocks
 rm -f /tmp/newsupdate

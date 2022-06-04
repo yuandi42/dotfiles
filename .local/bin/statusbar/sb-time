@@ -2,7 +2,7 @@
 # SIGNAL 10
 
 case $BLOCK_BUTTON in
-    1) pkill -RTMIN+10 dwmblocks;;
+    1) notify-send "DATE & TIME:" "$(date)";;
     3) setsid -f "$TERMINAL" -e "$EDITOR" "$0" >/dev/null 2>&1 &;;
 esac
 dayfile=$HOME/.cache/dwm-date
