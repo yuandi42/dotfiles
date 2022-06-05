@@ -2,7 +2,7 @@
 
 batinfo(){
     for battery in /sys/class/power_supply/BAT?*; do
-        echo "$(basename $battery): $(cat "$battery/status" 2>&1) $(cat "$battery/capacity" 2>&1)"
+        echo "$(basename $battery): $(cat "$battery/status" 2>&1) $(cat "$battery/capacity" 2>&1)%"
     done
 }
 
