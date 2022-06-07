@@ -20,22 +20,23 @@ bind-key U show-urls
 bind-key x pb-delete
 
 browser "linkhandler %u >/dev/null 2>&1 &"
-# macro m set browser "setsid -f mpv %u &"; open-in-browser-noninteractively; set browser "linkhandler %u >/dev/null 2>&1 &"
+macro y set browser "qndl %u 'yt-dlp --embed-metadata -i' >/dev/null 2&1 &"; open-in-browser-noninteractively; set browser "linkhandler %u >/dev/null 2>&1 &"
+macro a set browser "qndl %u 'yt-dlp --embed-metadata -i -x -f bestaudio/best' >/dev/null 2&1 &"; open-in-browser-noninteractively; set browser "linkhandler %u >/dev/null 2>&1 &"
 macro l set browser "lynx %u"; open-in-browser; set browser "linkhandler %u >/dev/null 2>&1 &"
 macro b set browser "setsid -f firefox %u &"; open-in-browser-noninteractively; set browser "linkhandler %u >/dev/null 2>&1 &"
 
 # Podboat items
 download-path "~/.cache/podboat/"
-player "abduco -A pod ffplay -nodisp -autoexit"
+player "ffplay -nodisp -autoexit"
 
-# Colors from "gruvbox" colorscheme https://github.com/morhetz/gruvbox
+# Colors from "gruvbox" colorscheme https://github.com/morhetz/gruvbytox
 # color article                              color223 color236
 # color background                           color100 color236
 # color info                                 color142 color235
-# color listfocus                            color214 color239
-# color listfocus_unread                     color214 color96
-# color listnormal                           color246 color237
-# color listnormal_unread                    color175 color237
+color listfocus                            color214 color239
+color listfocus_unread                     color214 color96
+color listnormal                           color246 default
+color listnormal_unread                    color175 default
 highlight article "^Feed:.*"               color175 default
 highlight article "^Title:.*"              color214 default bold
 highlight article "^Author:.*"             color167 default 
