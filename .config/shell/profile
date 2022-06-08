@@ -63,5 +63,5 @@ export SHELL="/bin/zsh"
 if [ ! $DISPLAY ] && [ $XDG_VTNR -eq 1 ] ; then
     exec startx "$XINITRC"
 else
-    [ ! $0 = "/bin/zsh" ] && /bin/zsh
+    [ ! -z $SHELL ] && [ ! "$0" = "-$(basename $SHELL)" ] && $SHELL
 fi
