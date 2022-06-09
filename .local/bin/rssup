@@ -21,11 +21,10 @@ done
 
 pgrep -f newsboat$ && /usr/bin/xdotool key --window "$(/usr/bin/xdotool search --name "^newsboat$")" R && exit
 
+[ -z $delay ] || sleep 0.2
 echo 🔃 > /tmp/newsupdate
 
-[ -z $delay ] || sleep 0.05
 pkill -RTMIN+4 dwmblocks
-[ -z $delay ] || sleep 0.05
 
 update(){
     if [ -z $log ]; then
@@ -42,7 +41,5 @@ else
     update || /usr/bin/notify-send "📰 RSS feed update error."
 fi
 
-[ -z $delay ] || sleep 0.05
 pkill -RTMIN+4 dwmblocks
-[ -z $delay ] || sleep 0.05
 rm -f /tmp/newsupdate
