@@ -1,7 +1,6 @@
 #!/bin/sh
 
 # Set as a cron job to check for new RSS entries for newsboat.
-# If newsboat is open, sends it an "R" key to refresh.
 # Options:
 # d   delay update for 0.2 seconds
 # q   no notify-send
@@ -19,7 +18,7 @@ done
 
 [ -z $quiet ] && /usr/bin/notify-send "📰 Updating RSS feeds..."
 
-pgrep -f newsboat$ && /usr/bin/xdotool key --window "$(/usr/bin/xdotool search --name "^newsboat$")" R && exit
+pgrep -f newsboat$ && /usr/bin/notify-send "📰 Running newsboat detected." && exit
 
 [ -z $delay ] || sleep 0.2
 echo 🔃 > /tmp/newsupdate
