@@ -26,7 +26,7 @@ super + {space,x}
 
 # keybindings for programs and scripts
 super + {_,shift} + Return
-    {$TERMINAL,emacsclient -c -a 'emacs'}
+    {$TERMINAL,emacsclient -a "" -c -n "$@"}
 super + {_,shift} + b
     {$BROWSER,luakit}
 super + {_,shift} + n

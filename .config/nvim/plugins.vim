@@ -22,6 +22,13 @@ call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
     Plug 'hrsh7th/cmp-cmdline'
     Plug 'hrsh7th/nvim-cmp'
     
+    " markdown preview
+    " Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+
+    " Turn firefox into a Neovim client
+    Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+
     Plug 'preservim/nerdcommenter'
     Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!', 'WhichKeyVisual'] }
     Plug 'voldikss/vim-floaterm'
@@ -46,12 +53,18 @@ if !has("gui_running")
 endif
 
 " dashboard
-let g:dashboard_default_executive ='fzf'
 nnoremap <silent> <leader>bB :Dashboard<CR>
+luafile $HOME/.config/nvim/board-setup.lua
+hi DashboardHeader guifg=#a89984
+hi DashboardCenter guifg=#b8bb26
+hi DashboardCenterIcon guifg=#458588
+hi DashboardShortCut guifg=#b16286
+hi DashboardFooter guifg=#fe8019
 
 " NERDTree
 let NERDTreeBookmarksFile = expand("$HOME/.config/nvim/NERDTreeBookmarks")
 let NERDTreeShowHidden = 1
+nnoremap <silent> <leader>op :NERDTreeToggle<CR>
 nnoremap <silent> <leader>ft :NERDTreeToggle<CR>
 nnoremap <silent> <leader>fc :NERDTreeCWD<CR>
 nnoremap <silent> <leader>fv :NERDTreeToggleVCS<CR>
@@ -75,6 +88,7 @@ let g:which_key_use_floating_win = 1
 " fzf
 noremap <leader>fz :Files<space>
 noremap <leader>fr :Files<CR>
+noremap <leader>fP :Files $HOME/.config/nvim<CR>
 noremap <silent> <leader>hh :Helptags<CR>
 
 " nvim-cmp
@@ -82,6 +96,7 @@ noremap <silent> <leader>hh :Helptags<CR>
 
 " floaterm
 noremap <silent> <c-t> :WhichKey '<Space>'<CR>t
+noremap <silent> <leader>ot :FloatermToggle<CR>
 noremap <silent> <leader>tt :FloatermToggle<CR>
 noremap <silent> <leader>tn :FloatermNew<CR>
 noremap <silent> <leader>tf :FloatermNew vifm<CR>

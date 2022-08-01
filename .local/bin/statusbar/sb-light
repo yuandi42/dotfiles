@@ -2,7 +2,9 @@
 # SIGNAL 2
 
 case $BLOCK_BUTTON in
-    3) setsid -f "$TERMINAL" -e "$EDITOR" "$0" >/dev/null 2>&1 &;;
+    1) light -A 5;;
+    2) setsid -f "$TERMINAL" -e "$EDITOR" "$0" >/dev/null 2>&1 &;;
+    3) light -U 5;;
     4) light -A 5;;
     5) light -U 5;;
 esac
