@@ -49,3 +49,4 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
 (package! chinese-word-at-point)
+(package! org-bullets)

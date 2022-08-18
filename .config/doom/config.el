@@ -32,7 +32,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-font (font-spec :family "Source Code Pro" :size 25))
+(setq doom-font (font-spec :family "Sarasa Mono SC" :size 18))
 (setq doom-theme 'doom-gruvbox)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
@@ -41,7 +41,7 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "$(xdg-user-dir DOCUMENTS)/org/")
+(setq org-directory "Documents/org/")
 
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
@@ -75,6 +75,5 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
-
-;(add-hook! 'LaTeX-mode-hook' (set word-wrap nil))
-(setq word-wrap nil)
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+(setq word-wrap-by-category t)
