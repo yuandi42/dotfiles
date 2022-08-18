@@ -42,6 +42,8 @@ set foldlevel=99
 " filetype setting
 filetype plugin on
 
+" set autochdir
+autocmd BufEnter * if expand("%:p:h") !~ '^/tmp' | silent! lcd %:p:h | endif
 " change cursor in different mode
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
