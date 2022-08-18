@@ -23,6 +23,7 @@ alias \
 
 alias \
     c='clear'\
+    ex='exit'\
     s='sudo -E'\
     se='sudo -e'
 [ -x "$(command -v nvim)" ] && alias v="nvim" vim="nvim" vimdiff="nvim -d"
