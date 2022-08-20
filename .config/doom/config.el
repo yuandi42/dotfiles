@@ -77,3 +77,4 @@
 ;; they are implemented.
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 (setq word-wrap-by-category t)
+(setq scroll-margin 3)
