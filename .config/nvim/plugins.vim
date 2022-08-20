@@ -8,7 +8,7 @@ call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
     Plug 'preservim/nerdtree'
     Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'for': 'nerdtree' }
     Plug 'PhilRunninger/nerdtree-visual-selection', { 'for': 'nerdtree' }
-   
+
     " fzf
     Plug 'junegunn/fzf'
     Plug 'junegunn/fzf.vim'
@@ -18,10 +18,12 @@ call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 
     " Help me typing
-    Plug 'tpope/vim-commentary' 
-    Plug 'tommcdo/vim-lion' 
-    Plug 'tpope/vim-surround' 
-    Plug 'tpope/vim-repeat' 
+    Plug 'tpope/vim-commentary'
+    Plug 'tommcdo/vim-lion'
+    Plug 'tpope/vim-surround'
+    Plug 'easymotion/vim-easymotion'
+    Plug 'justinmk/vim-sneak'
+    Plug 'tpope/vim-repeat'
     Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!', 'WhichKeyVisual'] }
 
     Plug 'voldikss/vim-floaterm'
@@ -79,8 +81,9 @@ noremap <silent> <leader>tg :FloatermNew lazygit<CR>
 
 " lualine
 luado require('lualine').setup()
+set noshowmode
 
-" vim-hexokinase 
+" vim-hexokinase
 let g:Hexokinase_highlighters = [ 'virtual' ]
 
 " vim-stay
@@ -88,3 +91,21 @@ set viewoptions=cursor,folds,slash,unix
 
 " fcitx.vim
 let g:fcitx5_remote = "/usr/bin/fcitx5-remote"
+
+" vim-easymotion
+noremap <Leader>ef <Plug>(easymotion-f)
+" nmap <Leader>ef <Plug>(easymotion-overwin-f)
+noremap  <Leader>eF <Plug>(easymotion-F)
+" nmap <Leader>eF <Plug>(easymotion-overwin-f)
+
+noremap <Leader>ew <Plug>(easymotion-w)
+noremap <Leader>eb <Plug>(easymotion-b)
+noremap <Leader>ee <Plug>(easymotion-e)
+
+noremap <Leader>el <Plug>(easymotion-lineforward)
+noremap <Leader>ej <Plug>(easymotion-j)
+noremap <Leader>ek <Plug>(easymotion-k)
+noremap <Leader>eh <Plug>(easymotion-linebackward)
+
+noremap <Leader>es <Plug>(easymotion-overwin-f2)
+let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
