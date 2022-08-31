@@ -42,5 +42,5 @@ else
     update || /usr/bin/notify-send "📰 RSS feed update error."
 fi
 
-pkill -RTMIN+4 dwmblocks
 rm -f /tmp/newsupdate
+pkill -RTMIN+4 dwmblocks

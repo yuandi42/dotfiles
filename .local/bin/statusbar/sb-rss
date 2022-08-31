@@ -1,14 +1,17 @@
 #!/bin/sh
 # SIGNAL 4
+# FIXME
 
 case $BLOCK_BUTTON in 
-    1) setsid -f "$TERMINAL" -t "rss" -e "newsboat" >/dev/null 2>&1;;
+    1) setsid -f "$TERMINAL" -t "rss" -e "newsboat" >/dev/null 2>&1 && sleep 0.2;;
     2) setsid -f "$TERMINAL" -e "$EDITOR" "$0" >/dev/null 2>&1 &;;
-    3) setsid -f rssup -d > "$HOME/.cache/rssuplog" 2>&1 &;;
+    3) setsid -f rssup -d > "$HOME/.cache/rssuplog" 2>&1 && sleep 0.5;;
 esac
 
 color=#458588
-[ -f /tmp/newsupdate ] && sb-show $color ' ' '🔄' && exit
-unread=$(newsboat -x print-unread | cut -d' ' -f 1)
-[ $unread -eq 0 ] && sb-show $color ' ' '✓' && exit
-sb-show $color ' ' $unread
+[ -f /tmp/newsupdate ] && sb-show $color '' '⟲' && exit
+
+pgrep newsboat >/dev/null 2>&1 && sb-show $color '' ' ' && exit
+unread=$(newsboat -x print-unread | cut -d' ' -f 1 )
+[ $unread -eq 0 ] && sb-show $color '' '✓' && exit
+sb-show $color '' $unread

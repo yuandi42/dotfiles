@@ -94,9 +94,7 @@ let g:fcitx5_remote = "/usr/bin/fcitx5-remote"
 
 " vim-easymotion
 noremap <Leader>ef <Plug>(easymotion-f)
-" nmap <Leader>ef <Plug>(easymotion-overwin-f)
 noremap  <Leader>eF <Plug>(easymotion-F)
-" nmap <Leader>eF <Plug>(easymotion-overwin-f)
 
 noremap <Leader>ew <Plug>(easymotion-w)
 noremap <Leader>eb <Plug>(easymotion-b)

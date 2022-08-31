@@ -6,4 +6,4 @@ case $BLOCK_BUTTON in
     3) setsid -f "$TERMINAL" -e "$EDITOR" "$0" >/dev/null 2>&1 &;;
 esac
 color=#83a598
-sb-show $color ' ' $(date '+%d/%m(%a)')
+sb-show $color '' $(date '+%d/%m(%a)')

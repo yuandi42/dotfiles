@@ -11,4 +11,4 @@ esac
 
 lgt=$(light -G | cut -d . -f 1)
 color=#d79921
-sb-show $color ' ' $lgt%%
+sb-show $color '' $lgt%%

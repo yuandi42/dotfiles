@@ -7,5 +7,5 @@ case $BLOCK_BUTTON in
 esac
 color=#b8bb26
 update=$(paru -Qu | wc -l)
-[ $update -eq 0 ] && sb-show $color ' ' '✓' && exit
-sb-show $color ' ' "$update"
+[ $update -eq 0 ] && sb-show $color '' '✓' && exit
+sb-show $color '' "$update"

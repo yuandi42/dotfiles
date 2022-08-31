@@ -18,8 +18,9 @@ if [ "$vol" -gt "50" ]; then
 elif [ "$vol" -gt "15" ]; then
     icon=''
 elif [ "$vol" -gt "0" ]; then
-    icon=''
+    icon=' '
 else
     sb-show $color ' ' 'OFF' && exit
 fi
-sb-show $color $icon' '  $vol%% && exit
+# sb-show $color $icon' '  $vol%% && exit
+sb-show $color $icon $vol%% && exit

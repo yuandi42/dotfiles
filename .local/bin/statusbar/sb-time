@@ -15,4 +15,4 @@ if [ $day -ne $nday ]; then
 fi
 
 color=#689d6a
-sb-show $color ' ' $(date '+%H:%M')
+sb-show $color '' $(date '+%H:%M')
