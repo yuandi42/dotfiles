@@ -4,7 +4,7 @@ mpdTitle="$(mpc current --format '[%title%]|[%file%]')"
 mpdArtist="$(mpc current --format '%artist%')"
 mpdAlbum="$(mpc current --format '%album%')"
 mpdTime="$(mpc status '%currenttime%/%totaltime%%percenttime%')"
-mpdSongID="$(mpc current --format '%id%')"
+mpdSongID="$(mpc current --format '%position%')"
 mpdPlaylist="$(mpc | awk 'FNR == 2 {print $2}' | sed 's,.*/,,')"
 
 notify-send \
