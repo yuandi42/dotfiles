@@ -7,4 +7,5 @@ case $BLOCK_BUTTON in
     3) setsid -f "$TERMINAL" -e "$EDITOR" "$0" >/dev/null 2>&1 &;;
 esac
 
-printf "^b#d65d0e^^c#282828^  ^d^"
+color=#d65d0e
+sb-show $color 
