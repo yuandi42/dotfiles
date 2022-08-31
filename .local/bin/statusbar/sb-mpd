@@ -3,7 +3,8 @@
 # SIGNAL 15
 
 color=#427b58
-desc='---'
+desc='[---]'
+icon=''
 if [ $(pidof mpd) ]; then 
     case $BLOCK_BUTTON in
         1) mpc -q toggle;; # toggle mpd
@@ -13,16 +14,18 @@ if [ $(pidof mpd) ]; then
         5) mpc -q next;; # scroll down, next
     esac
     stt=$(mpc status '%state%')
+    desc=$(mpc | awk 'FNR == 2 {print $2}'| tr -d '#')
     case $stt in
-        *pause*) desc='<=>';;
-        *play*)  desc='>>>';;
+        *pause*) desc='['$desc']';;
+        *play*)  desc='<'$desc'>';;
     esac
+    [ $desc = '[]' ] && desc='[OVER]'
     pidof -x sb-mpdup >/dev/null 2>&1 || setsid -f sb-mpdup >/dev/null 2>&1 &
 else 
     case $BLOCK_BUTTON in
         1) mpd && notify-send "🎼 MPD launched.";;
         3) setsid -f "$TERMINAL" -e "$EDITOR" "$0" >/dev/null 2>&1 &;;
     esac
-    desc="<x>"
+    desc="NO MPD"
 fi
-sb-show $color  "$desc"
+sb-show $color $icon "$desc"
