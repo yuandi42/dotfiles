@@ -11,7 +11,11 @@ esac
 color=#458588
 [ -f /tmp/newsupdate ] && sb-show $color '' '⟲' && exit
 
-pgrep newsboat >/dev/null 2>&1 && sb-show $color '' ' ' && exit
+pgrep newsboat >/dev/null 2>&1 && sb-show $color '' '' && exit
+# unread="T"
 unread=$(newsboat -x print-unread | cut -d' ' -f 1 )
 [ $unread -eq 0 ] && sb-show $color '' '✓' && exit
+
+# pidof -x sb-rssup >/dev/null 2>&1 || setsid -f sb-rssup >/dev/null 2>&1 &
+
 sb-show $color '' $unread
