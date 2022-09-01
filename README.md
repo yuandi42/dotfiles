@@ -6,7 +6,7 @@ Personal configuration for my Arch linux.
 
 ![Screenshot](.local/share/unixporn.png 'WIP forever')
 
-## Programs for my daily use.  
+## Programs for my daily use.
 
 ### Basic 
 
@@ -36,6 +36,7 @@ Web browser: Firefox for my daily use, with modified `user.js`,
 of hacking. And I also use Luakit from some simple tasks such as html preview.
 
 Text editing: (neo)vim, cleaner code base and lua plug-in support.
+
 ### Utilities 
 
 File manager: vifm for terminal, pcmanfm for GUI.
@@ -60,8 +61,7 @@ Application laucher: my own build of `dmenu_run` with ability to store history
 and run command in terminal.
 
 ## TODO
+
 * Find a way to detach child window from tabbed.
-* Set system boommark for (directories + files)
-* Better keybindings for dynamic scratchpad.
+* Set system bookmark for (directories + files)
 * An auto-setup script.
-* Description for my scripts and config.
