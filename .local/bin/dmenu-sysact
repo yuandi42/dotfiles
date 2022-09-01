@@ -1,18 +1,32 @@
-#!/usr/bin/sh
-# select shutdown or reboot in dmenu. Systemd only.
-# TODO: I plan to extend this script. Other session-related options can be
-# added into this script.
+#!/bin/sh
+# Select various system actions via dmenu.
+# Modified from Luck Smith's script.
 
-var1=$(printf 'Logout\nReboot\nShutdown'| dmenu -c -i -l 4 -bw 2 -p "Sel:" -fn sans-16)
-case $var1 in 
-Shutdown)
-  var2=$(printf 'No\nYes'| dmenu -c -i -bw 2 -p 'Sure?' -fn sans-16)
-  if [ $var2 = Yes ]; then shutdown -h now; fi;;
-Reboot)
-  var2=$(printf 'No\nYes'| dmenu -c -i -bw 2 -p 'Sure?' -fn sans-16)
-  if [ $var2 = Yes ]; then reboot; fi;;
-Logout)
-  var2=$(printf 'No\nYes'| dmenu -c -i -bw 2 -p 'Sure?' -fn sans-16)
-  if [ $var2 = Yes ]; then loginctl | egrep -v "root|SESSION|listed" | awk '{print $1}' | xargs loginctl terminate-session; fi;;
+export WM="dwm"
+case "$(readlink -f /sbin/init)" in
+	*systemd*) ctl='systemctl' ;;
+	*) ctl='loginctl' ;;
 esac
-exit 1
+
+wmpid(){ # This function is needed if there are multiple instances of the window manager.
+	tree="$(pstree -ps $$)"
+	tree="${tree#*$WM(}"
+	echo "${tree%%)*}"
+}
+
+act=$(printf "Lock\nLeave $WM\nRenew $WM\nHibernate\nReboot\nShutdown\nSleep\nDisplay off" | dmenu -c -i -l 8 -bw 2 -p "Sel:" -fn sans-16)
+[ -z $act ] && exit 1
+yn=$(printf "Yes\nNo"|dmenu -c -i -bw 2 -p "Are You Sure?" -fn sans-16)
+[ $yn = "Yes" ] || exit 1
+
+case "$act" in
+	'Lock') slock ;;
+	"Leave $WM") kill -TERM "$(wmpid)" ;;
+	"Renew $WM") kill -HUP "$(wmpid)" ;;
+	'Hibernate') slock $ctl hibernate -i ;;
+	'Sleep') slock $ctl suspend -i ;;
+	'Reboot') $ctl reboot -i ;;
+	'Shutdown') $ctl poweroff -i ;;
+	'Display off') xset dpms force off ;;
+	*) exit 1 ;;
+esac
