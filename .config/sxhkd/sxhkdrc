@@ -22,10 +22,10 @@ XF86MonBrightness{Down,Up}
 
 # run dmenu as application launcher.
 super + {space,x}
-    dmenu_run -i -c -bw 2 -l 10 -p " "
+    dmenu_run -i -c -bw 2 -l 10 -p "Run: "
 
 # keybindings for programs and scripts
-super + {_,shift} + Return
+super + {_,ctrl} + Return
     {$TERMINAL,emacsclient -a "" -c -n "$@"}
 super + {_,shift} + b
     {$BROWSER,luakit}

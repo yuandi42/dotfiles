@@ -132,7 +132,7 @@ colors: *GruvboxDark
 #######################################
 
 window:
-  opacity: 0.95
+  opacity: 0.9
   dynamic_title: true
   columns: 133
   lines: 40
@@ -160,3 +160,7 @@ font:
     style: Bold Italic
 
   size: 10.0
+
+# Keybindings configuration
+key_bindings:
+  - { key: Return,   mods: Super|Shift, action: SpawnNewInstance }

@@ -16,7 +16,7 @@ wmpid(){ # This function is needed if there are multiple instances of the window
 
 act=$(printf "Lock\nLeave $WM\nRenew $WM\nHibernate\nReboot\nShutdown\nSleep\nDisplay off" | dmenu -c -i -l 8 -bw 2 -p "Sel:" -fn sans-16)
 [ -z $act ] && exit 1
-yn=$(printf "Yes\nNo"|dmenu -c -i -bw 2 -p "Are You Sure?" -fn sans-16)
+yn=$(printf "No\nYes"|dmenu -c -i -bw 2 -p "Are You Sure?" -fn sans-16)
 [ $yn = "Yes" ] || exit 1
 
 case "$act" in

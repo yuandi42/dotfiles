@@ -1,9 +1,9 @@
 ! set fonts for xterm
-XTerm*renderFont: true
-XTerm*faceName: Source Code Pro
-XTerm*faceSize: 14
-XTerm*utf8: 2
-XTerm*locale: true
+*renderFont: true
+*faceName: SauceCodePro Nerd Font
+*faceSize: 14
+*utf8: 2
+*locale: true
 
 ! set scale in xterm
 *vt100.translations: #override \n\
