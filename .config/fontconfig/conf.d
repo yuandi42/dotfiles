@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+<!-- FIXME add Greek and Math unicode fallback -->
 <fontconfig>
 
   <match target="font">
@@ -50,6 +51,15 @@
     </edit>
   </match>
 
+  <!-- Default sans font -->
+  <match target="pattern">
+    <test qual="any" name="family">
+      <string>sans</string></test>
+    <edit name="family" mode="prepend" binding="same">
+      <string>Noto Sans</string>
+    </edit>
+  </match>
+
   <!-- Default serif fonts -->
   <match target="pattern">
     <test qual="any" name="family">
@@ -81,6 +91,20 @@
       <family>Noto Sans CJK KR</family>
       <family>Noto Color Emoji</family>
       <family>Noto Emoji</family>
+      <family>Symbols Nerd Font</family>
+    </prefer>
+  </alias>
+  <alias>
+    <family>sans</family>
+    <prefer>
+      <family>Noto Sans</family>
+      <family>Noto Sans CJK SC</family>
+      <family>Noto Sans CJK TC</family>
+      <family>Noto Sans CJK JP</family>
+      <family>Noto Sans CJK KR</family>
+      <family>Noto Color Emoji</family>
+      <family>Noto Emoji</family>
+      <family>Symbols Nerd Font</family>
     </prefer>
   </alias>
   <alias>
@@ -93,6 +117,7 @@
       <family>Noto Serif CJK KR</family>
       <family>Noto Color Emoji</family>
       <family>Noto Emoji</family>
+      <family>Symbols Nerd Font</family>
     </prefer>
   </alias>
   <alias>
@@ -101,8 +126,10 @@
       <family>Sarasa Mono SC</family>
       <family>Sarasa Mono TC</family>
       <family>Sarasa Mono J</family>
+      <family>Sarasa Mono K</family>
       <family>Noto Color Emoji</family>
       <family>Noto Emoji</family>
+      <family>Symbols Nerd Font</family>
     </prefer>
   </alias>
 
