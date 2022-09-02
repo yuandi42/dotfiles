@@ -17,8 +17,10 @@ super + ctrl + r
 # alsa-utils and light is needed.
 XF86Audio{LowerVolume,RaiseVolume,Mute}
     amixer set Master {5%-,5%+,toggle} && pkill -RTMIN+3 dwmblocks
-XF86MonBrightness{Down,Up}
-    light {-U 5,-A 5} && pkill -RTMIN+2 dwmblocks
+{shift,alt} XF86Audio{LowerVolume,RaiseVolume}
+    amixer set Master {10,2}{%-,%+} && pkill -RTMIN+3 dwmblocks
+XF86MonBrightness{Down,Up} + {_,shift,alt}
+    light {-U,-A} {5,10,2} && pkill -RTMIN+2 dwmblocks
 
 # run dmenu as application launcher.
 super + {space,x}
