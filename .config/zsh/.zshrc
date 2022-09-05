@@ -38,8 +38,8 @@ precmd() {
     vcs_info
 }
 setopt prompt_subst
-PROMPT="%{$fg[red]%}%n%{$reset_color%} on %{$fg[blue]%}%m%{$reset_color%} in %{$fg[cyan]%}ZSH%{$reset_color%} - %{$fg[yellow]%}%1~%{$reset_color%} ${vcs_info_msg_0_}
-%{$reset_color%}%# "
+PROMPT='%{$fg[red]%}%n%{$reset_color%} on %{$fg[blue]%}%m%{$reset_color%} in %{$fg[cyan]%}ZSH%{$reset_color%} - %{$fg[yellow]%}%1~%{$reset_color%} $(__git_ps1)
+%{$reset_color%}%# '
 
 case ${TERM} in
   st*|alacritty*|xterm*|rxvt*|Eterm|aterm|kterm|gnome*)
