@@ -74,6 +74,10 @@ noremap <leader>i <c-i>
 " keybindings for tabs
 noremap <leader>w <c-w>
 
+" mimic emacs.
+inoremap <C-b> <Left>
+inoremap <C-f> <Right>
+
 " keybindings for buffers
 noremap <silent> <leader>bp :bp<CR>
 noremap <silent> <leader>bn :bn<CR>
