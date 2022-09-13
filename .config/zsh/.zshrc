@@ -31,14 +31,11 @@ zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
+# setting for PS1
 autoload -U colors && colors
-autoload -Uz vcs_info
-zstyle ':vcs_info:*' enable git svn
-precmd() {
-    vcs_info
-}
+source /usr/share/git/completion/git-prompt.sh
 setopt prompt_subst
-PROMPT='%{$fg[red]%}%n%{$reset_color%} on %{$fg[blue]%}%m%{$reset_color%} in %{$fg[cyan]%}ZSH%{$reset_color%} - %{$fg[yellow]%}%1~%{$reset_color%} $(__git_ps1)
+PROMPT='%{$fg[red]%}%n%{$reset_color%} on %{$fg[blue]%}%m%{$reset_color%} in %{$fg[cyan]%}ZSH%{$reset_color%} - %{$fg[yellow]%}%1~%{$reset_color%}$(__git_ps1 )
 %{$reset_color%}%# '
 
 case ${TERM} in
