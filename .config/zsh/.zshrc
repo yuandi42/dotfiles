@@ -3,6 +3,10 @@
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc"
 setopt completealiases
 
+HISTSIZE=10000000
+SAVEHIST=10000000
+HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/history"
+
 # Basic auto/tab complete:
 autoload -U compinit
 zstyle ':completion:*' completer _expand_alias _complete _ignored
@@ -31,19 +35,24 @@ zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
-# setting for PS1
+# setting for PS1.
 autoload -U colors && colors
 source /usr/share/git/completion/git-prompt.sh
 setopt prompt_subst
 PROMPT='%{$fg[red]%}%n%{$reset_color%} on %{$fg[blue]%}%m%{$reset_color%} in %{$fg[cyan]%}ZSH%{$reset_color%} - %{$fg[yellow]%}%1~%{$reset_color%}$(__git_ps1 )
 %{$reset_color%}%# '
 
+# set title
 case ${TERM} in
   st*|alacritty*|xterm*|rxvt*|Eterm|aterm|kterm|gnome*)
     precmd () {print -Pn "\e]0;%n@%m: %~\a"}
     ;;
   tmux*|screen*)
+    precmd () {print -Pn "\e]0;%n@%m: %~\a"}
     ;;
 esac
+
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

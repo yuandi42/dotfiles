@@ -23,10 +23,10 @@ alias \
 
 alias \
     c='clear'\
-    ex='exit'\
+    v="$EDITOR"\
     s='sudo -E'\
     se='sudo -e'
-[ -x "$(command -v nvim)" ] && alias v="nvim" vim="nvim" vimdiff="nvim -d"
+[ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d"
 
 alias \
     p='paru'\
@@ -36,9 +36,11 @@ alias \
     pR='paru -Rs'
 
 alias \
-    a='abduco'\
-    aa='abduco -A'\  
-    ai='abduco -A init' 
+    g='git'\
+    gp='git pull'\
+    gC='git clone'\
+    lg='lazygit'
+
 
 # test if internet works
 alias tnet='ping archlinux.org'
@@ -60,7 +62,7 @@ alias dfc='/usr/bin/git --git-dir=$HOME/.config/dotfiles/ --work-tree=$HOME'
 alias lzdc='lazygit -g ~/.config/dotfiles/ -w $HOME'
 
 # for suckless tools
-alias slm='rm -i config.h && sudo make install && make clean'
+alias slm='rm -i config.h; sudo make install && make clean'
 
 # for my onedrive synchronization.
 alias \

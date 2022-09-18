@@ -28,7 +28,7 @@ super + {space,x}
 
 # keybindings for programs and scripts
 super + {_,ctrl} + Return
-    {$TERMINAL,emacsclient -a "" -c -n "$@"}
+    {$TERMINAL,emacsclient -a "emacs" -c -n "$@"}
 super + {_,shift} + b
     {$BROWSER,luakit}
 super + {_,shift} + n
@@ -36,11 +36,13 @@ super + {_,shift} + n
 super + {_,shift}  + f
     {$TERMINAL -t vifm -e vfr,pcmanfm}
 super + alt + k
-    setxkbmap -option ctrl:nocaps && xcape -e 'Control_L=Escape'
+    killall xcape; setxkbmap -option ctrl:nocaps && xcape -e 'Control_L=Escape'
 super + ctrl + u
     $TERMINAL -t Update -e sb-popup
 super + ctrl + m
     $TERMINAL -e ncmpcpp -s playlist
+super + ctrl + l
+    slock
 XF86AudioPlay
     mpc toggle
 super + ctrl + t

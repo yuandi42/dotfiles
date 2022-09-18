@@ -19,7 +19,7 @@ map <C-r> rotate
 map x toggle_statusbar
 map D toggle_page_mode
 
-set font "Source Code Pro 14"
+set font "monospace 14"
 set window-title-basename true
 
 # gruvbox colorsheme.

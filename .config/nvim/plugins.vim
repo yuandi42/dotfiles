@@ -3,6 +3,11 @@ call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
     " Interface
     Plug 'morhetz/gruvbox'
     Plug 'nvim-lualine/lualine.nvim'
+    Plug 'voldikss/vim-floaterm'
+    Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+
+    "zenity!
+    Plug 'folke/zen-mode.nvim'
 
     " nerdtree
     Plug 'preservim/nerdtree'
@@ -15,6 +20,7 @@ call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
 
     " markdown preview
     " Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+    " in this way yarn and nodejs are needed.
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 
     " Help me typing
@@ -26,8 +32,7 @@ call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
     Plug 'tpope/vim-repeat'
     Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!', 'WhichKeyVisual'] }
 
-    Plug 'voldikss/vim-floaterm'
-    Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+    Plug 'notjedi/nvim-rooter.lua'
     Plug 'zhimsel/vim-stay'
     Plug 'lilydjwg/fcitx.vim'
 
@@ -46,13 +51,22 @@ let g:gruvbox_italic=1
 let g:gruvbox_transparent_bg=1
 colorscheme gruvbox
 
+"zen
+lua << EOF
+  require("zen-mode").setup {
+      window = {
+          width = 85,
+          },
+  }
+EOF
+nnoremap <silent> <leader>zz :ZenMode<CR>
+
 " NERDTree
 let NERDTreeBookmarksFile = expand("$HOME/.config/nvim/NERDTreeBookmarks")
 let NERDTreeShowHidden = 1
 nnoremap <silent> <leader>ft :NERDTreeToggle<CR>
 nnoremap <silent> <leader>fc :NERDTreeCWD<CR>
 nnoremap <silent> <leader>fv :NERDTreeToggleVCS<CR>
-nnoremap <leader>ff :NERDTreeFind<space>
 nnoremap <leader>fm :NERDTreeFromBookmark<space>
 " nerdtree-visual-selection
 let g:nerdtree_vis_confirm_open = 0
@@ -68,9 +82,11 @@ let g:which_key_use_floating_win = 1
 
 " fzf
 noremap <leader>fz :Files<space>
-noremap <leader>fr :Files<CR>
-noremap <leader>fp :Files $HOME/.config/nvim<CR>
-noremap <silent> <leader>hh :Helptags<CR>
+noremap <silent><leader>ff :Files<CR>
+noremap <silent><leader>fr :History<CR>
+noremap <silent><leader>fp :Files $HOME/.config/nvim<CR>
+noremap <silent><leader>hh :Helptags<CR>
+noremap <silent><leader>bb :Buffers<CR>
 
 " floaterm
 noremap <silent> <c-t> :WhichKey '<Space>'<CR>t
@@ -86,6 +102,9 @@ set noshowmode
 " vim-hexokinase
 let g:Hexokinase_highlighters = [ 'virtual' ]
 
+" rooter
+lua require('nvim-rooter').setup()
+
 " vim-stay
 set viewoptions=cursor,folds,slash,unix
 
@@ -93,17 +112,17 @@ set viewoptions=cursor,folds,slash,unix
 let g:fcitx5_remote = "/usr/bin/fcitx5-remote"
 
 " vim-easymotion
-noremap <Leader>ef <Plug>(easymotion-f)
-noremap  <Leader>eF <Plug>(easymotion-F)
+noremap gsf <Plug>(easymotion-f)
+noremap gsF <Plug>(easymotion-F)
 
-noremap <Leader>ew <Plug>(easymotion-w)
-noremap <Leader>eb <Plug>(easymotion-b)
-noremap <Leader>ee <Plug>(easymotion-e)
+noremap gsw <Plug>(easymotion-w)
+noremap gsb <Plug>(easymotion-b)
+noremap gse <Plug>(easymotion-e)
 
-noremap <Leader>el <Plug>(easymotion-lineforward)
-noremap <Leader>ej <Plug>(easymotion-j)
-noremap <Leader>ek <Plug>(easymotion-k)
-noremap <Leader>eh <Plug>(easymotion-linebackward)
+noremap gsl <Plug>(easymotion-lineforward)
+noremap gsj <Plug>(easymotion-j)
+noremap gsk <Plug>(easymotion-k)
+noremap gsh <Plug>(easymotion-linebackward)
 
-noremap <Leader>es <Plug>(easymotion-overwin-f2)
+noremap gss <Plug>(easymotion-overwin-f2)
 let g:EasyMotion_startofline = 0 " keep cursor column when JK motion

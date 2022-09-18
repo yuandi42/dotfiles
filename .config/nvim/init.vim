@@ -42,8 +42,6 @@ set foldlevel=99
 " filetype setting
 filetype plugin on
 
-" set autochdir
-autocmd BufEnter * if expand("%:p:h") !~ '^/tmp' | silent! lcd %:p:h | endif
 " change cursor in different mode
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
@@ -54,6 +52,9 @@ if exists('+termguicolors')
     let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
     set termguicolors
 endif
+
+" set autochdir
+" autocmd BufEnter * if expand("%:p:h") !~ '^/tmp' | silent! lcd %:p:h | endif
 
 " remap space as leader key
 nnoremap <space> <Nop>
@@ -74,6 +75,10 @@ noremap <leader>i <c-i>
 " keybindings for tabs
 noremap <leader>w <c-w>
 
+" paragraph formatting
+noremap <M-q> gwip
+set fo+=m
+
 " mimic emacs.
 inoremap <C-b> <Left>
 inoremap <C-f> <Right>
@@ -83,8 +88,9 @@ noremap <silent> <leader>bp :bp<CR>
 noremap <silent> <leader>bn :bn<CR>
 noremap <silent> <leader>bh :bf<CR>
 noremap <silent> <leader>bl :bl<CR>
+noremap <leader>bs :w<CR>
 noremap <leader>bd :bd<CR>
 noremap <leader>bD :bd!<CR>
-noremap <leader>bb :ls<CR>:b<space>
+" noremap <leader>bb :ls<CR>:b<space>
 
 source $HOME/.config/nvim/plugins.vim
