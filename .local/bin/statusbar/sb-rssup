@@ -1,5 +1,0 @@
-#!/bin/sh
-# auto refresh rss blocks.
-
-[ $(pidof dwmblocks) ] || exit 1
-echo ~/.local/share/newsboat/cache.db|entr pkill -RTMIN+4 dwmblocks

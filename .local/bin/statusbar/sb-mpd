@@ -5,6 +5,7 @@
 color=#427b58
 desc='[---]'
 icon=''
+# icon=''
 if [ $(pidof mpd) ]; then 
     case $BLOCK_BUTTON in
         1) mpc -q toggle;; # toggle mpd
@@ -26,6 +27,5 @@ else
         1) mpd && notify-send "🎼 MPD launched.";;
         3) setsid -f "$TERMINAL" -e "$EDITOR" "$0" >/dev/null 2>&1 &;;
     esac
-    desc="NO MPD"
 fi
 sb-show $color $icon "$desc"

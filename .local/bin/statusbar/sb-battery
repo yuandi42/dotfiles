@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/bin/sh
 # Loop through all attached batteries and format the info
 # SIGNAL 11
 
@@ -10,7 +10,12 @@ esac
 for battery in /sys/class/power_supply/BAT?*; do
 	# Sets up the status and capacity
 	case "$(cat "$battery/status" 2>&1)" in
-		"Full") status="" ;;
+		# "Full") status="" ;;
+		# "Discharging") status="" ;;
+		# "Charging") status="" ;;
+		# "Not charging") status="" ;;
+		# "Unknown") status="" ;;
+		"Full") status="" ;;
 		"Discharging") status="" ;;
 		"Charging") status="" ;;
 		"Not charging") status="" ;;
@@ -20,7 +25,8 @@ for battery in /sys/class/power_supply/BAT?*; do
 	capacity="$(cat "$battery/capacity" 2>&1)"
     color=#8ec07c
 	# Will make a warn variable if discharging and low
-	[ "$status" = "" ] && [ "$capacity" -le 25 ] && status="" && notify-send -u critical "LOW BATTERY!" "The capacity of $(basename $battery) is $capacity% now!" && color=#fb4934 
+    # [ "$status" = "" ] && [ "$capacity" -le 5 ] && status="" && notify-send -u critical "LOW BATTERY!" "The capacity of $(basename $battery) is $capacity% now!" && color=#fb4934 
+    [ "$status" = "" ] && [ "$capacity" -le 5 ] && status="" && notify-send -u critical "LOW BATTERY!" "The capacity of $(basename $battery) is $capacity% now!" && color=#fb4934 
 	# Prints the info
 	sb-show $color $status $capacity%%
 done

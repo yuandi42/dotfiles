@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/bin/sh
 # SIGNAL 5
 
 case $BLOCK_BUTTON in
@@ -6,6 +6,7 @@ case $BLOCK_BUTTON in
     3) setsid -f "$TERMINAL" -e "$EDITOR" "$0" >/dev/null 2>&1 &;;
 esac
 color=#b8bb26
-update=$(paru -Qu | wc -l)
-[ $update -eq 0 ] && sb-show $color '' '✓' && exit
-sb-show $color '' "$update"
+icon=''
+update=$(pacman -Qu | grep -Fcv "[ignored]")
+[ $update -eq 0 ] && sb-show $color $icon '' && exit
+sb-show $color $icon "$update"
