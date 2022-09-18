@@ -1,0 +1,28 @@
+#!/bin/sh
+
+# Set (default) wallpaper and send a notification.
+# Flags:
+# -d    link pic to #XDG_DATA_HOME/bg, i.e., default wallpaper.
+# -q    don't send notification.
+
+bgloc="${XDG_DATA_HOME:-$HOME/.local/share}/bg"
+
+while getopts "dq" opt; do
+    case ${opt} in
+        d) default=1;;
+        q) quiet=1;;
+        ?) echo "Error: Invalid opt" && exit 2;;
+    esac
+done
+
+file=$(for i in $@; do echo $i; done | grep -v "^-")
+[ -z $file ] && file="$bgloc" && default=0
+
+xwallpaper --zoom "$file" || exit 2
+
+[ $default -eq 1 ] && rm "$bgloc" && ln -s $(realpath $file) "$bgloc"
+
+if [ -z $quiet ]; then
+    # notify-send needs absolute path.
+    [ $default -eq 1 ] && notify-send -i "$(realpath $file)" "Default wallpaper is set." || notify-send -i "$(realpath $file)" "Wallpaper is set."
+fi
