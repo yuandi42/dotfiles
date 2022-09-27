@@ -30,7 +30,7 @@ super + {space,x}
 super + {_,ctrl} + Return
     {$TERMINAL,emacsclient -a "emacs" -c -n "$@"}
 super + {_,shift} + b
-    {$BROWSER,luakit}
+    {$BROWSER,brave}
 super + {_,shift} + n
     $TERMINAL -t {email-client -e neomutt && pkill -RTMIN+6 dwmblocks,rss-reader -e newsboat && pkill -RTMIN+4 dwmblocks}
 super + {_,shift}  + f
