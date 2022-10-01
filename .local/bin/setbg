@@ -7,6 +7,7 @@
 # -q    don't send notification.
 
 bgloc="${XDG_DATA_HOME:-$HOME/.local/share}/bg"
+default=0
 
 while getopts "dq" opt; do
     case ${opt} in
