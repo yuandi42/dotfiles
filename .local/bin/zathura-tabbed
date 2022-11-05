@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# Spawn zathura window as a new tab in the specific tabbed window. Modified
+# from https://github.com/mtikekar/zathura-tabbed/blob/master/zathura-tabbed
+
+# TODO: set urgency hint for tabbed window when new zathura tab spawned inside.
+
+xidfile="/run/user/"$(id -u)"/zathura-tabbed.xid"
+wmclass="zathura-tabbed"
+
+# check if a tabbed window is open
+if [ -r "$xidfile" ] && xid=$(cat "$xidfile") && xprop -id "$xid" WM_CLASS 2> /dev/null | grep -q "$wmclass";
+then
+    zathura -e "$xid" "$@" &> /dev/null &
+else
+    xid=$(tabbed -cdn "$wmclass" -p -1 -r 2 zathura -e "" "$@" 2> /dev/null)
+    echo "$xid" > "$xidfile"
+fi
