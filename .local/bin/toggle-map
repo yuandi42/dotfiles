@@ -1,6 +1,7 @@
 #!/bin/sh
-# map/unmap window, unfortunately doesn't work on stupid wemeetapp. So
-# tencent, fxxk you!
+
+# map/unmap window, unfortunately doesn't work on stupid wemeetapp. So tencent,
+# fxxk you!
 
 if [ -f /tmp/unmapwin ]; then 
     wid=$(cat /tmp/unmapwin)
