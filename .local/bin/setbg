@@ -7,7 +7,6 @@
 # -q    don't send notification.
 
 bgloc="${XDG_DATA_HOME:-$HOME/.local/share}/bg"
-default=0
 
 while getopts "dq" opt; do
     case ${opt} in
@@ -17,12 +16,16 @@ while getopts "dq" opt; do
     esac
 done
 
-file=$(realpath $(for i in $@; do echo $i; done | grep -v "^-"|head -n1))
+file=$(for i in $@; do echo $i; done | grep -v "^-"|head -n1)
+[ -z $file ] && file=$(realpath $bgloc) || file=$(realpath $file)
 
 xwallpaper --zoom "$file" >/dev/null 2>&1|| exit 2
 
-[ $default -eq 1 ] && rm "$bgloc" && ln -s $file "$bgloc"
+if [  ! -z $default ]; then
+    rm $bgloc
+    ln -s $file $bgloc
+fi
 
 if [ -z $quiet ]; then
-    [ $default -eq 1 ] && notify-send -i "$file" "Default wallpaper is set." || notify-send -i "$file" "Wallpaper is set."
+    [ -z $default ] && notify-send -i "$file" "Wallpaper is set." || notify-send -i "$file" "Default wallpaper is set." 
 fi
