@@ -1,4 +1,4 @@
-#/bin/sh
+#!/bin/sh
 
 batinfo(){
     for battery in /sys/class/power_supply/BAT?*; do
