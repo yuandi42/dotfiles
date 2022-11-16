@@ -16,9 +16,9 @@ super + ctrl + r
 # my volume and backlight control.
 # alsa-utils and light is needed.
 XF86Audio{LowerVolume,RaiseVolume,Mute}
-    amixer set Master {5%-,5%+,toggle} && pkill -RTMIN+3 dwmblocks
-{shift,alt} XF86Audio{LowerVolume,RaiseVolume}
-    amixer set Master {10,2}{%-,%+} && pkill -RTMIN+3 dwmblocks
+    pamixer {-d 5, -i 5,--toggle-mute} && pkill -RTMIN+3 dwmblocks
+XF86Audio{LowerVolume,RaiseVolume} + {shift,alt}
+    pamixer {-d,-i}{10,2} && pkill -RTMIN+3 dwmblocks
 XF86MonBrightness{Down,Up} + {_,shift,alt}
     light {-U,-A} {5,10,2} && pkill -RTMIN+2 dwmblocks
 
@@ -32,13 +32,13 @@ super + {_,ctrl} + Return
 super + {_,shift} + b
     {$BROWSER,brave}
 super + {_,shift} + n
-    $TERMINAL -t {email-client -e neomutt && pkill -RTMIN+6 dwmblocks,rss-reader -e newsboat && pkill -RTMIN+4 dwmblocks}
+    $TERMINAL -e {neomutt && pkill -RTMIN+6 dwmblocks,newsboat && pkill -RTMIN+4 dwmblocks}
 super + {_,shift}  + f
-    {$TERMINAL -t vifm -e vfr,pcmanfm}
+    {$TERMINAL -e vfr,pcmanfm}
 super + alt + k
     killall xcape; setxkbmap -option ctrl:nocaps && xcape -e 'Control_L=Escape'
 super + ctrl + u
-    $TERMINAL -t Update -e sb-popup
+    $TERMINAL -e sb-popup
 super + ctrl + m
     $TERMINAL -e ncmpcpp -s playlist
 super + ctrl + l
