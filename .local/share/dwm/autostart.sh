@@ -1,6 +1,6 @@
 #!/bin/sh
 sxhkd -c ~/.config/sxhkd/sxhkdrc&
-picom --experimental-backends -b
+picom -b
 
 # smart capslock
 setxkbmap -option ctrl:nocaps
