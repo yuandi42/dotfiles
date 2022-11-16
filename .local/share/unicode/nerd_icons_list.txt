@@ -2703,3 +2703,5 @@
    Weather-wind_south_west  E355
    Weather-wind_west  E354
    Weather-windy  E31E
+   Nf-custom-emacs E632
+   Nf-custom-orgmode   E633

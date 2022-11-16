@@ -1,19 +1,9 @@
-" vim: filetype=vifm :
-" Sample configuration file for vifm (last updated: 31 August, 2021)
-" You can edit this file by hand.
-" The " character at the beginning of a line comments out the line.
-" Blank lines are ignored.
-" The basic format for each item is shown with an example.
+" vim: filetype=vim :
 
-" ------------------------------------------------------------------------------
+set title
 
-" Command used to edit files in various contexts.  The default is vim.
-" If you would like to use another vi clone such as Elvis or Vile
-" you will need to change this setting.
 
 set vicmd=nvim
-" set vicmd=elvis\ -G\ termcap
-" set vicmd=vile
 
 " This makes vifm perform file operations on its own instead of relying on
 " standard utilities like `cp`.  While using `cp` and alike is a more universal
@@ -22,33 +12,18 @@ set vicmd=nvim
 
 set syscalls
 
-" Trash Directory
-" The default is to move files that are deleted with dd or :d to
-" the trash directory.  If you change this you will not be able to move
-" files by deleting them and then using p to put the file in the new location.
-" I recommend not changing this until you are familiar with vifm.
-" This probably shouldn't be an option.
-
 set trash
-
-" This is how many directories to store in the directory history.
 
 set history=100
 
-" Automatically resolve symbolic links on l or Enter.
-
 set followlinks
 
-" Natural sort of (version) numbers within text.
 
 set sortnumbers
 
-" Maximum number of changes that can be undone.
 
 set undolevels=100
 
-" Use Vim's format of help file (has highlighting and "hyperlinks").
-" If you would rather use a plain text help file set novimhelp.
 
 set vimhelp
 
@@ -57,12 +32,9 @@ set vimhelp
 
 set norunexec
 
-" List of color schemes to try (picks the first one supported by the terminal)
 
 colorscheme gruvbox
 
-" Format for displaying time in file list. For example:
-" TIME_STAMP_FORMAT=%m/%d-%H:%M
 " See man date or man strftime for details.
 
 set timefmt=%m/%d\ %H:%M
@@ -111,7 +83,7 @@ set statusline="  Hint: %z%= %A %10u:%-7g %15s %20d  "
 
 " :mark mark /full/directory/path [filename]
 
-mark b ~/bin/
+mark b ~/.local/bin/
 mark h ~/
 
 " ------------------------------------------------------------------------------
@@ -166,7 +138,7 @@ command! reload :write | restart full
 " program.
 
 " Pdf
-filextype {*.pdf},<application/pdf> zathura %c %i &, apvlv %c, xpdf %c
+filextype {*.pdf},<application/pdf> zathura-tabbed %c %i &, apvlv %c, xpdf %c
 fileviewer *.pdf
         \ vifmimg pdf %px %py %pw %ph %c
         \ %pc
@@ -175,15 +147,15 @@ fileviewer *.pdf
 
 " PostScript
 filextype {*.ps,*.eps,*.ps.gz},<application/postscript>
-        \ {View in zathura}
-        \ zathura %f,
+        \ {View in zathura-tabbed}
+        \ zathura-tabbed %f,
         \ {View in gv}
         \ gv %c %i &,
 
 " Djvu
 filextype {*.djvu},<image/vnd.djvu>
-        \ {View in zathura}
-        \ zathura %f,
+        \ {View in zathura-tabbed}
+        \ zathura-tabbed %f,
         \ {View in apvlv}
         \ apvlv %f,
 fileviewer *.djvu
@@ -193,8 +165,9 @@ fileviewer *.djvu
 
 "Epub
 filextype {*.epub},<image/vnd.epub>
-        \ {View in zathura}
-        \ zathura %f,
+        \ {View in zathura-tabbed}
+        \ zathura-tabbed %f,
+        \ zathura-tabbed %c %i &,
 fileviewer *.epub
         \ vifmimg epub %px %py %pw %ph %c
         \ %pc
@@ -203,12 +176,12 @@ fileviewer *.epub
 " Audio
 filetype {*.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus},
         \<audio/*>
-       \ {Play using mpv}
-       \ setsid -f mpv --quiet %f > /dev/null,
-       \ {Play using ffplay}
-       \ ffplay -nodisp -autoexit %c,
+        \ {Play using mpv}
+        \ mpv %f,
+        \ {Play using ffplay}
+        \ ffplay -nodisp -autoexit %c,
 fileviewer {*.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus},
-	\ vifmimg audio %px %py %pw %ph %c
+        \ vifmimg audio %px %py %pw %ph %c
         \ %pc
         \ vifmimg clear
 
@@ -221,7 +194,7 @@ filextype {*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
           \*.as[fx]},
          \<video/*>
         \ {View using mpv}
-        \ setsid -f mpv --quiet %f > /dev/null,
+        \ setsid -f mpv --quiet %f > /dev/null 2>&1,
         \ {View using ffplay}
         \ ffplay -fs -autoexit %f,
         \ {View using Dragon}
@@ -260,10 +233,11 @@ filextype {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
         \ {View in shotwell}
         \ shotwell,
 fileviewer {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
+        " \ env -u COLORTERM viu -w %pw -h %ph -s %c
         \ vifmimg draw %px %py %pw %ph %c
         \ %pc
         \ vifmimg clear 
-	"\ identify %f
+        \ identify %f
 
 " OpenRaster
 filextype *.ora
@@ -417,6 +391,8 @@ set classify+=' ::.Xdefaults,,.Xresources,,.bashprofile,,.bash_profile,,.bash
 set classify+=' ::dropbox::'
 set classify+=' ::favicon.*,,README,,readme::'
 set classify+=' ::*.vim,,.vimrc,,vimrc,,gvimrc,,.gvimrc,,vifmrc,,*.vifm::'
+set classify+=' ::*.el::'
+set classify+=' ::*.org::'
 set classify+=' ::gruntfile.coffee,,gruntfile.js,,gruntfile.ls::'
 set classify+=' ::gulpfile.coffee,,gulpfile.js,,gulpfile.ls::'
 set classify+=' ::ledger::'
