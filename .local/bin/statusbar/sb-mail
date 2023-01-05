@@ -2,7 +2,7 @@
 # SIGNAL 6
 
 case $BLOCK_BUTTON in
-    1) "$TERMINAL" -t "mail" -e "neomutt" >/dev/null 2>&1;;
+    1) "$TERMINAL" -e "neomutt" >/dev/null 2>&1;;
     2) setsid -f "$TERMINAL" -e "$EDITOR" "$0" >/dev/null 2>&1 &;;
     3) mw -Y >/dev/null 2>&1 ;; 
 esac
@@ -10,5 +10,6 @@ esac
 unread=$(find "${XDG_DATA_HOME:-$HOME/.local/share}"/mail/*/[Ii][Nn][Bb][Oo][Xx]/new/ -type f |wc -l 2>/dev/null)
 
 color=#b16286
-[ $unread -eq 0 ] && sb-show $color '' '' && exit
+[ $unread -eq 0 ]   && unread=''
+[ $unread -ge 100 ] && unread="99+"
 sb-show $color '' $unread

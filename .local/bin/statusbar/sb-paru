@@ -8,5 +8,6 @@ esac
 color=#b8bb26
 icon=''
 update=$(pacman -Qu | grep -Fcv "[ignored]")
-[ $update -eq 0 ] && sb-show $color $icon '' && exit
+[ $update -eq 0 ]   && update=''
+[ $update -ge 100 ] && update="99+"
 sb-show $color $icon "$update"
