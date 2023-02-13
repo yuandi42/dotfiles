@@ -8,7 +8,6 @@
 #   -d template directory, by default is $XDG_DATA_HOME/templates
 #   -x chmod +x after file is created
 #   -f force to overwrite existing file
-#   -F TODO: fierce mode, no filename argument is needed, usually for an action.
 #   -h help message
 #
 # Supporting types (by default):
@@ -29,10 +28,10 @@
 
 while getopts ":xft:d:h" opt; do
     case ${opt} in
-        x) EXEC=1;;
-        f) FORCE=1;;
-        t) TYPE="$OPTARG";;
-        d) TEMP_DIR="$OPTARG";;
+        x) _NEW_EXEC=1;;
+        f) _NEW_FORCE=1;;
+        t) _NEW_TYPE="$OPTARG";;
+        d) _NEW_TEMP_DIR="$OPTARG";;
         h) printf "Read the script yourself, that's not rocket science.\n" >&2 && exit 2;;
         ?) echo "Error: Invalid opt, type -h for help" >&2 && exit 2;;
     esac
@@ -41,22 +40,22 @@ shift $(($OPTIND - 1))
 
 [ "$#" -eq 0 ] && echo "Error: No arg, type -h for help" >&2 && exit 2
 
-[ -z $TEMP_DIR ] && TEMP_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/templates"
-[ -d $TEMP_DIR ] || echo "Templates directory isn't found. Use default templates."
+[ -z $_NEW_TEMP_DIR ] && _NEW_TEMP_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/templates"
+[ -d $_NEW_TEMP_DIR ] || echo "Templates directory isn't found. Use default templates."
 
 files="$@"
 
 type_detect(){
     if [ -d "$2" ] && [ -f "$2/$1" ]; then
-        TEMP_TYPE="$1"
+        _NEW_TEMP_TYPE="$1"
     else
         case "$1" in
-            *.*) TEMP_TYPE="${1##*.}";;
-            [Mm]akefile) TEMP_TYPE="make";;
-            *) TEMP_TYPE="none"
+            *.*) _NEW_TEMP_TYPE="${1##*.}";;
+            [Mm]akefile) _NEW_TEMP_TYPE="make";;
+            *) _NEW_TEMP_TYPE="none"
         esac
     fi
-    printf "$TEMP_TYPE"
+    printf "$_NEW_TEMP_TYPE"
 }
 
 default_template_fill(){
@@ -65,7 +64,7 @@ default_template_fill(){
         py|py3|python|python3) printf "#!/usr/bin/env python3\n\n" > "$2";;
         md|markdown) printf "# ${2%.*}\n\n##" > "$2";;
         [a-z]*sh|sh) printf "#!/bin/$1\n\n" > "$2";;
-        *)  printf " with no template applied"
+        *) printf "" > $2; printf " with no template applied"
     esac
 }
 
@@ -78,21 +77,22 @@ template_fill(){
 }
 
 for file in $files; do
-    [ -z $TYPE ] && FILETYPE=$(type_detect "$file" "$TEMP_DIR") || FILETYPE="$TYPE"
+    [ -z $_NEW_TYPE ] && _NEW_FILETYPE=$(type_detect "$file" "$_NEW_TEMP_DIR") || _NEW_FILETYPE="$_NEW_TYPE"
 
     # File will be created/overwritten if:
     #   1. File doesn't exist;
     #   2. -f option is set, file exists, and is neither a directory nor a symlink.
     #   3. Some unknown bugs occur.
-    if [ ! -r "$file" -o ! -z $FORCE ] && [ ! -d "$file" ] && [ ! -h "$file" ]; then
+    if [ ! -r "$file" -o ! -z $_NEW_FORCE ] && [ ! -d "$file" ] && [ ! -h "$file" ]; then
         printf "File $file is"
         [ -f "$file" ] && printf " overwritten" || printf " created"
-        template_fill "$TEMP_DIR" "$FILETYPE" "$file"
-        [ ! -z $EXEC ] && chmod +x "$file" && printf " and executable"
+        touch "$file"
+        template_fill "$_NEW_TEMP_DIR" "$_NEW_FILETYPE" "$file"
+        [ ! -z $_NEW_EXEC ] && chmod +x "$file" && printf " and executable"
     else
         printf "File/Directory/Symlink $file already exists!"
     fi
     printf "\n"
 
-    [ -z "$FILETYPE" ] || unset -v FILETYPE
+    [ -z "$_NEW_FILETYPE" ] || unset -v _NEW_FILETYPE
 done

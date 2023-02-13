@@ -15,17 +15,18 @@ while getopts "dq" opt; do
         ?) echo "Error: Invalid opt" && exit 2;;
     esac
 done
+shift $(($OPTIND - 1))
 
-file=$(for i in $@; do echo $i; done | grep -v "^-"|head -n1)
-[ -z $file ] && file=$(realpath $bgloc) || file=$(realpath $file)
+file="$@"
+[ -z "$file" ] && file=$(realpath "$bgloc") || file=$(realpath "$file")
 
-xwallpaper --zoom "$file" >/dev/null 2>&1|| exit 2
+xwallpaper --zoom "$file" >/dev/null 2>&1 || exit 2
 
-if [  ! -z $default ]; then
-    rm $bgloc
-    ln -s $file $bgloc
+if [  ! -z "$default" ]; then
+    rm "$bgloc"
+    ln -s "$file" "$bgloc"
 fi
 
-if [ -z $quiet ]; then
-    [ -z $default ] && notify-send -i "$file" "Wallpaper is set." || notify-send -i "$file" "Default wallpaper is set." 
+if [ -z "$quiet" ]; then
+    [ -z "$default" ] && notify-send -i "$file" "Wallpaper is set." || notify-send -i "$file" "Default wallpaper is set." 
 fi
