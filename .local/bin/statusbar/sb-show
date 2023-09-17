@@ -1,9 +1,0 @@
-#!/bin/sh
-fg0=#282828
-bg0=$1
-bg1=#a89984
-icon=$2
-[ -z $3 ] && printf "^b$bg0^^c$fg0^ $icon ^d^" && exit
-
-cntt=$3
-printf "^b$bg0^^c$fg0^ $icon ^d^^b$bg1^^c$fg0^ $cntt ^d^"

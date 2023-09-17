@@ -1,8 +1,0 @@
-#!/bin/sh
-# SIGNAL 12
-
-case $BLOCK_BUTTON in
-    1) pkill -RTMIN+12 dwmblocks;;
-    3) setsid -f "$TERMINAL" -e "$EDITOR" "$0" >/dev/null 2>&1 &;;
-esac
-date '+🗓: %d/%m(%a)'

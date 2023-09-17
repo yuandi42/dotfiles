@@ -1,2 +1,0 @@
-#!/bin/sh
-tabbed -n scratchpad -g 1200x900+0+0 -r 2 alacritty --embed '' -o window.opacity=0.8
