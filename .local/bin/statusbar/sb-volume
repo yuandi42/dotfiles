@@ -11,15 +11,15 @@ case $BLOCK_BUTTON in
 esac
 
 color=#d3869b
-[ $(pamixer --get-mute) = true ] && sb-show $color '' 'OFF' && exit
+[ $(pamixer --get-mute) = true ] && printf "🔇: OFF" && exit
 vol="$(pamixer --get-volume)"
 if [ "$vol" -gt "50" ]; then
-    icon=''
+    icon='🔊'
 elif [ "$vol" -gt "15" ]; then
-    icon=''
+    icon='🔉'
 elif [ "$vol" -ge "0" ]; then
-    icon=''
+    icon='🔈'
 else
-    sb-show $color '' 'OFF' && exit
+    printf "🔇: OFF" && exit
 fi
-sb-show $color $icon  $vol%% && exit
+printf "$icon $vol%%"

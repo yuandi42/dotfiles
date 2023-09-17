@@ -8,10 +8,8 @@ case $BLOCK_BUTTON in
     3) setsid -f rssup -d >/dev/null 2>&1 &;;
 esac
 
-color=#458588
-icon=
-[ -f /tmp/newsupdate ] && sb-show $color $icon '' && exit
+[ -f /tmp/newsupdate ] && sb-show $color $icon '🔃' && exit
 unread=$(newsboat -x print-unread | cut -d' ' -f 1)
-[ $unread -eq 0 ]   && unread=''
-[ $unread -ge 100 ] && unread="99+"
-sb-show $color $icon $unread
+[ $unread -eq 0 ]   && unread='✅'
+[ $unread -ge 100 ] 2>/dev/null && unread="99+"
+printf "🗞: $unread"

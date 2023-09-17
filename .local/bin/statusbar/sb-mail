@@ -9,7 +9,6 @@ esac
 
 unread=$(find "${XDG_DATA_HOME:-$HOME/.local/share}"/mail/*/[Ii][Nn][Bb][Oo][Xx]/new/ -type f |wc -l 2>/dev/null)
 
-color=#b16286
-[ $unread -eq 0 ]   && unread=''
-[ $unread -ge 100 ] && unread="99+"
-sb-show $color '' $unread
+[ $unread -eq 0 ]   && unread='✅'
+[ $unread -ge 100 ] 2>/dev/null && unread="99+"
+printf "📧: $unread"

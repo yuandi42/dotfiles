@@ -8,7 +8,5 @@ case $BLOCK_BUTTON in
     4) light -A 5;;
     5) light -U 5;;
 esac
-
-lgt=$(light -G | cut -d . -f 1)
-color=#d79921
-sb-show $color '' $lgt%%
+lgt=$(light -G)
+printf "💡: ${lgt%%.*}%%"

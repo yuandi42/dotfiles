@@ -10,11 +10,6 @@ esac
 for battery in /sys/class/power_supply/BAT?*; do
 	# Sets up the status and capacity
 	case "$(cat "$battery/status" 2>&1)" in
-		# "Full") status="" ;;
-		# "Discharging") status="" ;;
-		# "Charging") status="" ;;
-		# "Not charging") status="" ;;
-		# "Unknown") status="" ;;
 		"Full") status="" ;;
 		"Discharging") status="" ;;
 		"Charging") status="" ;;
@@ -23,10 +18,7 @@ for battery in /sys/class/power_supply/BAT?*; do
 		*) printf "error" && exit 1 ;;
 	esac
 	capacity="$(cat "$battery/capacity" 2>&1)"
-    color=#8ec07c
-	# Will make a warn variable if discharging and low
-    # [ "$status" = "" ] && [ "$capacity" -le 5 ] && status="" && notify-send -u critical "LOW BATTERY!" "The capacity of $(basename $battery) is $capacity% now!" && color=#fb4934 
-    [ "$status" = "" ] && [ "$capacity" -le 5 ] && status="" && notify-send -u critical "LOW BATTERY!" "The capacity of $(basename $battery) is $capacity% now!" && color=#fb4934 
+    [ "$status" = "" ] && [ "$capacity" -le 5 ] && status="" && notify-send -u critical "LOW BATTERY!" "The capacity of $(basename $battery) is $capacity% now!"
 	# Prints the info
-	sb-show $color $status $capacity%%
+	printf "$status: $capacity%%"
 done

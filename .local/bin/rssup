@@ -9,12 +9,12 @@
 
 # Get the options
 while getopts "dql" opt; do
-    case ${opt} in
-        d) delay=1;;
-        q) quiet=1;;
-        l) log=1;;
-        ?) echo "Error: Invalid opt" && exit 2;;
-    esac
+	case ${opt} in
+		d) delay=1;;
+		q) quiet=1;;
+		l) log=1;;
+		?) echo "Error: Invalid opt" && exit 2;;
+	esac
 done
 
 [ -z $quiet ] && /usr/bin/notify-send "📰 Updating RSS feeds..."
@@ -28,18 +28,18 @@ pkill -RTMIN+4 dwmblocks
 [ -z $delay ] || sleep 0.1
 
 update(){
-    if [ -z $log ]; then
-        /usr/bin/newsboat -x reload > /dev/null 2>&1
-    else
-        logfile="${XDG_CACHE_HOME:-$HOME/.cache}/rssup.log"
-        echo "$(/usr/bin/date)" >> $logfile
-        /usr/bin/newsboat -x reload >> $logfile
-    fi
+	if [ -z $log ]; then
+		/usr/bin/newsboat -x reload > /dev/null 2>&1
+	else
+		logfile="${XDG_CACHE_HOME:-$HOME/.cache}/rssup.log"
+		echo "$(/usr/bin/date)" >> $logfile
+		/usr/bin/newsboat -x reload >> $logfile
+	fi
 }
 if [ -z $quiet ]; then
-    update && /usr/bin/notify-send "📰 RSS feed update complete." || /usr/bin/notify-send "📰 RSS feed update error."
+	update && /usr/bin/notify-send "📰 RSS feed update complete." || /usr/bin/notify-send "📰 RSS feed update error."
 else
-    update || /usr/bin/notify-send "📰 RSS feed update error."
+	update || /usr/bin/notify-send "📰 RSS feed update error."
 fi
 
 rm -f /tmp/newsupdate

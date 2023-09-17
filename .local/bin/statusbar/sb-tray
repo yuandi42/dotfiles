@@ -9,4 +9,3 @@ esac
 
 color="#7c6f62"
 sb-show $color ''
-# sb-show $color ''
