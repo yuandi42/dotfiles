@@ -1,0 +1,145 @@
+#!/bin/sh
+
+# Help me creat text file with certain template, and +x if I want.
+# See more in newf -h.
+
+# Name: new (text) file creator.
+#
+# Supporting types (by default):
+#   py/py3/python/python3: for .py
+#   md/markdown: for .md
+#   sh/*sh: respectively for POSIX shell, bash, zsh, and blabla...
+#   make: for (GNU) make makefile
+#   and you can set your own type/template in template directory
+#
+# Notes:
+#   1. if -t option isn't set, the script will auto detect filetype according
+#      to: templates in teamplates dir, then filename extension.
+#   2. if template_dir/template is executable for current user, the script will
+#      run `. template_dir/template file`;
+#      or it will run `cat template_dir/template > file`.
+# Bugs:
+#   1. type/template arguments as well as filename should have no space
+#      character, or bugs occur. Follow the Unix-style, please!!!
+
+_NEW_HELP_MESSAGE=$(cat << EOF
+Usage: newf [options] [filename]
+
+Create a new file with a specified template and options.
+
+Options:
+  -t,    Specify the type of the file to be created. By default, it will try to
+         guess the file type based on the given filename extension or a matching
+         template. Supported types by default are: make, py/py3/python/python3,
+         md/markdown, sh/*sh, and you can set your own type/template in the
+         template_dir directory.
+  -d,    Set the directory where this script looks for templates. By default, it
+         is XDG_DATA_HOME/templates or HOME/.local/share/templates if the former
+         is not defined.
+  -x,    Give executable permission to the newly created file.
+  -f,    Overwrite the existing file if it exists.
+  -v,    Print more information about what is being done.
+  -h,    Display this help message and exit.
+
+Notes:
+  - If the -t option is not used, the script will first look for matching
+    templates in the template_dir directory, then try to determine the file type
+    based on the filename extension.
+  - If a custom template is found, and it is executable for the current user,
+    the script will run that template with the new file as an argument.
+    Otherwise, it will simply copy the contents of the template file into the
+    new file.
+  - If a custom template is not found, the script will use a default template
+    for the given file type, or create an empty file if no template is available.
+
+Examples:
+  To create a new Python file named "hello.py":
+  newf hello.py
+
+  To create a new Python file with a custom template in the ~/my_templates directory:
+  newf -t py -d ~/my_templates hello.py
+
+  To create a new POSIX shell script and make it executable:
+  newf -x -t sh hello.sh
+EOF
+)
+
+while getopts ":xft:d:vh" opt; do
+	case ${opt} in
+		x) _NEW_EXEC=1;;
+		f) _NEW_FORCE=1;;
+		t) _NEW_TYPE="$OPTARG";;
+		d) _NEW_TEMP_DIR="$OPTARG";;
+		v) _NEW_VERBOSE=1;;
+		h) echo "$_NEW_HELP_MESSAGE" && exit 0;;
+		?) echo "Error: Invalid opt, type -h for help" >&2 && exit 1;;
+	esac
+done
+shift $((OPTIND - 1))
+
+[ "$#" -eq 0 ] && echo "Error: No arg, type -h for help" >&2 && exit 2
+
+[ -z "$_NEW_TEMP_DIR" ] && _NEW_TEMP_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/templates"
+[ -d "$_NEW_TEMP_DIR" ] || echo "Templates directory isn't found. Use default templates."
+
+files=$*
+
+type_detect(){
+	if [ -d "$2" ] && [ -f "$2/$1" ]; then
+		_NEW_TEMP_TYPE="$1"
+	else
+		case "$1" in
+			*.*) _NEW_TEMP_TYPE="${1##*.}";;
+			[Mm]akefile) _NEW_TEMP_TYPE="make";;
+			*) _NEW_TEMP_TYPE="none"
+		esac
+	fi
+	echo "$_NEW_TEMP_TYPE"
+}
+
+default_template_fill(){
+	case "$1" in
+		make) printf "all: clean build\n\nclean:\n\nbuild:\n\n" > "$2";;
+		py|py3|python|python3) printf "#!/usr/bin/env python3\n#-*- coding: utf-8 -*-\n\n" > "$2";;
+		md|markdown) printf "# %s\n\n##" "${2%.*}" > "$2";;
+		[a-z]*sh|sh) printf "#!/bin/%s\n\n" "$1" > "$2";;
+		*) printf "" > "$2"; [ -z "$_NEW_VERBOSE" ] || printf " with no template applied"
+	esac
+}
+
+template_fill(){
+	[ "$3" = "${3%/*}" ] || mkdir -p "${3%/*}"
+	if [ -d "$1" ] && [ -f "$1/$2" ]; then
+		if [ -x "$1/$2" ]; then
+			eval "$1/$2 $3"
+		else
+			cat "$1/$2" > "$3"
+		fi
+	else
+		default_template_fill "$2" "$3"
+	fi
+}
+
+for file in $files; do
+	[ -z "$_NEW_TYPE" ] && _NEW_FILETYPE=$(type_detect "$file" "$_NEW_TEMP_DIR") || _NEW_FILETYPE="$_NEW_TYPE"
+
+	# File will be created/overwritten if:
+	#   1. File doesn't exist;
+	#   2. -f option is set, file exists, and is neither a directory nor a symlink.
+	#   3. Some unknown bugs occur.
+	if [ ! -r "$file" ] || [ -n "$_NEW_FORCE" ] && [ ! -d "$file" ] && [ ! -h "$file" ]; then
+		if [ -n "$_NEW_VERBOSE" ]; then
+			printf "File %s is" "$file"
+			[ -f "$file" ] && printf " overwritten" || printf " created"
+		fi
+		template_fill "$_NEW_TEMP_DIR" "$_NEW_FILETYPE" "$file"
+		[ -n "$_NEW_EXEC" ] && chmod +x "$file" && [ -n "$_NEW_VERBOSE" ] && printf " and executable"
+		if [ -n "$_NEW_VERBOSE" ]; then
+			printf "\n"
+		fi
+	else
+		echo "File/Directory/Symlink $file already exists!" >&2
+	fi
+
+	[ -z "$_NEW_FILETYPE" ] || unset -v _NEW_FILETYPE
+done

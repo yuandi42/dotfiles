@@ -1,0 +1,61 @@
+#!/bin/sh
+
+# Set (default) wallpaper for X window environment (then send a notification).
+# Usage: setbg [ OPTS ] [ FILE ]
+# OPTS:
+# -d	link pic to $XDG_DATA_HOME/bg, i.e., default wallpaper.
+# -q	don't send notification.
+
+[ -z "$_XSETBG_BG" ] && _XSETBG_BG="${XDG_DATA_HOME:-$HOME/.local/share}/bg"
+[ -z "$_XSETBG_WP_DIR" ] && _XSETBG_WP_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/wallpapers/"
+unset -v default quiet noti_msg
+
+if [ -n "$*" ]; then
+	while getopts ":dq" opt; do
+		case ${opt} in
+			d) default=1;;
+			q) quiet=1;;
+			?) echo "Error: Invalid opt" >&2 && exit 1;;
+		esac
+	done
+	shift $((OPTIND - 1))
+
+	if [ -n "$*" ]; then
+		if [ -f "$*" ]; then
+			file=$(realpath "$*")
+		else
+			echo "Error: No such file" >&2 && exit 2
+		fi
+	elif [ -n "$default" ] ; then
+		echo "Error: No file arg is given" >&2 && exit 2
+	else
+		file=$(realpath "$_XSETBG_BG")
+	fi
+
+	if [ -n "$default" ]; then
+		rm "$_XSETBG_BG"
+		mkdir -p "$_XSETBG_WP_DIR"
+		mkdir -p "${_XSETBG_BG%/*}"
+		cp -p "$file" "$_XSETBG_WP_DIR" 2>/dev/null
+		ln -s "$_XSETBG_WP_DIR$(basename "$file")" "$_XSETBG_BG"
+	fi
+
+	if [ -z "$quiet" ]; then
+		if [ -z "$default" ]; then
+			noti_msg="Wallpaper is set."
+		else
+			noti_msg="Default wallpaper is set."
+		fi
+	fi
+
+	unset -v default quiet
+else
+	file=$(realpath "$_XSETBG_BG")
+	noti_msg="Wallpaper is set."
+fi
+
+xwallpaper --zoom "$file" >/dev/null 2>&1 || exit 2
+if [ -n "$noti_msg" ]; then
+	notify-send -i "$file" "Xsetwp Helper" "$noti_msg"
+	unset -v noti_msg
+fi

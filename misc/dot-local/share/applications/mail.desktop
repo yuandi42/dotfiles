@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Neomutt
+GenericName=Mail client
+Exec=neomutt %u
+Terminal=true
+# Exec=st -t "mail client" -e neomutt %u
+Icon=internet-mail
+# Icon=mutt
