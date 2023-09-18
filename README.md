@@ -57,9 +57,9 @@ divided into 3 types:
    support that standard by default. For example (though codes below aren't
    actually in the profile file):
    ```
-export GNUPGHOME="${XDG_DATA_HOME:-$HOME/.local/share}/gnupg"
-export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/password-store"
-export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wgetrc"
+   export GNUPGHOME="${XDG_DATA_HOME:-$HOME/.local/share}/gnupg"
+   export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/password-store"
+   export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wgetrc"
    ```
    In this way we reach principle 1: fewer files/dirs in home dir. Of course,
    there are applications that just don't follow the standard and we can do
