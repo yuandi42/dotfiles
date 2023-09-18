@@ -1,0 +1,21 @@
+#!/bin/sh
+# SIGNAL 2
+
+case $BLOCK_BUTTON in
+    1) light -A 5;;
+    2) setsid -f "$TERMINAL" -e "$EDITOR" "$0" >/dev/null 2>&1 &;;
+    3) light -U 5;;
+    4) light -A 5;;
+    5) light -U 5;;
+esac
+lgt=$(light -G| cut -d '.' -f 1)
+if [ "$lgt" -eq "100" ]; then
+	lgt="MAX"
+elif [ "$lgt" -eq 0 ]; then
+	lgt="MIN"
+elif [ "$lgt" -lt 10 ]; then
+	lgt="0$lgt%"
+else
+	lgt="$lgt%"
+fi
+printf "💡: %s" "$lgt"

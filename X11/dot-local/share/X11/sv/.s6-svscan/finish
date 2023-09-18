@@ -1,0 +1,3 @@
+#!/bin/sh
+
+[ -n "$X11_SV_DIR" ] && rm -rf "$X11_SV_DIR"

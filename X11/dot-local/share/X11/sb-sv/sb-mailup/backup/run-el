@@ -1,0 +1,16 @@
+#!/bin/execlineb -P
+
+fdmove -c 2 1
+
+importas USER USER
+importas HOME HOME
+importas -D "${HOME}/.local/share" XDG_DATA_HOME XDG_DATA_HOME
+
+elglob MAILDIR "${XDG_DATA_HOME}"/mail/*/[Ii][Nn][Bb][Oo][Xx]/new
+
+loopwhilex foreground {
+pipeline { echo "${MAILDIR}\n" }
+pipeline { sed "s|^\\s*||" }
+entr -dpn pkill -u "${USER}" -RTMIN+6 dwmblocks
+}
+true

@@ -1,0 +1,24 @@
+#!/bin/sh
+
+case "$(readlink -f /sbin/init)" in
+	*systemd*) ctl='systemctl' ;;
+	*) ctl='loginctl' ;;
+esac
+
+# Assume you have GNU coreutils installed.
+act=$(/usr/bin/echo -en "Lock\0icon\x1fsystem-lock-screen\nShutdown\0icon\x1fsystem-shutdown\nReboot\0icon\x1fsystem-reboot\nSleep\0icon\x1fsystem-suspend\nHibernate\0icon\x1fsystem-hibernate\nDisplay off\0icon\x1fsystem-log-out" | rofi -dmenu -show-icons -i -l 1)
+
+[ -z "$act" ] && exit 1
+
+# yn=$(printf "No\nYes\n" | rofi -dmenu -i -l 1)
+# [ "$yn" = "Yes" ] || exit 1
+
+case "$act" in
+	'Lock') slock ;;
+	'Hibernate') slock "$ctl" hibernate -i ;;
+	'Sleep') slock "$ctl" suspend -i ;;
+	'Reboot') "$ctl" reboot -i ;;
+	'Shutdown') "$ctl" poweroff -i ;;
+	'Display off') sleep 0.7; xset dpms force off ;;
+	*) exit 1 ;;
+esac

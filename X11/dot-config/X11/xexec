@@ -1,0 +1,5 @@
+#!/bin/execlineb -s2
+
+foreground { ${1} }
+foreground { s6-svscanctl -t "${2}" }
+rm -rf "${2}"

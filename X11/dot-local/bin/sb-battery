@@ -1,0 +1,32 @@
+#!/bin/sh
+# Loop through all attached batteries and format the info
+# SIGNAL 11
+
+case $BLOCK_BUTTON in
+    1) batnoti;;
+    3) setsid -f "$TERMINAL" -e "$EDITOR" "$0" >/dev/null 2>&1 &;;
+esac
+
+for battery in /sys/class/power_supply/BAT?*; do
+	# Sets up the status and capacity
+	case "$(cat "$battery/status" 2>&1)" in
+		"Full") status="🔌" ;;
+		"Discharging") status="🔋" ;;
+		"Charging") status="🔌" ;;
+		"Not charging") status="🔋" ;;
+		"Unknown") status="❓" ;;
+		*) printf "error" && exit 1 ;;
+	esac
+	capacity="$(cat "$battery/capacity" 2>&1)"
+    [ "$status" = "🔋" ] && [ "$capacity" -le 20 ] 2>/dev/null && status="🛑" \
+		&& notify-send -u critical "LOW BATTERY!" "The capacity of $(basename "$battery") is $capacity% now!"
+	if [ "$capacity" -eq 100 ]; then
+		capacity="MAX"
+		elif [ "$capacity" -le 9 ]; then
+			capacity="0$capacity%"
+		else
+			capacity="$capacity%"
+	fi
+	# Prints the info
+	printf "%s: %s" "$status" "$capacity"
+done

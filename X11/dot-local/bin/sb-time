@@ -1,0 +1,35 @@
+#!/bin/sh
+# SIGNAL 10
+
+case $BLOCK_BUTTON in
+    1) notify-send "DATE & TIME:" "$(date)";;
+    3) setsid -f "$TERMINAL" -e "$EDITOR" "$0" >/dev/null 2>&1 &;;
+esac
+
+dayfile="${XDG_CACHE_HOME:-$HOME/.cache}/dwm-date"
+[ -s "$dayfile" ] || echo 0 > "$dayfile"
+day=$(cat "$dayfile")
+nday=$(date '+%d')
+if [ "$day" -ne "$nday" ]; then
+	# refresh sb-date
+    pkill -RTMIN+12 dwmblocks
+    echo "$nday" > "$dayfile"
+fi
+
+clock=$(date '+%I')
+case "$clock" in
+	"00") icon="🕛" ;;
+	"01") icon="🕐" ;;
+	"02") icon="🕑" ;;
+	"03") icon="🕒" ;;
+	"04") icon="🕓" ;;
+	"05") icon="🕔" ;;
+	"06") icon="🕕" ;;
+	"07") icon="🕖" ;;
+	"08") icon="🕗" ;;
+	"09") icon="🕘" ;;
+	"10") icon="🕙" ;;
+	"11") icon="🕚" ;;
+	"12") icon="🕛" ;;
+esac
+date "+$icon: %H:%M"

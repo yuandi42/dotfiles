@@ -1,0 +1,8 @@
+#!/bin/sh
+
+exec 2>&1
+
+DB="${XDG_DATA_HOME:-$HOME/.local/share}/newsboat/cache.db"
+[ -f "$DB" ] || exit 2
+
+echo "$DB" | entr -np pkill -u "$USER" -RTMIN+4 dwmblocks

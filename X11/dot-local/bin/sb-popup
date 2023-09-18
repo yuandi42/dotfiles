@@ -1,0 +1,10 @@
+#!/bin/sh
+
+printf "\033]0;Paru Update\007"
+printf "Beginning upgrade.\\n"
+
+paru -Syyu
+pkill -RTMIN+5 dwmblocks
+
+printf "\\nUpgrade complete.\\nPress <Enter> to exit window.\\n\\n"
+read -r _

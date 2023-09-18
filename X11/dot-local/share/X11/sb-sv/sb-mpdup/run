@@ -1,0 +1,8 @@
+#!/bin/execlineb -P
+
+fdmove -c 2 1
+
+importas -i USER USER
+
+loopwhilex foreground { mpc idle }
+pkill -u "${USER}" -RTMIN+15 dwmblocks

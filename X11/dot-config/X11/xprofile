@@ -1,0 +1,35 @@
+#!/bin/sh
+
+
+# GUI related envvat is set here.
+export TERMINAL="st"
+export BROWSER="firefox"
+
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS="@im=fcitx"
+export QT4_IM_MODULE=fcitx
+export QT5_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+
+
+export QT_QPA_PLATFORMTHEME=qt5ct
+export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
+export AWT_TOOLKIT="MToolkit wmname LG3D"	#May have to install wmname
+export _JAVA_AWT_WM_NONREPARENTING=1	# Fix for Java applications in dwm
+
+set -eu
+
+# Start needed program for desktop
+xwallpaper --zoom "${XDG_DATA_HOME:-$HOME/.local/share}/bg" &
+fcitx5-remote &
+
+if [ -d "$XDG_RUNTIME_DIR" ]; then
+	X11_SV_DIR=$(mktemp -d -p "$XDG_RUNTIME_DIR" x11-sv.XXXXXXXXXX)
+else
+	X11_SV_DIR=$(mktemp -d -p /tmp x11-sv.XXXXXXXXXX)
+fi
+export X11_SV_DIR
+
+cp -a "${XDG_DATA_HOME:-$HOME/.local/share}/X11/sv"/. "$X11_SV_DIR"
+s6-svscan "$X11_SV_DIR" &

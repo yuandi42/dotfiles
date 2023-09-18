@@ -1,0 +1,9 @@
+[Unit]
+Description=S6 process to auto refresh dwmblocks
+
+[Service]
+ExecStart=/usr/bin/s6-svscan %h/.local/share/X11/sb-sv
+ExecReload=/usr/bin/s6-svscanctl -h %h/.local/share/X11/sb-sv
+
+[Install]
+WantedBy=default.target

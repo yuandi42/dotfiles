@@ -1,0 +1,27 @@
+#!/bin/sh
+# show mpd status.
+# SIGNAL 15
+
+desc='[---]'
+if pidof mpd > /dev/null; then
+    case $BLOCK_BUTTON in
+        1) mpc -q toggle;; # toggle mpd
+        2) mpdnoti;; # send notification
+        3) setsid -f "$TERMINAL" -e "ncmpcpp" -s "playlist" >/dev/null 2>&1 &;;
+        4) mpc -q prev;; # scroll up, previous
+        5) mpc -q next;; # scroll down, next
+    esac
+    stt=$(mpc status '%state%')
+    desc=$(mpc | awk 'FNR == 2 {print $2}'| tr -d '#')
+    case $stt in
+        *pause*) desc='['$desc']';;
+        *play*)  desc='<'$desc'>';;
+    esac
+    [ "$desc" = '[]' ] && desc='[OVER]'
+else
+    case $BLOCK_BUTTON in
+        1) mpd && notify-send "🎼 MPD launched.";;
+        3) setsid -f "$TERMINAL" -e "$EDITOR" "$0" >/dev/null 2>&1 &;;
+    esac
+fi
+printf "🎼: %s" "$desc"

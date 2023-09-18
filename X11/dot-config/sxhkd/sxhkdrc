@@ -1,0 +1,49 @@
+# If sxhkd receives a SIGUSR1 signal,
+# it will reload its configuration file.
+super + alt + r
+    killall -SIGUSR1 sxhkd
+super + ctrl + r
+    pkill -SIGUSR1 dwmblocks
+
+# my volume and backlight control.
+# alsa-utils and light is needed.
+XF86Audio{LowerVolume,RaiseVolume,Mute}
+    pamixer {-d 5, -i 5,--toggle-mute} && pkill -RTMIN+3 dwmblocks
+XF86Audio{LowerVolume,RaiseVolume} + {shift,alt}
+    pamixer {-d,-i}{10,2} && pkill -RTMIN+3 dwmblocks
+XF86MonBrightness{Down,Up} + {_,shift,alt}
+    light {-U,-A} {5,10,2} && pkill -RTMIN+2 dwmblocks
+
+# keybindings for programs and scripts
+super + {x, d}
+    rofi -show drun -show-icons
+super + Return
+	$TERMINAL
+super + w
+	$BROWSER
+super + shift + m
+	$TERMINAL -e neomutt
+super + shift + n
+	$TERMINAL -e newsboat
+super + {_,shift}  + e
+    {$TERMINAL -e vfr,thunar}
+super + z
+    zathura
+super + ctrl + u
+    $TERMINAL -e sb-popup
+super + ctrl + m
+    $TERMINAL -e ncmpcpp -s playlist
+super + ctrl + l
+    slock
+XF86AudioPlay
+    mpc toggle
+super + Escape
+	rofi-sysact
+
+# keybindings for screenshot. maim is needed.
+# ctrl for clipboard, shift for selection.
+# And super for both clipboard and saving.
+{_,shift} + {_,ctrl} + Print
+    maim {-u,-s -d 0.05} -o {$(xdg-user-dir PICTURES)/Screenshots/$(date '+%Y%m%d-%H%M%S').png,| xclip -selection clipboard -t image/png}
+super + {_,shift} + Print
+    maim {-u,-s -d 0.05} -o | tee $(xdg-user-dir PICTURES)/Screenshots/$(date '+%Y%m%d-%H%M%S').png | xclip -selection clipboard -t image/png

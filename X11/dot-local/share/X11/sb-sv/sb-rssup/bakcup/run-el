@@ -1,0 +1,10 @@
+#!/bin/execlineb -P
+
+fdmove -c 2 1
+
+importas USER USER
+importas HOME HOME
+importas -D "${HOME}/.local/share" XDG_DATA_HOME XDG_DATA_HOME
+define DB "${XDG_DATA_HOME}/newsboat/cache.db"
+
+pipeline { echo "${DB}" } entr -np pkill -u "${USER}" -RTMIN+4 dwmblocks
