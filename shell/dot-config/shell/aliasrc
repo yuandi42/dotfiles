@@ -1,0 +1,78 @@
+#!/bin/sh
+##############
+## my alias ##
+##############
+# Verbosity and settings that you pretty much just always are going to want.
+alias \
+	cp="cp -iv" \
+	mv="mv -iv" \
+	rm="rm -vI" \
+	rmd="rmdir -v" \
+	mkd="mkdir -pv" \
+    yt="yt-dlp --embed-metadata -i --cookies-from-browser $BROWSER" \
+    yta="yt -x -f bestaudio/best" \
+	ffmpeg="ffmpeg -hide_banner"\
+	ffplay="ffplay -hide_banner -nodisp"
+
+# Colorize commands when possible.
+alias \
+	ls="ls -hN --color=auto --group-directories-first" \
+	grep="grep --color=auto" \
+	diff="diff --color=auto" \
+	ccat="highlight --out-format=ansi" \
+	ip="ip -color=auto"
+
+alias \
+    c='clear'\
+    v="$EDITOR"\
+    n="newf"\
+    s='sudo -E'\
+    se='sudo -e'
+[ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d" ex="nvim -es"
+
+alias \
+    p='paru'\
+    pss='paru -Ss'\
+    psi='paru -Si'\
+    pq='paru -Qs'\
+    pqi='paru -Qi'\
+    pS='paru -S'\
+    pR='paru -Rs'
+
+alias \
+    g='git'\
+    gp='git pull'\
+    gC='git clone --depth=1'\
+    lg='lazygit'
+
+
+# test if internet works
+alias tnet='ping archlinux.org'
+# easily get the name of key events.
+alias xkey='xev | awk -F'\''[ )]+'\'' '\''/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'\'''
+# prints the relevant properties of the selected client.
+alias xdwm='xprop | awk '\''
+	/^WM_CLASS/{sub(/.* =/, "instance:"); sub(/,/, "\nclass:"); print}
+	/^WM_NAME/{sub(/.* =/, "title:"); print}'\'''
+
+# Use $XINITRC variable if file exists.
+[ -f "$XINITRC" ] && alias startx="startx $XINITRC"
+
+# print figlet in doom font.
+alias fldoom='figlet -f $HOME/.config/figlet/doom.flf'
+
+# for my .dotfiles management. dfc stands for dotfiles config.
+alias dfc='/usr/bin/git --git-dir=$HOME/.config/dotfiles/ --work-tree=$HOME'
+alias lzdc='lazygit -g ~/.config/dotfiles/ -w $HOME'
+
+# for suckless tools
+alias slm='rm -i config.h; sudo make install && make clean'
+
+# for my onedrive synchronization.
+# alias \
+#     o='onedrive --synchronize'\
+#     os='onedrive --synchronize --single-directory'\
+#     od='onedrive --synchronize --single-directory "Documents"'
+##############
+## my alias ##
+##############
