@@ -1,8 +1,8 @@
 The repo contains my daily configuration of X11 window manager, shell and other
 not-so-vital stuff. The distro I use is Arch Linux, however, scripts and config
-here may be helpful for other distrobutions.
+here may be helpful for other distributions.
 
-All dotfiles are managed by GNU stow, and are separated according to categorines
+All dotfiles are managed by GNU stow, and are separated according to categories
 roughly. Note that since version 2.30, `stow(8)` added new options `--dotfiles`,
 which enables special handling for "dotfiles", and a file and dir in this
 repo whose name begins with "dot-" actually correspond to a real hidden
@@ -95,12 +95,12 @@ scripts (that matter) below:
 1. [xinitrc](./X11/dot-config/X11/xinitrc): It will source xresources and
    xprofile, then exec into xexec.
 
-2. [xresources](./X11/dot-config/X11/xresources): Basicly .Xresources. DPI and
+2. [xresources](./X11/dot-config/X11/xresources): Basically .Xresources. DPI and
    X-colorscheme is set here.
 
 3. [xprofile](./X11/dot-config/X11/xprofile): Maybe the most important part. It
    set GUI-related envvars, then runs oneshot commands to setup desktop, for
-   instance, `xwallpaper(1)` and `fcitx5-remote(1)`. Next, it creats a tmp
+   instance, `xwallpaper(1)` and `fcitx5-remote(1)`. Next, it creates a tmp
    scandir in `XDG_RUNTIME_DIR`, recursively copy all the files and subdirs in
    [service dir](./X11/dot-local/share/X11/sv) into scandir. Finally, a
    `s6-svscan(1)` is started in background, scanning the scandir, start
@@ -109,11 +109,11 @@ scripts (that matter) below:
 
 4. [xexec](./X11/dot-config/X11/xexec): Last step. It is a dead simple execline
    script in which `dwm(1)` is firstly launched, and when `dwm(1)` process is
-   over, it will teminate `s6-svscan(1)` process started in xprofile, then
+   over, it will terminate `s6-svscan(1)` process started in xprofile, then
    removed the tmp scandir.
 
 The reason why xexec exists is that `startx` doesn't offer any mechanics to run
-certain commands when a X user session is closed. I know I can reomve `exec`
+certain commands when a X user session is closed. I know I can remove `exec`
 before `dwm`, add a few lines at the end of xinitrc. But the result of this idea
 ------ a useless `bin/sh` hanging as parent of dwm when I using desktop, it just
 makes me sick.
@@ -140,7 +140,7 @@ divided into 3 types (again):
 
 2. Daemons that should start with graphical session, and one daemon corresponds
    to one graphical session. When another graphical session is launched in other
-   tty/seat, another corresponding daemons should starts with it. For exmaple,
+   tty/seat, another corresponding daemons should starts with it. For example,
    your graphical panel. It should start when you launch your WM, and when you
    launch another WM in another tty (don't ask why, it just could happen), you
    cannot expect the previous panel process to work in your new X session. Get
@@ -151,7 +151,7 @@ divided into 3 types (again):
    session. Those kinds of daemons are rare, but they exist, such as
    [darkman service](https://gitlab.com/WhyNotHugo/darkman).
 
-The first type of services should hanlded by your system-wide user services
+The first type of services should handled by your system-wide user services
 manager. For systemd guys, here is systemd user instance. For systemd-haters,
 here is chimera linux's
 [turnstile project](https://github.com/chimera-linux/turnstile), as well as a
@@ -159,7 +159,7 @@ here is chimera linux's
 
 The second type of services are launched and supervised by `s6-svscan(1)` here.
 Systemd user instance cannot deal with those services as there can be only one
-systemd user instance for one user. A daemtool-inspired supervision tool (such
+systemd user instance for one user. A daemontools-inspired supervision tool (such
 as runit and s6), on the opposite, doesn't care who launch it and how many s6
 processes are running.
 
@@ -168,21 +168,52 @@ and actively maintained. Moreover, Another benefit to use a process supervision
 is that we no longer have to concern the timing of starting services, as s6
 would automatically restart failed daemons.
 
-The third type of services are a bit tricky to handle. I personnaly choose to
+The third type of services are a bit tricky to handle. I personally choose to
 organize them using systemd user instance. Because 99% of the time I work on my
 PC with a desktop launched, and the daemons wouldn't cause any trouble even if
 no graphical session exists. You can check out that service file,
 [sb-sv.service](./X11/dot-config/systemd/user/sb-sv.service), a simple
 `s6-svscan(1)` process to automatically refresh my dwmblocks.
 
+### Bonus: Window manager as user desktop service
+
+Since window manager is a long-lived process, why not try to supervise it using
+s6 suite? I've tried `dwm(1)` and `openbox(1)` and both of them works well. I
+just create a new service dir called wm in
+[desktop services scandir](./X11/dot-local/share/X11/sv), and that service run
+script is quite simple:
+
+```
+#!/bin/execlineb -P
+fdmove -c 2 1
+importas HOME HOME
+cd "${HOME}" dwm
+```
+
+And final section in xinitrc should be something like `exec s6-svscan
+$X11_SV_DIR` as window manager is now part of s6 services. That is it. The
+advantages we get by doing so are:
+
+1. Things get simpler and more unified. Now we can quit X user session by
+   running `s6-svscanctl -t`. And we can control window manager like other
+   desktop daemons using `s6-svc`.
+
+2. It satisfies my obsessive-compulsive disorder.
+
+However there is also a con. I haven't test it seriously, but it feels like the
+window manager will start a little slower when running it as a s6 service. I
+guess that's because window manager doesn't enjoy any treatment in this way, and
+is started with other desktop services in parallel by `s6-svscan(1)`. Hence in
+this repo we don't use this method to start wm. Anyway, you can give it a try.
+
 # Misc
 
 In [that dir](./misc) there are:
 
-1. A few interesting scripts. they are:
+1. A few interesting scripts. They are:
    * `newf`, a simple shell script to create new files, for further info, run
      `newf -h`.
-   *  `xsetwp`, a little warpper for `xwallpaper(1)`.
+   *  `xsetwp`, a little wrapper for `xwallpaper(1)`.
 
 2. My font config.
 
@@ -193,5 +224,5 @@ In [that dir](./misc) there are:
 # Other tips
 
 In this repo there is a setup script to install my dotfiles. **DO NOT USE IT**.
-The implemention of `stow --dotfiles` is quite buggy now and cannot handle
+The implementation of `stow --dotfiles` is quite buggy now and cannot handle
 dot-directory properly.
