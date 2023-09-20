@@ -19,11 +19,11 @@
 #      run `. template_dir/template file`;
 #      or it will run `cat template_dir/template > file`.
 # Bugs:
-#   1. type/template arguments as well as filename should have no space
+#   1. type/template arguments as well as filename should have no whitespace
 #      character, or bugs occur. Follow the Unix-style, please!!!
 
 _NEW_HELP_MESSAGE=$(cat << EOF
-Usage: newf [options] [filename]
+Usage: $(basename "${0}") [options] [filename]
 
 Create a new file with a specified template and options.
 
@@ -54,13 +54,13 @@ Notes:
 
 Examples:
   To create a new Python file named "hello.py":
-  newf hello.py
+  $(basename "${0}") hello.py
 
   To create a new Python file with a custom template in the ~/my_templates directory:
-  newf -t py -d ~/my_templates hello.py
+  $(basename "${0}") -t py -d ~/my_templates hello.py
 
   To create a new POSIX shell script and make it executable:
-  newf -x -t sh hello.sh
+  $(basename "${0}") -x -t sh hello.sh
 EOF
 )
 
@@ -82,8 +82,6 @@ shift $((OPTIND - 1))
 [ -z "$_NEW_TEMP_DIR" ] && _NEW_TEMP_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/templates"
 [ -d "$_NEW_TEMP_DIR" ] || echo "Templates directory isn't found. Use default templates."
 
-files=$*
-
 type_detect(){
 	if [ -d "$2" ] && [ -f "$2/$1" ]; then
 		_NEW_TEMP_TYPE="$1"
@@ -101,7 +99,7 @@ default_template_fill(){
 	case "$1" in
 		make) printf "all: clean build\n\nclean:\n\nbuild:\n\n" > "$2";;
 		py|py3|python|python3) printf "#!/usr/bin/env python3\n#-*- coding: utf-8 -*-\n\n" > "$2";;
-		md|markdown) printf "# %s\n\n##" "${2%.*}" > "$2";;
+		md|markdown) fbname=$(basename "$2"); printf "# %s\n\n##" "${fbname%.*}" > "$2";;
 		[a-z]*sh|sh) printf "#!/bin/%s\n\n" "$1" > "$2";;
 		*) printf "" > "$2"; [ -z "$_NEW_VERBOSE" ] || printf " with no template applied"
 	esac
@@ -120,7 +118,7 @@ template_fill(){
 	fi
 }
 
-for file in $files; do
+for file in "$@"; do
 	[ -z "$_NEW_TYPE" ] && _NEW_FILETYPE=$(type_detect "$file" "$_NEW_TEMP_DIR") || _NEW_FILETYPE="$_NEW_TYPE"
 
 	# File will be created/overwritten if:
