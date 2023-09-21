@@ -3,7 +3,7 @@ not-so-vital stuff. The distro I use is Arch Linux, however, scripts and config
 here may be helpful for other distributions.
 
 All dotfiles are managed by GNU stow, and are separated according to categories
-roughly. Note that since version 2.30, `stow(8)` added new options `--dotfiles`,
+roughly. Note that since version 2.30, `stow(1)` added new options `--dotfiles`,
 which enables special handling for "dotfiles", and a file and dir in this
 repo whose name begins with "dot-" actually correspond to a real hidden
 files/dirs in home dir.
@@ -118,6 +118,31 @@ before `dwm`, add a few lines at the end of xinitrc. But the result of this idea
 ------ a useless `bin/sh` hanging as parent of dwm when I using desktop, it just
 makes me sick.
 
+### Optional: logging your desktop daemons
+
+S6 supervision suite has built-in logging function and we can take full use of
+it. It will be helpful when debugging (i.e. useless in most instances). Let's
+take our X hotkey daemon `sxhkd(1)` for example.
+
+First Let's create a sub service dir `log` in [sxhkd service
+dir](./X11/dot-local/share/X11/sv/sxhkd), `s6-svscan(1)` would treat `sxhkd/log`
+dir as a service dir, and open then maintain a pipeline between sxhkd service
+and the log service. Everything that `sxhkd/run` writes to its stdout will
+appear on `sxhkd/log/run`'s stdin. And a simple example for `log/run` is below:
+
+```
+#!/bin/sh
+
+LOGDIR=""${HOME}/.local/share/X11/log/sxhkd""
+mkdir -p "${LOGDIR}"
+s6-log -b n20 s1000000 T "${LOGDIR}"
+```
+
+The `sxhkd(1)` daemon would be correctly logged the next time you start X
+session. Or if you want it to get logged now, you can create these logdir and
+run script in `$X11_SV_DIR`, then tell `s6-supervise(1)` to restart the service
+using `s6-svc -r`. Happy logging, you freak!
+
 ## User service/daemon
 
 Here service and daemon share the same meaning: a long-lived process. And a user
@@ -126,7 +151,7 @@ expects those daemons running silently in background and get correctly
 supervision.
 
 You may wonder: why am I using `s6-svscan(1)` just for launching things like
-`sxhkd(1)`? Why not just `sxhkdrc &` in xinitrc? Well, always remember principle
+`sxhkd(1)`? Why not just `sxhkd &` in xinitrc? Well, always remember principle
 2, we want every longrun process are controlled and supervised, if it's
 possible. A supervision suite can automatically (re)start those daemons, and
 endows users with a decent way to control and log them.
@@ -202,9 +227,10 @@ advantages we get by doing so are:
 
 However there is also a con. I haven't test it seriously, but it feels like the
 window manager will start a little slower when running it as a s6 service. I
-guess that's because window manager doesn't enjoy any treatment in this way, and
-is started with other desktop services in parallel by `s6-svscan(1)`. Hence in
-this repo we don't use this method to start wm. Anyway, you can give it a try.
+guess that's because window manager doesn't enjoy any special treatment in this
+way, and is started with other desktop services in parallel by `s6-svscan(1)`.
+Hence in this repo we don't use this method to start wm. Anyway, you can give
+it a try.
 
 # Misc
 
