@@ -57,22 +57,6 @@ alias xdwm='xprop | awk '\''
 
 # Use $XINITRC variable if file exists.
 [ -f "$XINITRC" ] && alias startx="startx $XINITRC"
-
-# print figlet in doom font.
-alias fldoom='figlet -f $HOME/.config/figlet/doom.flf'
-
-# for my .dotfiles management. dfc stands for dotfiles config.
-alias dfc='/usr/bin/git --git-dir=$HOME/.config/dotfiles/ --work-tree=$HOME'
-alias lzdc='lazygit -g ~/.config/dotfiles/ -w $HOME'
-
-# for suckless tools
-alias slm='rm -i config.h; sudo make install && make clean'
-
-# for my onedrive synchronization.
-# alias \
-#     o='onedrive --synchronize'\
-#     os='onedrive --synchronize --single-directory'\
-#     od='onedrive --synchronize --single-directory "Documents"'
 ##############
 ## my alias ##
 ##############
