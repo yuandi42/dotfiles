@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Help me creat text file with certain template, and +x if I want.
+# Help me create text file with certain template, and +x if I want.
 # See more in newf -h.
 
 # Name: new (text) file creator.
@@ -16,8 +16,8 @@
 #   1. if -t option isn't set, the script will auto detect filetype according
 #      to: templates in teamplates dir, then filename extension.
 #   2. if template_dir/template is executable for current user, the script will
-#      run `. template_dir/template file`;
-#      or it will run `cat template_dir/template > file`.
+#      eval "template_dir/template file" > file;
+#      or it will cat template_dir/template > file.
 # Bugs:
 #   1. type/template arguments as well as filename should have no whitespace
 #      character, or bugs occur. Follow the Unix-style, please!!!
@@ -109,7 +109,7 @@ template_fill(){
 	[ "$3" = "${3%/*}" ] || mkdir -p "${3%/*}"
 	if [ -d "$1" ] && [ -f "$1/$2" ]; then
 		if [ -x "$1/$2" ]; then
-			eval "$1/$2 $3"
+			eval "$1/$2 $3" > "$3"
 		else
 			cat "$1/$2" > "$3"
 		fi
@@ -120,20 +120,22 @@ template_fill(){
 
 for file in "$@"; do
 	[ -z "$_NEW_TYPE" ] && _NEW_FILETYPE=$(type_detect "$file" "$_NEW_TEMP_DIR") || _NEW_FILETYPE="$_NEW_TYPE"
-
 	# File will be created/overwritten if:
 	#   1. File doesn't exist;
 	#   2. -f option is set, file exists, and is neither a directory nor a symlink.
 	#   3. Some unknown bugs occur.
-	if [ ! -r "$file" ] || [ -n "$_NEW_FORCE" ] && [ ! -d "$file" ] && [ ! -h "$file" ]; then
-		if [ -n "$_NEW_VERBOSE" ]; then
-			printf "File %s is" "$file"
-			[ -f "$file" ] && printf " overwritten" || printf " created"
-		fi
+	if [ ! -f "$file" ] || [ -n "$_NEW_FORCE" ] && [ ! -d "$file" ] && [ ! -h "$file" ]; then
+		# _NEW_FILE_OW flag means file is overwritten.
+		[ -n "$_NEW_VERBOSE" ] && [ -f "$file" ] && _NEW_FILE_OW=1
 		template_fill "$_NEW_TEMP_DIR" "$_NEW_FILETYPE" "$file"
-		[ -n "$_NEW_EXEC" ] && chmod +x "$file" && [ -n "$_NEW_VERBOSE" ] && printf " and executable"
-		if [ -n "$_NEW_VERBOSE" ]; then
-			printf "\n"
+		if [ -f "$file" ]; then
+			[ -n "$_NEW_EXEC" ] && chmod +x "$file"
+			if [ -n "$_NEW_VERBOSE" ]; then
+				[ -n "$_NEW_FILE_OW" ] && printf "%s is overwritten" "$file" || printf "%s is created" "$file"
+				[ -x "$file" ] && printf "and executable.\n" || printf ".\n"
+			fi
+		else
+			echo "Error occurs, couldn't $file created." >&2
 		fi
 	else
 		echo "File/Directory/Symlink $file already exists!" >&2
