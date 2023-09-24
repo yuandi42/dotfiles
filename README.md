@@ -6,7 +6,7 @@ All dotfiles are managed by GNU stow, and are separated according to categories
 roughly. Note that since version 2.30, `stow(1)` added new options `--dotfiles`,
 which enables special handling for "dotfiles", and a file and dir in this
 repo whose name begins with "dot-" actually correspond to a real hidden
-files/dirs in home dir.
+file/dir in home dir.
 
 # Overview
 
@@ -133,15 +133,15 @@ appear on `sxhkd/log/run`'s stdin. And a simple example for `log/run` is below:
 ```
 #!/bin/sh
 
-LOGDIR=""${HOME}/.local/share/X11/log/sxhkd""
+LOGDIR="${HOME}/.local/share/X11/log/sxhkd"
 mkdir -p "${LOGDIR}"
 s6-log -b n20 s1000000 T "${LOGDIR}"
 ```
 
 The `sxhkd(1)` daemon would be correctly logged the next time you start X
 session. Or if you want it to get logged now, you can create these logdir and
-run script in `$X11_SV_DIR`, then tell `s6-supervise(1)` to restart the service
-using `s6-svc -r`. Happy logging, you freak!
+run script in `$X11_SV_DIR`, then restart the service using `s6-svc -r`. Happy
+logging, you freak!
 
 ## User service/daemon
 
@@ -179,7 +179,7 @@ divided into 3 types (again):
 The first type of services should handled by your system-wide user services
 manager. For systemd guys, here is systemd user instance. For systemd-haters,
 here is chimera linux's
-[turnstile project](https://github.com/chimera-linux/turnstile), as well as a
+[turnstile project](https://github.com/chimera-linux/turnstile), as well as
 [instructions on gentoo wiki](https://wiki.gentoo.org/wiki/OpenRC/User_services).
 
 The second type of services are launched and supervised by `s6-svscan(1)` here.
@@ -249,6 +249,7 @@ In [that dir](./misc) there are:
 
 # Other tips
 
-In this repo there is a setup script to install my dotfiles. **DO NOT USE IT**.
+In this repo there is a setup script to install my dotfiles. **DO NOT USE IT**
+unless you use a [patched version of GNU stow](https://github.com/aspiers/stow/pull/70).
 The implementation of `stow --dotfiles` is quite buggy now and cannot handle
 dot-directory properly.
