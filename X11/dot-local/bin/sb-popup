@@ -3,8 +3,28 @@
 printf "\033]0;Paru Update\007"
 printf "Beginning upgrade.\\n"
 
-paru -Syyu
-pkill -RTMIN+5 dwmblocks
+DONE=0
+SUCCESS=0
+PFLAGS='-Syyu'
+while [ $DONE -eq 0 ]; do
+	if paru "$PFLAGS"; then
+		DONE=1
+		SUCCESS=1
+	else
+		printf "\\nUpgrade failed. Try again?[y/N] "
+		read -r ans
+		case "${ans:-n}" in
+			y|Y) DONE=0; PFLAGS='-Syu' ;;
+			*)   DONE=1 ;;
+		esac
+	fi
+done
 
-printf "\\nUpgrade complete.\\nPress <Enter> to exit window.\\n\\n"
+pkill -RTMIN+5 dwmblocks
+if [ $SUCCESS -eq 1 ]; then
+	printf "\\nUpgrade completed."
+else
+	printf "\\nUpgrade aborted."
+fi
+printf "\\nPress <Enter> to exit window.\\n\\n"
 read -r _
