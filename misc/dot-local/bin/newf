@@ -71,7 +71,7 @@ while getopts ":xft:d:vh" opt; do
 		t) _NEW_TYPE="$OPTARG";;
 		d) _NEW_TEMP_DIR="$OPTARG";;
 		v) _NEW_VERBOSE=1;;
-		h) echo "$_NEW_HELP_MESSAGE" && exit 0;;
+		h) echo "$_NEW_HELP_MESSAGE" >&2 && exit 0;;
 		?) echo "Error: Invalid opt, type -h for help" >&2 && exit 1;;
 	esac
 done
@@ -106,10 +106,10 @@ default_template_fill(){
 }
 
 template_fill(){
-	[ "$3" = "${3%/*}" ] || mkdir -p "${3%/*}"
 	if [ -d "$1" ] && [ -f "$1/$2" ]; then
 		if [ -x "$1/$2" ]; then
-			eval "$1/$2 $3" > "$3"
+			# eval "$1/$2 $3" > "$3"
+			"$1"/"$2" "$3" > "$3"
 		else
 			cat "$1/$2" > "$3"
 		fi
@@ -119,6 +119,7 @@ template_fill(){
 }
 
 for file in "$@"; do
+	[ ! -d "$(dirname "$file")" ] && echo "Dir $(dirname "$file") doesn't exist, wouldn't create $file." >&2 && continue
 	[ -z "$_NEW_TYPE" ] && _NEW_FILETYPE=$(type_detect "$file" "$_NEW_TEMP_DIR") || _NEW_FILETYPE="$_NEW_TYPE"
 	# File will be created/overwritten if:
 	#   1. File doesn't exist;
@@ -132,10 +133,10 @@ for file in "$@"; do
 			[ -n "$_NEW_EXEC" ] && chmod +x "$file"
 			if [ -n "$_NEW_VERBOSE" ]; then
 				[ -n "$_NEW_FILE_OW" ] && printf "%s is overwritten" "$file" || printf "%s is created" "$file"
-				[ -x "$file" ] && printf "and executable.\n" || printf ".\n"
+				[ -x "$file" ] && printf " and executable.\n" || printf ".\n"
 			fi
 		else
-			echo "Error occurs, couldn't $file created." >&2
+			echo "Error occurs, couldn't create $file." >&2
 		fi
 	else
 		echo "File/Directory/Symlink $file already exists!" >&2
